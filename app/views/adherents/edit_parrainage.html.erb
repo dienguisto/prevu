@@ -2,6 +2,7 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
+      <%= f.input :parrain_id, :as => :hidden, :input_html => { :value => current_adherent.id } %>
       <%= f.input :affiliation, collection: Adherent.affiliations.keys%>
       <%= f.file_field :avatar %>
       <%= f.input :nom %>

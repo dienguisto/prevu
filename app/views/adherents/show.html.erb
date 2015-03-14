@@ -1,5 +1,15 @@
 <p id="notice"><%= notice %></p>
-
+<% if @adherent.status == 2 %>
+    <%= link_to t('Desactiver', :default => 'Desactiver'),
+                desactivate_adherent_path(@adherent),
+                :class => 'btn btn-mini btn-danger',
+                method: :post %>
+<% else %>
+    <%= link_to t('Activer', :default => 'Activer'),
+                activate_adherent_path(@adherent), :class => 'btn btn-mini btn-success ',
+                method: :post
+    %>
+<% end %>
 <p>
   <%= image_tag @adherent.avatar.url(:medium) %>
 </p>

@@ -28,3 +28,6 @@ gem 'momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'jquery-minicolors-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
+
+gem 'rack-contrib'
+gem 'soulmate', :require => 'soulmate/server'
