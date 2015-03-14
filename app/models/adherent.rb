@@ -9,9 +9,9 @@ class Adherent < ActiveRecord::Base
       "Veuf(ve)" => 4
   }
 
-  STATUS = {'Inactif' => 1, 'Actif' => 2, 'Suspendu' => 3}
+  STATUS = {'En attente' => 1, 'Actif' => 2, 'Suspendu' => 3, 'Supprimé' => 4}
 
-  enum affiliation: [:pere, :fils, :fille, :mere, :epoux, :epouse, :aucune_relation]
+  enum affiliation: [:fils, :fille, :epoux, :epouse, :aucune_relation]
 
   belongs_to :parrain, foreign_key: :parrain_id, class_name: Adherent
   has_many :adherents
@@ -20,12 +20,10 @@ class Adherent < ActiveRecord::Base
   attr_accessor :password_txt, :password_txt_confirmation
   before_save :encrypt_password
   before_create :generate_matricule
-  before_create :set_matricule
+  before_create :set_status
 
   validates_confirmation_of :password_txt
-  validates_presence_of :password_txt, :on => :create
-  #validates_presence_of :matricule
-  #validates_uniqueness_of :matricule
+  #validates_presence_of :password_txt, :on => :create
 
 #  has_secure_password
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -53,8 +51,8 @@ class Adherent < ActiveRecord::Base
     self.matricule = current_date+''+(last_adherent+1).to_s.rjust(6,'0')
   end
 
-  def set_matricule
-    self.status = 3
+  def set_status
+    self.status = 1
   end
 
 

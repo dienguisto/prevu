@@ -73,6 +73,7 @@ class AdherentsController < ApplicationController
   def activate
     respond_to do |format|
       @adherent.status = 2
+      @adherent.last_activation = Time.now
       if @adherent.save
         format.html { redirect_to [@adherent], notice: 'Adherent was successfully activated.' }
         format.json { head :no_content }
@@ -86,6 +87,7 @@ class AdherentsController < ApplicationController
   def desactivate
     respond_to do |format|
       @adherent.status = 3
+      @adherent.last_suspension = Time.now
       if @adherent.save
         format.html { redirect_to [@adherent], notice: 'Adherent was successfully disabled.' }
         format.json { head :no_content }
@@ -99,8 +101,10 @@ class AdherentsController < ApplicationController
   # DELETE /adherents/1
   # DELETE /adherents/1.json
   def destroy
-    @adherent.destroy
+    @adherent.status = 4
+    @adherent.last_delete = Time.now
     respond_to do |format|
+
       format.html { redirect_to adherents_url, notice: 'Adherent was successfully destroyed.' }
       format.json { head :no_content }
     end
