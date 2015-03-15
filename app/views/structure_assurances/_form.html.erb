@@ -1,0 +1,26 @@
+<%#= simple_form_for(@structure_assurance, html: {class: 'form-horizontal'},  wrapper: :horizontal_form,
+                    wrapper_mappings: {
+                            check_boxes: :horizontal_radio_and_checkboxes,
+                            radio_buttons: :horizontal_radio_and_checkboxes,
+                            file: :horizontal_file_input,
+                            boolean: :horizontal_boolean
+                    }) do |f| %>
+<%#= f.error_notification %>
+
+<!--<div class="form-inputs">-->
+<%= f.fields_for :structure_assurance do |structure_form| %>
+    <%= structure_form.input :nom %>
+    <%= structure_form.input :adresse %>
+    <%= structure_form.input :date_adhesion, as: :date_picker %>
+    <%= structure_form.input :numero_agrement %>
+    <%= structure_form.input :logo %>
+    <%= structure_form.input :couleur, as: :minicolors %>
+<% end %>
+<!--</div>-->
+
+<!--<div class="form-group">-->
+<!--<div class="col-sm-offset-3 col-sm-9">-->
+<!--<%= f.button :submit %>-->
+<!--</div>-->
+<!--</div>-->
+<%# end %>

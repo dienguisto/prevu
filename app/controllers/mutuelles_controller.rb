@@ -15,6 +15,7 @@ class MutuellesController < ApplicationController
   # GET /mutuelles/new
   def new
     @mutuelle = Mutuelle.new
+    @mutuelle.build_structure_assurance
   end
 
   # GET /mutuelles/1/edit
@@ -69,6 +70,6 @@ class MutuellesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mutuelle_params
-      params[:mutuelle]
+      params.require(:mutuelle).permit(structure_assurance_attributes: [:nom, :adresse, :date_adhesion, :numero_agrement, :logo, :couleur])
     end
 end

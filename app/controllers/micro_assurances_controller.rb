@@ -15,6 +15,7 @@ class MicroAssurancesController < ApplicationController
   # GET /micro_assurances/new
   def new
     @micro_assurance = MicroAssurance.new
+    @micro_assurance.build_structure_assurance
   end
 
   # GET /micro_assurances/1/edit
@@ -69,6 +70,6 @@ class MicroAssurancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def micro_assurance_params
-      params[:micro_assurance]
+      params.require(:micro_assurance).permit(structure_assurance_attributes: [:nom, :adresse, :date_adhesion, :numero_agrement, :logo, :couleur])
     end
 end
