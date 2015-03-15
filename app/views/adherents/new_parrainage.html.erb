@@ -2,7 +2,11 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :parrain_id, :as => :hidden, :input_html => { :value => current_adherent.id } %>
+      <div class="form-group">
+        <label class="control-label" for="parrain">Parrain</label>
+        <input class="string form-control" id="parrain" name="parrain" value="<%= @adherent.parrain.matricule if @adherent.parrain %>" type="text">
+      </div>
+      <%= f.input :parrain_id, :as => :hidden %>
       <%= f.input :affiliation, collection: Adherent.affiliations.keys%>
       <%= f.file_field :avatar %>
       <%= f.input :nom %>
@@ -24,4 +28,32 @@
 
 <script type="text/javascript">
     $('.datetimepicker').datetimepicker();
+
+    $('#parrain').autocomplete({
+        minLength: 7,
+        source: function(request, response) {
+            $.ajax({
+                url: "/wservices/adherent",
+                method: 'post',
+                dataType: "json",
+                data: {matricule: request.term},
+                success: function( data ) {
+                    console.log(data);
+                    response( $.map( data, function( item ) {
+                        //alert(item.label);
+                        return {
+                            label: item.matricule+', '+item.prenom+' '+item.nom,
+                            value: item.matricule+', '+item.prenom+' '+item.nom,
+                            id: item.id
+                        }
+                    }));
+                }
+            });
+        },
+        select: function (event, ui) {
+            $("#adherent_parrain_id").val(ui.item.id);  // ui.item.value contains the id of the selected label
+            $("#parrain").val(ui.item.label);
+            return false;
+        }
+    });
 </script>

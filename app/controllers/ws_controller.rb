@@ -6,4 +6,9 @@ class WsController < ApplicationController
     render :json => @groupes
   end
 
+  def adherent_infos
+    @adherent = Adherent.where("matricule ILIKE ?", "%#{params[:matricule]}%")
+    render :json => @adherent
+  end
+
 end

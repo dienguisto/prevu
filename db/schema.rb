@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315112414) do
+ActiveRecord::Schema.define(version: 20150315132107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,11 @@ ActiveRecord::Schema.define(version: 20150315112414) do
   add_index "adherents", ["email"], name: "index_adherents_on_email", unique: true, using: :btree
   add_index "adherents", ["groupe_id"], name: "index_adherents_on_groupe_id", using: :btree
   add_index "adherents", ["matricule"], name: "index_adherents_on_matricule", unique: true, using: :btree
+
+  create_table "adherents_tags", id: false, force: :cascade do |t|
+    t.integer "adherent_id", null: false
+    t.integer "tag_id",      null: false
+  end
 
   create_table "affectation_aperitrices", force: :cascade do |t|
     t.integer  "groupe_id"
@@ -126,10 +131,10 @@ ActiveRecord::Schema.define(version: 20150315112414) do
     t.string   "adresse"
     t.date     "date_adhesion"
     t.string   "numero_agrement"
-    t.string   "couleur"
-    t.boolean  "actif",             default: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "couleur",           limit: 10
+    t.boolean  "actif",                        default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -154,6 +159,12 @@ ActiveRecord::Schema.define(version: 20150315112414) do
   end
 
   add_index "structure_sanitaires", ["structure_type", "structure_id"], name: "index_structure_sanitaires_on_structure_type_and_structure_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "libelle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   add_foreign_key "adherents", "groupes"
   add_foreign_key "affectation_aperitrices", "groupes"
