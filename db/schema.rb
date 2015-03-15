@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315112414) do
+ActiveRecord::Schema.define(version: 20150315160503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 20150315112414) do
 
   add_index "affectation_aperitrices", ["groupe_id"], name: "index_affectation_aperitrices_on_groupe_id", using: :btree
   add_index "affectation_aperitrices", ["structure_aperitrice_id"], name: "index_affectation_aperitrices_on_structure_aperitrice_id", using: :btree
+
+  create_table "entites", force: :cascade do |t|
+    t.integer  "entite_id"
+    t.string   "entite_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "entites", ["entite_type", "entite_id"], name: "index_entites_on_entite_type_and_entite_id", using: :btree
 
   create_table "formation_sanitaires", force: :cascade do |t|
     t.integer  "niveau",     null: false
