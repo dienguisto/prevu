@@ -24,6 +24,11 @@
       <label class="control-label" for="groupe">Groupe</label>
       <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
     </div>
+    <%= f.input :xtags,
+                      collection: Tag.all.map{ |c| [c.libelle, c.id]},
+                      input_html: {multiple: true,
+                                   class: 'chosen chosen-container chosen-container-multi chosen-with-drop chosen-container-active' }
+    %>
   </div>
 
   <div class="form-actions">

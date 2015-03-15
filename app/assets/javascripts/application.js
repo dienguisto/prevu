@@ -13,6 +13,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery-ui/autocomplete
+//= require chosen-jquery
+//= require scaffold
 //= require twitter/bootstrap
 //= require turbolinks
 //= require moment

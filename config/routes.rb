@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 
   scope '/wservices' do
     post '/groupes' => 'ws#get_groupes'
+    post '/adherent' => 'ws#adherent_infos'
   end
 
   get "/log_out" => "sessions#destroy", :as => "log_out"
   get "/log_in" => "sessions#new", :as => "log_in"
   get "/sign_up" => "adherents#new", :as => "sign_up"
-  #root :to => "users#new"
 
   resources :adherents do
     get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
