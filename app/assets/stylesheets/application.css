@@ -12,6 +12,8 @@
  *
  *= require bootstrap-datetimepicker.min
  *= require jquery.minicolors
+ *= require jquery-ui
+ *= require jquery-ui/autocomplete
  *= require_tree .
  *= require_self
  */

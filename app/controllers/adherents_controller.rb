@@ -121,6 +121,6 @@ class AdherentsController < ApplicationController
       params.require(:adherent).permit(:nom, :prenom, :status_matrimonial, :date_de_naissance, :lieu_de_naissance,
                                        :adresse, :telephone1, :telephone2, :password_txt, :password_txt_confirmation,
                                        :status, :payer, :last_activation, :last_suspension, :last_delete, :paiement_date,
-                                       :montant_cotisation, :avatar, :email, :sexe, :parrain_id, :affiliation)
+                                       :montant_cotisation, :avatar, :email, :sexe, :parrain_id, :affiliation, :groupe_id)
     end
 end

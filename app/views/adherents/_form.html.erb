@@ -1,3 +1,5 @@
+
+
 <%= simple_form_for(@adherent) do |f| %>
   <%= f.error_notification %>
 
@@ -16,6 +18,12 @@
     <%= f.input :password_txt %>
     <%= f.input :password_txt_confirmation %>
     <%= f.input :montant_cotisation %>
+    <%= f.input :groupe_id, :as => :hidden %>
+
+    <div class="form-group">
+      <label class="control-label" for="groupe">Groupe</label>
+      <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
+    </div>
   </div>
 
   <div class="form-actions">
@@ -25,4 +33,33 @@
 
 <script type="text/javascript">
     $('.datetimepicker').datetimepicker();
+
+    $('#groupe').autocomplete({
+        minLength: 3,
+        source: function(request, response) {
+            $.ajax({
+                url: "<%= groupes_path %>",
+                method: 'post',
+                dataType: "json",
+                data: {nom: request.term},
+                success: function( data ) {
+                    console.log(data);
+                    response( $.map( data, function( item ) {
+                        //alert(item.label);
+                        return {
+                            label: item.nom,
+                            value: item.nom,
+                            id: item.id
+                        }
+                    }));
+                }
+            });
+        },
+        select: function (event, ui) {
+            $("#adherent_groupe_id").val(ui.item.id);  // ui.item.value contains the id of the selected label
+            $("#groupe").val(ui.item.label);
+            return false;
+        }
+    });
 </script>
+
