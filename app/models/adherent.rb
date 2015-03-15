@@ -15,6 +15,7 @@ class Adherent < ActiveRecord::Base
 
   belongs_to :parrain, foreign_key: :parrain_id, class_name: Adherent
   has_many :adherents
+  belongs_to :groupe
   has_many :affiliations, through: :adherents
 
   attr_accessor :password_txt, :password_txt_confirmation

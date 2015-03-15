@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314185806) do
+ActiveRecord::Schema.define(version: 20150315112414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,27 +45,12 @@ ActiveRecord::Schema.define(version: 20150314185806) do
     t.integer  "sexe"
     t.integer  "affiliation"
     t.integer  "parrain_id"
+    t.integer  "groupe_id"
   end
 
   add_index "adherents", ["email"], name: "index_adherents_on_email", unique: true, using: :btree
+  add_index "adherents", ["groupe_id"], name: "index_adherents_on_groupe_id", using: :btree
   add_index "adherents", ["matricule"], name: "index_adherents_on_matricule", unique: true, using: :btree
-
-  create_table "affectation_aperitrices", force: :cascade do |t|
-    t.integer  "groupe_id"
-    t.integer  "structure_aperitrice_id"
-    t.boolean  "actif",                   default: true, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-  end
-
-  add_index "affectation_aperitrices", ["groupe_id"], name: "index_affectation_aperitrices_on_groupe_id", using: :btree
-  add_index "affectation_aperitrices", ["structure_aperitrice_id"], name: "index_affectation_aperitrices_on_structure_aperitrice_id", using: :btree
-
-  create_table "formation_sanitaires", force: :cascade do |t|
-    t.integer  "niveau",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "formules", force: :cascade do |t|
     t.integer  "structure_assurance_id"
@@ -109,16 +94,6 @@ ActiveRecord::Schema.define(version: 20150314185806) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "structure_aperitrices", force: :cascade do |t|
-    t.string   "nom"
-    t.string   "adresse"
-    t.date     "date_adhesion"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "structure_aperitrices", ["nom"], name: "index_structure_aperitrices_on_nom", unique: true, using: :btree
-
   create_table "structure_assurances", force: :cascade do |t|
     t.string   "nom"
     t.string   "adresse"
@@ -153,8 +128,7 @@ ActiveRecord::Schema.define(version: 20150314185806) do
 
   add_index "structure_sanitaires", ["structure_type", "structure_id"], name: "index_structure_sanitaires_on_structure_type_and_structure_id", using: :btree
 
-  add_foreign_key "affectation_aperitrices", "groupes"
-  add_foreign_key "affectation_aperitrices", "structure_aperitrices"
+  add_foreign_key "adherents", "groupes"
   add_foreign_key "formules", "structure_assurances"
   add_foreign_key "groupes", "structure_assurances"
 end

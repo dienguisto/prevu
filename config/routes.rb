@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :mutuelles
   resources :adherents
 
+  scope '/wservices' do
+    post '/groupes' => 'ws#get_groupes'
+  end
+
   get "/log_out" => "sessions#destroy", :as => "log_out"
   get "/log_in" => "sessions#new", :as => "log_in"
   get "/sign_up" => "users#new", :as => "sign_up"
@@ -25,7 +29,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  mount Soulmate::Server, :at => "/sm"
   root 'welcome#index'
 
   # Example of regular route:
