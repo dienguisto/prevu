@@ -83,6 +83,3 @@ test:
 #
 production:
   <<: *default
-  database: prevu_production
-  username: prevu
-  password: <%= ENV['PREVU_DATABASE_PASSWORD'] %>
