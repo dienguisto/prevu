@@ -60,10 +60,6 @@ class Adherent < ActiveRecord::Base
     self.status = 1
   end
 
-  def set_tags
-    xtags.each {|t| self.tags << t if t != ''}
-  end
-
   def full_name
     nom+" "+prenom
   end

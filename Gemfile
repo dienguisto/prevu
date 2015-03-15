@@ -29,4 +29,5 @@ gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: '
 gem 'jquery-minicolors-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'jquery-ui-rails'
+gem 'devise', github: 'plataformatec/devise'
 gem 'chosen-rails'
