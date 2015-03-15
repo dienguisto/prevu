@@ -1,5 +1,6 @@
 module ActsAsStructureSanitaire
   extend ActiveSupport::Concern
+  include ActsAsEntite
 
   included do
     has_one :structure_sanitaire, as: :structure, dependent: :destroy
