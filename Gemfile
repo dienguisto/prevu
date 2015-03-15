@@ -30,3 +30,4 @@ gem 'jquery-minicolors-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'jquery-ui-rails'
 gem 'chosen-rails'
+gem 'rails_12factor', group: :production
