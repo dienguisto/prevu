@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :structure_aperitrices
+
   resources :micro_assurances
   resources :mutuelles
   resources :adherents

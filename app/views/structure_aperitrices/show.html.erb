@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @structure_aperitrice.nom %>
+</p>
+
+<p>
+  <strong>Adresse:</strong>
+  <%= @structure_aperitrice.adresse %>
+</p>
+
+<p>
+  <strong>Date adhesion:</strong>
+  <%= @structure_aperitrice.date_adhesion %>
+</p>
+
+<%= link_to 'Edit', edit_structure_aperitrice_path(@structure_aperitrice) %> |
+<%= link_to 'Back', structure_aperitrices_path %>

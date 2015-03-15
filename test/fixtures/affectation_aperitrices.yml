@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  groupe_id: 
+  structure_aperitrice_id: 
+  actif: false
+
+two:
+  groupe_id: 
+  structure_aperitrice_id: 
+  actif: false
