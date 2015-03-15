@@ -24,7 +24,6 @@
       <label class="control-label" for="groupe">Groupe</label>
       <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
     </div>
-    </div>
   </div>
 
   <div class="form-actions">
@@ -58,6 +57,7 @@
         },
         select: function (event, ui) {
             $("#adherent_groupe_id").val(ui.item.id);  // ui.item.value contains the id of the selected label
+            $("#groupe").val(ui.item.label);
             return false;
         }
     });
