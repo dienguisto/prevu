@@ -1,0 +1,9 @@
+<%= simple_form_for(@pharmacy) do |f| %>
+    <%= f.error_notification %>
+
+    <%= render 'structure_sanitaires/form', f: f %>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+<% end %>

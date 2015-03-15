@@ -1,0 +1,6 @@
+<%= f.fields_for :structure_sanitaire do |structure_form| %>
+    <%= structure_form.input :nom %>
+    <%= structure_form.input :adresse %>
+    <%= structure_form.input :date_adhesion, as: :date_picker %>
+    <%= structure_form.input :logo %>
+<% end %>

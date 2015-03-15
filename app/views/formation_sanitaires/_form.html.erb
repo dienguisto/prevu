@@ -1,0 +1,10 @@
+<%= simple_form_for(@formation_sanitaire) do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :niveau, collection: FormationSanitaire.niveaus.keys, as: :radio_buttons %>
+    <%= render 'structure_sanitaires/form', f: f %>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+<% end %>
