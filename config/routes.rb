@@ -10,12 +10,22 @@ Rails.application.routes.draw do
   get "/sign_up" => "users#new", :as => "sign_up"
   #root :to => "users#new"
 
+  resources :adherents do
+    get '/affiliers' => "adherents#affiliers", :as => "affiliers"
+    get '/add_affiliation' => "adherents#new_parrainage", :as => "new_parrainage"
+    get '/edit_affiliation' => "adherents#edit_parrainage", :as => "edit_parrainage"
+    member do
+      post 'activate'
+      post 'desactivate'
+    end
+  end
   resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  mount Soulmate::Server, :at => "/sm"
   root 'welcome#index'
 
   # Example of regular route:

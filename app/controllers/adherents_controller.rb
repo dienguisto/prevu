@@ -1,7 +1,11 @@
 class AdherentsController < ApplicationController
-  before_action :set_adherent, only: [:show, :edit, :update, :destroy]
+  before_action :set_adherent, only: [:show, :edit, :update, :destroy, :activate, :desactivate]
 
   def new
+    @adherent = Adherent.new
+  end
+
+  def new_parrainage
     @adherent = Adherent.new
   end
 
@@ -28,6 +32,10 @@ class AdherentsController < ApplicationController
   def edit
   end
 
+  def edit_parrainage
+    @adherent = Adherent.find(params[:adherent_id])
+  end
+
   # POST /adherents
   # POST /adherents.json
   def create
@@ -44,6 +52,10 @@ class AdherentsController < ApplicationController
     end
   end
 
+  def affiliers
+    @adherents = Adherent.where('parrain_id=?', current_adherent.id)
+  end
+
   # PATCH/PUT /adherents/1
   # PATCH/PUT /adherents/1.json
   def update
@@ -58,11 +70,41 @@ class AdherentsController < ApplicationController
     end
   end
 
+  def activate
+    respond_to do |format|
+      @adherent.status = 2
+      @adherent.last_activation = Time.now
+      if @adherent.save
+        format.html { redirect_to [@adherent], notice: 'Adherent was successfully activated.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to [@adherent], warning: 'Something went wrong' }
+        format.json { render json: @adherent.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def desactivate
+    respond_to do |format|
+      @adherent.status = 3
+      @adherent.last_suspension = Time.now
+      if @adherent.save
+        format.html { redirect_to [@adherent], notice: 'Adherent was successfully disabled.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to [@adherent], warning: 'Something went wrong' }
+        format.json { render json: @adherent.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /adherents/1
   # DELETE /adherents/1.json
   def destroy
-    @adherent.destroy
+    @adherent.status = 4
+    @adherent.last_delete = Time.now
     respond_to do |format|
+
       format.html { redirect_to adherents_url, notice: 'Adherent was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -79,6 +121,6 @@ class AdherentsController < ApplicationController
       params.require(:adherent).permit(:nom, :prenom, :status_matrimonial, :date_de_naissance, :lieu_de_naissance,
                                        :adresse, :telephone1, :telephone2, :password_txt, :password_txt_confirmation,
                                        :status, :payer, :last_activation, :last_suspension, :last_delete, :paiement_date,
-                                       :montant_cotisation, :avatar, :email, :sexe)
+                                       :montant_cotisation, :avatar, :email, :sexe, :parrain_id, :affiliation)
     end
 end

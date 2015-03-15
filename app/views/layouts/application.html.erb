@@ -47,11 +47,9 @@
         </button>
         <a class="navbar-brand" href="/">Prevu</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Adhérent", adherents_path  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-          </ul>
+          <% if current_adherent%>
+              <%= render 'layouts/menu_adherant' %>
+          <% end %>
         </div>
       </div>
     </div>

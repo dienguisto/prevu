@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Parrainés</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Matricule</th>
+      <th>Nom</th>
+      <th>Date de naissance</th>
+      <th>Affiliation</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adherents.each do |adherent| %>
+      <tr>
+        <td><%= adherent.matricule %></td>
+        <td><%= adherent.full_name %></td>
+        <td><%= adherent.date_de_naissance %></td>
+        <td><%= adherent.affiliation %></td>
+        <td><%= adherent.status %></td>
+        <td><%= link_to 'Show', adherent %></td>
+        <td><%= link_to 'Edit', adherent_edit_parrainage_path(adherent) %></td>
+        <td><%= link_to 'Destroy', adherent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Ajouter affiliation', adherent_new_parrainage_path %>
