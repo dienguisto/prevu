@@ -11,9 +11,4 @@ class User < ActiveRecord::Base
   validates :email,
       presence: true, uniqueness: true
 
-  before_create :set_password
-
-  def set_password
-
-  end
 end

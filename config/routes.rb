@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     post '/adherent' => 'ws#adherent_infos'
   end
 
+  devise_scope :user do
+    match '/sessions/user', to: 'devise/sessions#create', via: :post
+  end
+
   get "/log_out" => "sessions#destroy", :as => "log_out"
   get "/log_in" => "sessions#new", :as => "log_in"
   get "/sign_up" => "adherents#new", :as => "sign_up"
@@ -26,8 +30,8 @@ Rails.application.routes.draw do
       post 'desactivate'
     end
   end
+  resources :users, path: '/custom/users'
   resources :sessions
-  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,10 +1,19 @@
 <%= simple_form_for(@user) do |f| %>
   <%= f.error_notification %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
   <div class="form-inputs">
     <%= f.input :email %>
     <%= f.input :role, collection: User::ROLES, as: :radio_buttons %>
-    <%= f.input :entite %>
+    <%= f.association :entite, collection: Entite.all.map{ |e| [e.title, e.id]} %>
   </div>
 
   <div class="form-actions">

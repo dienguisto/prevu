@@ -54,6 +54,10 @@
           <% if current_adherent%>
               <%= render 'layouts/menu_adherant' %>
           <% end %>
+          <% if current_user and current_user.admin? %>
+              <%= render 'layouts/menu_admin_entite' %>
+          <% end %>
+
         </div>
       </div>
     </div>

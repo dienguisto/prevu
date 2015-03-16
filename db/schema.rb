@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315160503) do
+ActiveRecord::Schema.define(version: 20150316070902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,10 +140,10 @@ ActiveRecord::Schema.define(version: 20150315160503) do
     t.string   "adresse"
     t.date     "date_adhesion"
     t.string   "numero_agrement"
-    t.string   "couleur"
-    t.boolean  "actif",             default: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "couleur",           limit: 10
+    t.boolean  "actif",                        default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -189,9 +189,11 @@ ActiveRecord::Schema.define(version: 20150315160503) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.integer  "role"
+    t.integer  "entite_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["entite_id"], name: "index_users_on_entite_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "adherents", "groupes"
@@ -199,4 +201,5 @@ ActiveRecord::Schema.define(version: 20150315160503) do
   add_foreign_key "affectation_aperitrices", "structure_aperitrices"
   add_foreign_key "formules", "structure_assurances"
   add_foreign_key "groupes", "structure_assurances"
+  add_foreign_key "users", "entites"
 end
