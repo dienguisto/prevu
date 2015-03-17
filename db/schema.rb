@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316070902) do
+ActiveRecord::Schema.define(version: 20150316093748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,6 @@ ActiveRecord::Schema.define(version: 20150316070902) do
     t.integer  "status_matrimonial"
     t.date     "date_de_naissance"
     t.string   "lieu_de_naissance"
-    t.text     "adresse"
-    t.string   "telephone1"
-    t.string   "telephone2"
     t.string   "email"
     t.string   "password_digest"
     t.integer  "status"
@@ -46,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150316070902) do
     t.integer  "affiliation"
     t.integer  "parrain_id"
     t.integer  "groupe_id"
+    t.integer  "contact_id"
   end
 
   add_index "adherents", ["email"], name: "index_adherents_on_email", unique: true, using: :btree
@@ -67,6 +65,19 @@ ActiveRecord::Schema.define(version: 20150316070902) do
 
   add_index "affectation_aperitrices", ["groupe_id"], name: "index_affectation_aperitrices_on_groupe_id", using: :btree
   add_index "affectation_aperitrices", ["structure_aperitrice_id"], name: "index_affectation_aperitrices_on_structure_aperitrice_id", using: :btree
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "titre"
+    t.string   "nom"
+    t.string   "prenom"
+    t.string   "telephone"
+    t.string   "telephone1"
+    t.string   "adresse"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "email"
+    t.integer  "owner_id"
+  end
 
   create_table "entites", force: :cascade do |t|
     t.integer  "entite_id"

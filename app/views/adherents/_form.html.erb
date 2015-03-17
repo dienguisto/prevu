@@ -11,10 +11,7 @@
     <%= f.input :status_matrimonial, collection: Adherent::MATRIMONIAL, as: :radio_buttons %>
     <%= f.input :date_de_naissance, :as => :date_picker %>
     <%= f.input :lieu_de_naissance %>
-    <%= f.input :adresse %>
-    <%= f.input :telephone1 %>
-    <%= f.input :telephone2 %>
-    <%= f.input :email %>
+    <%= render 'contact/form', f: f %>
     <%= f.input :password_txt %>
     <%= f.input :password_txt_confirmation %>
     <%= f.input :montant_cotisation %>

@@ -1,5 +1,7 @@
 class Adherent < ActiveRecord::Base
   include BCrypt
+  include ActsAsContact
+
   SEXE = {'Masculin' => 1, 'Feminin' => 2}
 
   MATRIMONIAL = {
@@ -13,10 +15,11 @@ class Adherent < ActiveRecord::Base
 
   enum affiliation: [:fils, :fille, :epoux, :epouse, :aucune_relation]
 
-  attr_accessor :xtags
   has_and_belongs_to_many :tags
   belongs_to :parrain, foreign_key: :parrain_id, class_name: Adherent
   has_many :adherents
+
+  has_one :default_contact, foreign_key: 'contact_id', class_name: Contact
   belongs_to :groupe
   has_many :affiliations, through: :adherents
 
@@ -26,7 +29,8 @@ class Adherent < ActiveRecord::Base
   before_create :set_status
 
   validates_confirmation_of :password_txt
-  validates :prenom, :nom, :date_de_naissance, :lieu_de_naissance, :telephone1, :adresse,
+  #validates :contact_id, presence: true
+  validates :prenom, :nom, :date_de_naissance, :lieu_de_naissance,
             presence: true
   #validates_presence_of :password_txt, :on => :create
 
