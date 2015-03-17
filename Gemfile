@@ -15,7 +15,7 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
-  gem "better_errors"
+  gem 'better_errors'
 end
 
 gem 'therubyracer'
@@ -27,9 +27,8 @@ gem 'paperclip', '~> 4.2.1'
 gem 'momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'jquery-minicolors-rails'
-gem "bcrypt-ruby", :require => "bcrypt"
+gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'jquery-ui-rails'
 gem 'chosen-rails'
 gem 'rails_12factor', group: :production
 gem 'devise', '~> 3.4.1'
-# gem 'devise', github: 'plataformatec/devise'

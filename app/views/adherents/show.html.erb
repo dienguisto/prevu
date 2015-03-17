@@ -46,19 +46,17 @@
 
 <p>
   <strong>Adresse:</strong>
+  <%= @adherent.default_contact.adresse %>
 </p>
 
 <p>
   <strong>Telephone1:</strong>
-</p>
-
-<p>
-  <strong>Telephone2:</strong>
+  <%= @adherent.default_contact.telephone %>
 </p>
 
 <p>
   <strong>Email:</strong>
-  <%= @adherent.email %>
+  <%= @adherent.default_contact.email %>
 </p>
 
 <p>
@@ -94,11 +92,6 @@
 <p>
   <strong>Paiement date:</strong>
   <%= @adherent.paiement_date %>
-</p>
-
-<p>
-  <strong>Montant cotisation:</strong>
-  <%= @adherent.montant_cotisation %>
 </p>
 
 <%= link_to 'Edit', edit_adherent_path(@adherent) %> |

@@ -3,6 +3,7 @@ class AdherentsController < ApplicationController
 
   def new
     @adherent = Adherent.new
+    @adherent.contacts.build
   end
 
   def new_parrainage
@@ -119,8 +120,9 @@ class AdherentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def adherent_params
       params.require(:adherent).permit(:nom, :prenom, :status_matrimonial, :date_de_naissance, :lieu_de_naissance,
-                                      :password_txt, :password_txt_confirmation, :montant_cotisation, :avatar, :email,
+                                       :type_piece_identite, :numero_piece_identite,
+                                      :password_txt, :password_txt_confirmation, :avatar,
                                       :sexe, :parrain_id, :affiliation, :groupe_id, :tags,
-                                      :contacts_attributes => [:telephone, :telephone1, :adresse, :email])
+                                      :contacts_attributes => [:telephone, :adresse, :email])
     end
 end

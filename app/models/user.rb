@@ -5,7 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :entite
-  ROLES = [:admin, :agent_saisie]
+  ROLES = {
+      admin: 0,
+      agent_saisie: 1
+  }
   enum role: ROLES
 
   validates :email,
