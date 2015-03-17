@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :structure_aperitrices
 
   resources :micro_assurances
@@ -10,6 +11,10 @@ Rails.application.routes.draw do
   scope '/wservices' do
     post '/groupes' => 'ws#get_groupes'
     post '/adherent' => 'ws#adherent_infos'
+  end
+
+  devise_scope :user do
+    match '/sessions/user', to: 'devise/sessions#create', via: :post
   end
 
   get "/log_out" => "sessions#destroy", :as => "log_out"
@@ -25,6 +30,7 @@ Rails.application.routes.draw do
       post 'desactivate'
     end
   end
+  resources :users, path: '/custom/users'
   resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.

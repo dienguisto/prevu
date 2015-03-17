@@ -7,6 +7,5 @@ class FormationSanitaire < ActiveRecord::Base
       cp: 3
   }
   enum niveau: NIVEAU
-
   validates :niveau, presence: true
 end
