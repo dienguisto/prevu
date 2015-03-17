@@ -103,8 +103,8 @@ class AdherentsController < ApplicationController
   def destroy
     @adherent.status = 4
     @adherent.last_delete = Time.now
-    respond_to do |format|
-
+    @adherent.save
+    respond_to do |format|  
       format.html { redirect_to adherents_url, notice: 'Adherent was successfully destroyed.' }
       format.json { head :no_content }
     end
