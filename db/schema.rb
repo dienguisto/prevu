@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316093748) do
+ActiveRecord::Schema.define(version: 20150317163510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20150316093748) do
     t.integer  "status_matrimonial"
     t.date     "date_de_naissance"
     t.string   "lieu_de_naissance"
-    t.string   "email"
     t.string   "password_digest"
     t.integer  "status"
     t.boolean  "payer"
@@ -30,9 +29,8 @@ ActiveRecord::Schema.define(version: 20150316093748) do
     t.datetime "last_suspension"
     t.datetime "last_delete"
     t.datetime "paiement_date"
-    t.float    "montant_cotisation"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "matricule"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -44,9 +42,10 @@ ActiveRecord::Schema.define(version: 20150316093748) do
     t.integer  "parrain_id"
     t.integer  "groupe_id"
     t.integer  "contact_id"
+    t.integer  "type_piece_identite"
+    t.string   "numero_piece_identite"
   end
 
-  add_index "adherents", ["email"], name: "index_adherents_on_email", unique: true, using: :btree
   add_index "adherents", ["groupe_id"], name: "index_adherents_on_groupe_id", using: :btree
   add_index "adherents", ["matricule"], name: "index_adherents_on_matricule", unique: true, using: :btree
 
@@ -71,12 +70,12 @@ ActiveRecord::Schema.define(version: 20150316093748) do
     t.string   "nom"
     t.string   "prenom"
     t.string   "telephone"
-    t.string   "telephone1"
     t.string   "adresse"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "email"
     t.integer  "owner_id"
+    t.string   "owner_type"
   end
 
   create_table "entites", force: :cascade do |t|
@@ -151,10 +150,10 @@ ActiveRecord::Schema.define(version: 20150316093748) do
     t.string   "adresse"
     t.date     "date_adhesion"
     t.string   "numero_agrement"
-    t.string   "couleur",           limit: 10
-    t.boolean  "actif",                        default: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.string   "couleur"
+    t.boolean  "actif",             default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"

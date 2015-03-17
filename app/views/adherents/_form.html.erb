@@ -1,37 +1,35 @@
-
-
 <%= simple_form_for(@adherent) do |f| %>
-  <%= f.error_notification %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.file_field :avatar %>
-    <%= f.input :nom %>
-    <%= f.input :prenom %>
-    <%= f.input :sexe, collection: Adherent::SEXE, as: :radio_buttons %>
-    <%= f.input :status_matrimonial, collection: Adherent::MATRIMONIAL, as: :radio_buttons %>
-    <%= f.input :date_de_naissance, :as => :date_picker %>
-    <%= f.input :lieu_de_naissance %>
-    <%= render 'contact/form', f: f %>
-    <%= f.input :password_txt %>
-    <%= f.input :password_txt_confirmation %>
-    <%= f.input :montant_cotisation %>
-    <%= f.input :groupe_id, :as => :hidden %>
+    <div class="form-inputs">
+      <%= f.file_field :avatar %>
+      <%= f.input :nom %>
+      <%= f.input :prenom %>
+      <%= f.input :sexe, collection: Adherent::SEXE, as: :radio_buttons %>
+      <%= f.input :status_matrimonial, collection: Adherent::MATRIMONIAL, as: :radio_buttons %>
+      <%= f.input :date_de_naissance, :as => :date_picker %>
+      <%= f.input :lieu_de_naissance %>
+      <%= render 'contact/form', f: f %>
+      <%= f.input :type_piece_identite, collection: Adherent.type_piece_identites.keys, as: :radio_buttons %>
+      <%= f.input :numero_piece_identite %>
+      <%= f.input :password_txt %>
+      <%= f.input :password_txt_confirmation %>
+      <%= f.input :groupe_id, :as => :hidden %>
 
-    <div class="form-group">
-      <label class="control-label" for="groupe">Groupe</label>
-      <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
+      <div class="form-group">
+        <label class="control-label" for="groupe">Groupe</label>
+        <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
+      </div>
     </div>
-  </div>
     <%= f.association :tags,
                       collection: Tag.all.map{ |c| [c.libelle, c.id]},
                       input_html: {multiple: true,
                                    class: 'chosen-select chosen-container chosen-container-multi chosen-with-drop chosen-container-active' }
     %>
 
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
 <% end %>
 
 <script type="text/javascript">
