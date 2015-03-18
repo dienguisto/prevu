@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'welcome/minor'
+
   devise_for :users
   resources :structure_aperitrices
 
