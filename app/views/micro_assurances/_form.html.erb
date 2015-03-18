@@ -1,9 +1,10 @@
-<%= simple_form_for(@micro_assurance) do |f| %>
-    <%= f.error_notification %>
-
+<%= bootstrap_form_for(@micro_assurance, layout: :horizontal) do |f| %>
     <%= render 'structure_assurances/form', f: f %>
 
-    <div class="form-actions">
-      <%= f.button :submit %>
+    <div class="form-group">
+      <div class="col-sm-4 col-sm-offset-2">
+        <%= link_to 'Annuler', micro_assurances_path, class: 'btn btn-white' %>
+        <%= f.button 'Ajouter', class: 'btn btn-primary' %>
+      </div>
     </div>
 <% end %>

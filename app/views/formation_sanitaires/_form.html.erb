@@ -1,10 +1,11 @@
-<%= simple_form_for(@formation_sanitaire) do |f| %>
-    <%= f.error_notification %>
-
-    <%= f.input :niveau, collection: FormationSanitaire.niveaus.keys, as: :radio_buttons %>
+<%= bootstrap_form_for(@formation_sanitaire, layout: :horizontal) do |f| %>
+    <%= f.collection_radio_buttons :niveau, collection: FormationSanitaire.niveaus.keys %>
     <%= render 'structure_sanitaires/form', f: f %>
 
-    <div class="form-actions">
-      <%= f.button :submit %>
+    <div class="form-group">
+      <div class="col-sm-4 col-sm-offset-2">
+        <%= link_to 'Annuler', formation_sanitaires_path, class: 'btn btn-white' %>
+        <%= f.button 'Ajouter', class: 'btn btn-primary' %>
+      </div>
     </div>
 <% end %>

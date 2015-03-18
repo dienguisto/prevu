@@ -1,8 +1,7 @@
-<%= simple_form_for(@adherent) do |f| %>
+<%= simple_form_for(@adherent, html: {style: 'text-align: left'}) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.file_field :avatar %>
       <%= f.input :nom %>
       <%= f.input :prenom %>
       <%= f.input :sexe, collection: Adherent::SEXE, as: :radio_buttons %>
@@ -15,6 +14,7 @@
       <%= f.input :password_txt %>
       <%= f.input :password_txt_confirmation %>
       <%= f.input :groupe_id, :as => :hidden %>
+      <%= f.input :avatar %>
 
       <div class="form-group">
         <label class="control-label" for="groupe">Groupe</label>

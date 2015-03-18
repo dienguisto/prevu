@@ -1,6 +1,6 @@
 <%= f.fields_for :structure_sanitaire do |structure_form| %>
-    <%= structure_form.input :nom %>
-    <%= structure_form.input :adresse %>
-    <%= structure_form.input :date_adhesion, as: :date_picker %>
-    <%= structure_form.input :logo %>
+    <%= structure_form.text_field :nom %>
+    <%= structure_form.text_field :adresse %>
+    <%= structure_form.date_field :date_adhesion %>
+    <%= structure_form.file_field :logo %>
 <% end %>

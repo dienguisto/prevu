@@ -4,6 +4,7 @@ class AdherentsController < ApplicationController
   def new
     @adherent = Adherent.new
     @adherent.contacts.build
+    render layout: 'empty'
   end
 
   def new_parrainage

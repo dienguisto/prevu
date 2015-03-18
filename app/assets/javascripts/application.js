@@ -16,7 +16,6 @@
 //= require pace/pace.min.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require chosen.jquery.min
-//= require chosen.jquery.min
-//= require jquery.minicolors
-//= require jquery.minicolors.simple_form
+//= require colorpicker/bootstrap-colorpicker.min.js
+//= require datapicker/bootstrap-datepicker.js
 //= require_tree .
