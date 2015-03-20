@@ -1,34 +1,43 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
-    <div class="sidebar-collapse">
-        <ul class="nav" id="side-menu">
-            <li class="nav-header">
-                <div class="dropdown profile-element">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+  <div class="sidebar-collapse">
+    <ul class="nav" id="side-menu">
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
                                 <strong class="font-bold">Example user</strong>
                             </span> <span class="text-muted text-xs block">Example menu <b class="caret"></b></span>
                         </span>
-                    </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </div>
-                <div class="logo-element">
-                    PREVU
-                </div>
-            </li>
-            <li class="<%= 'active' if current_page?('/') %>">
-                <%= link_to "/" do %>
-                <i class="fa fa-laptop"></i> <span class="nav-label">Main page</span>
-                <% end %>
-            </li>
-            <li class="<%= 'active' if current_page?('/welcome/minor') %>">
-                <%= link_to "/welcome/minor" do %>
-                <i class="fa fa-desktop"></i> <span class="nav-label">Minor page</span>
-                <% end %>
-            </li>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div>
+        <div class="logo-element">
+          PREVU
+        </div>
+      </li>
+      <li>
+        <a href=""><i class="fa fa-building-o"></i> <span class="nav-label">Structures d'Assurances</span> <span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><%= link_to 'Mutuelles', mutuelles_path %></li>
+          <li><%= link_to 'Micro assurance', micro_assurances_path %></li>
         </ul>
+      </li>
+      <li>
+        <a href=""><i class="fa fa-medkit"></i> <span class="nav-label">Structures Sanitaires</span> <span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><%= link_to 'Formations sanitaires', formation_sanitaires_path %></li>
+          <li><%= link_to 'Pharmacies', pharmacies_path %></li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to structure_aperitrices_path do %>
+            <i class="fa fa-building-o"></i> <span class="nav-label">Structures Apéritrices</span>
+        <% end %>
+      </li>
+    </ul>
 
-    </div>
+  </div>
 </nav>

@@ -1,5 +1,5 @@
 <%= bootstrap_form_for(@formation_sanitaire, layout: :horizontal) do |f| %>
-    <%= f.collection_radio_buttons :niveau, collection: FormationSanitaire.niveaus.keys %>
+    <%= f.select :niveau, collection: FormationSanitaire.niveaus.keys %>
     <%= render 'structure_sanitaires/form', f: f %>
 
     <div class="form-group">

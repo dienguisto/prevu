@@ -9,4 +9,12 @@ module ApplicationHelper
   </div>
 </div>".html_safe
   end
+
+  def afficher_etat(etat, yes='oui', no='non')
+    if etat
+      "<span class='badge badge-primary'>#{yes}</span>"
+    else
+      "<span class='badge badge-warning'>#{no}</span>"
+    end.html_safe
+  end
 end
