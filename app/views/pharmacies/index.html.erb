@@ -1,25 +1,47 @@
-<p id="notice"><%= notice %></p>
+<%= titre_page 'Liste des Pharmacies' %>
 
-<h1>Listing Pharmacies</h1>
+<div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="actions_bouton">
+                <%= link_to '<i class="fa fa-plus"></i> Ajouter'.html_safe, new_pharmacy_path, class: 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Actif ?</th>
+                  <th>Date d'adhésion</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+              <tbody>
+                <% @pharmacies.each do |pharmacy| %>
+                  <% pharma = pharmacy.structure_sanitaire %>
+                  <tr>
+                    <td><%= pharma.nom %></td>
+                    <td><%= afficher_etat pharma.actif? %></td>
+                    <td><%= pharma.date_adhesion %></td>
+                    <td><%= link_to 'Show', pharmacy %></td>
+                    <td><%= link_to 'Edit', edit_pharmacy_path(pharmacy) %></td>
+                    <td><%= link_to 'Destroy', pharmacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
 
-  <tbody>
-    <% @pharmacies.each do |pharmacy| %>
-      <tr>
-        <td><%= link_to 'Show', pharmacy %></td>
-        <td><%= link_to 'Edit', edit_pharmacy_path(pharmacy) %></td>
-        <td><%= link_to 'Destroy', pharmacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+      </div>
+    </div>
 
-<br>
-
-<%= link_to 'New Mutuelle', new_pharmacy_path %>
+  </div>
+</div>

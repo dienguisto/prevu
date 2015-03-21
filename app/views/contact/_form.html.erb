@@ -1,5 +1,5 @@
 <%= f.fields_for :contacts do |contact| %>
-    <%= contact.input :email %>
-    <%= contact.input :telephone %>
-    <%= contact.input :adresse %>
+    <%= contact.text_field :email %>
+    <%= contact.telephone_field :telephone %>
+    <%= contact.text_field :adresse %>
 <% end %>

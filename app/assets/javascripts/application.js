@@ -2,24 +2,20 @@
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
+// the compiled file.
 //
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//= require jquery
-//= require jquery_ujs
-//= require jquery-ui
-//= require jquery-ui/autocomplete
+// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
+// GO AFTER THE REQUIRES BELOW.
+//
+//= require jquery/jquery-2.1.1.js
+//= require bootstrap-sprockets
+//= require metisMenu/jquery.metisMenu.js
+//= require pace/pace.min.js
+//= require slimscroll/jquery.slimscroll.min.js
 //= require chosen.jquery.min
-//= require scaffold
-//= require twitter/bootstrap
-//= require turbolinks
-//= require moment
-//= require bootstrap-datetimepicker
-//= require pickers
-//= require jquery.minicolors
-//= require jquery.minicolors.simple_form
+//= require colorpicker/bootstrap-colorpicker.min.js
+//= require datapicker/bootstrap-datepicker.js
 //= require_tree .

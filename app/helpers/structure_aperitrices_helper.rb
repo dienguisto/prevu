@@ -1,2 +1,0 @@
-module StructureAperitricesHelper
-end

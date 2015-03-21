@@ -1,9 +1,11 @@
-<%= simple_form_for(@pharmacy) do |f| %>
-    <%= f.error_notification %>
+<%= bootstrap_form_for(@pharmacy, layout: :horizontal) do |f| %>
 
     <%= render 'structure_sanitaires/form', f: f %>
 
-    <div class="form-actions">
-      <%= f.button :submit %>
+    <div class="form-group">
+      <div class="col-sm-4 col-sm-offset-2">
+        <%= link_to 'Annuler', mutuelles_path, class: 'btn btn-white' %>
+        <%= f.button 'Ajouter', class: 'btn btn-primary' %>
+      </div>
     </div>
 <% end %>
