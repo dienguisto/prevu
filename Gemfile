@@ -18,10 +18,6 @@ group :development, :test do
   gem 'better_errors'
 end
 
-# gem 'therubyracer'
-# gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-# gem 'twitter-bootstrap-rails', '~> 3.2.0'
-
 gem 'paperclip', '~> 4.2.1'
 gem 'momentjs-rails'
 # gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
@@ -36,3 +32,5 @@ gem 'bootstrap-sass', '3.2.0.0'
 gem 'font-awesome-rails'
 
 gem 'bootstrap_form', '~> 2.3.0'
+
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
