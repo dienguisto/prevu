@@ -1,5 +1,6 @@
 class StructureAperitrice < ActiveRecord::Base
   include ActsAsEntite
+  include ActsAsContact
 
   validates :nom, presence: true
   has_many :affectation_aperitrices

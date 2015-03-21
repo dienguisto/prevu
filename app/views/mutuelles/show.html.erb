@@ -1,4 +1,64 @@
-<p id="notice"><%= notice %></p>
+<%= titre_page "Mutuelle : #{@mutuelle.structure_assurance.nom}" %>
+<% structure_assurance = @mutuelle.structure_assurance %>
 
-<%= link_to 'Edit', edit_mutuelle_path(@mutuelle) %> |
-<%= link_to 'Back', mutuelles_path %>
+<div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Détails</h5>
+        </div>
+        <div>
+          <div class="ibox-content no-padding border-left-right">
+            <img alt="image" class="img-responsive" src="<%= image_path(structure_assurance.logo.url) %>">
+          </div>
+          <div class="ibox-content profile-content">
+            <h4><strong><%= @mutuelle.structure_assurance.nom %></strong></h4>
+            <p><i class="fa fa-map-marker"></i> <%= structure_assurance.adresse %></p>
+            <h5>
+              About me
+            </h5>
+            <p>
+              <strong>numéro agrément : </strong><%= structure_assurance.numero_agrement %> <br/>
+              <strong>date d'adhésion : </strong><%= structure_assurance.date_adhesion %> <br/>
+              <strong>date de création : </strong><%= structure_assurance.created_at %> <br/>
+            </p>
+            <div class="user-button">
+              <div class="row">
+                <div class="col-md-6">
+                  <% if structure_assurance.actif? %>
+                      <%= link_to 'désactiver', desactiver_structure_assurance_path(structure_assurance), class: 'btn btn-danger btn-sm btn-block' %>
+                  <% else %>
+                      <%= link_to 'activer', activer_structure_assurance_path(structure_assurance), class: 'btn btn-primary btn-sm btn-block' %>
+                  <% end %>
+                </div>
+                <div class="col-md-6">
+                  <%= link_to '<i class="fa fa-edit"></i> modifier'.html_safe, edit_mutuelle_path(@mutuelle), class: 'btn btn-default btn-sm btn-block' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Contacts</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <% for contact in structure_assurance.contacts %>
+                <%= render 'contacts/show_bloc', contact: contact %>
+            <% end %>
+          </div>
+          <div class="text-right">
+            <%= link_to '<strong>Ajouter un contact</strong>'.html_safe, new_contact_path(structure_assurance.class, structure_assurance.id, url_back: mutuelle_path(@mutuelle)), class: 'btn btn-sm btn-primary m-t-n-xs' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
