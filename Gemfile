@@ -33,4 +33,4 @@ gem 'font-awesome-rails'
 
 gem 'bootstrap_form', '~> 2.3.0'
 
-gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
+# gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
