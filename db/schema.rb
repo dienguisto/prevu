@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321163705) do
+ActiveRecord::Schema.define(version: 20150317163510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20150321163705) do
     t.integer  "contact_id"
     t.integer  "type_piece_identite"
     t.string   "numero_piece_identite"
-    t.string   "email"
   end
 
   add_index "adherents", ["groupe_id"], name: "index_adherents_on_groupe_id", using: :btree
@@ -151,10 +150,10 @@ ActiveRecord::Schema.define(version: 20150321163705) do
     t.string   "adresse"
     t.date     "date_adhesion"
     t.string   "numero_agrement"
-    t.string   "couleur",           limit: 10
-    t.boolean  "actif",                        default: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.string   "couleur"
+    t.boolean  "actif",             default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
