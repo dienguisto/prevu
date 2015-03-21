@@ -25,7 +25,7 @@
 
               <tbody>
                 <% @pharmacies.each do |pharmacy| %>
-                  <% pharma = formation_sanitaire.structure_sanitaire %>
+                  <% pharma = pharmacy.structure_sanitaire %>
                   <tr>
                     <td><%= pharma.nom %></td>
                     <td><%= afficher_etat pharma.actif? %></td>
