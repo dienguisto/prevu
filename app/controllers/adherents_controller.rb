@@ -23,6 +23,8 @@ class AdherentsController < ApplicationController
   # GET /adherents.json
   def index
     @adherents = Adherent.all
+    @q = Adherent.ransack(params[:q])
+    @adherent = @q.result(distinct: true)
   end
 
   # GET /adherents/1
