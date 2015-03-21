@@ -6,7 +6,7 @@
       <%= f.select :status_matrimonial, collection: Adherent::MATRIMONIAL %>
       <%= f.date_field :date_de_naissance, :as => :date_picker %>
       <%= f.text_field :lieu_de_naissance %>
-      <%= render 'contact/form', f: f %>
+      <%= render 'contacts/form', f: f %>
       <%= f.select :type_piece_identite, collection: Adherent.type_piece_identites.keys %>
       <%= f.text_field :numero_piece_identite %>
       <%= f.password_field :password_txt %>
