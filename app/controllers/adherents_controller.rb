@@ -45,7 +45,6 @@ class AdherentsController < ApplicationController
     generated_password = Devise.friendly_token.first(8)
     @adherent.password_digest = generated_password
 
-
     respond_to do |format|
       if @adherent.save
         format.html { redirect_to @adherent, notice: 'Adherent was successfully created.' }
@@ -76,31 +75,13 @@ class AdherentsController < ApplicationController
   end
 
   def activate
-    respond_to do |format|
-      @adherent.status = 2
-      @adherent.last_activation = Time.now
-      if @adherent.save
-        format.html { redirect_to [@adherent], notice: 'Adherent was successfully activated.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to [@adherent], warning: 'Something went wrong' }
-        format.json { render json: @adherent.errors, status: :unprocessable_entity }
-      end
-    end
+    @adherent.update(status: 2, last_activation: Time.now)
+    redirect_to @adherent
   end
 
   def desactivate
-    respond_to do |format|
-      @adherent.status = 3
-      @adherent.last_suspension = Time.now
-      if @adherent.save
-        format.html { redirect_to [@adherent], notice: 'Adherent was successfully disabled.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to [@adherent], warning: 'Something went wrong' }
-        format.json { render json: @adherent.errors, status: :unprocessable_entity }
-      end
-    end
+    @adherent.update(status: 3, last_suspension: Time.now)
+    redirect_to @adherent
   end
 
   # DELETE /adherents/1

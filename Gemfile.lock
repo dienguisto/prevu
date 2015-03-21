@@ -1,12 +1,12 @@
 GIT
   remote: git://github.com/activerecord-hackery/ransack.git
-  revision: 742425ade4bb66db573dc13bf436a8f3c87b733b
-  branch: rails-4.1
+  revision: 6d31b6585d0700337fb13df983fc13a34a5e2074
+  branch: rails-4.2
   specs:
     ransack (1.2.4)
-      actionpack (>= 4.0)
-      activerecord (>= 4.0)
-      activesupport (>= 4.0)
+      actionpack (= 4.2)
+      activerecord (= 4.2)
+      activesupport (= 4.2)
       i18n
       polyamorous (~> 1.1)
 

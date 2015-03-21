@@ -10,18 +10,27 @@ Rails.application.routes.draw do
     match '/sessions/user', to: 'devise/sessions#create', via: :post
     match '/users/sign_out', to: 'users/sessions#destroy', via: :get
   end
+
   scope '/wservices' do
     post '/groupes' => 'ws#get_groupes'
     post '/adherent' => 'ws#adherent_infos'
   end
+
+  scope '/adherents' do
+    get '/:id/activate' => 'adherents#activate', as: :activer_adherent
+    get '/:id/desactivate' => 'adherents#desactivate', as: :desactiver_adherent
+  end
+
   scope '/structure_assurance' do
     get '/:id/activer' => 'structure_assurances#activer', as: :activer_structure_assurance
     get '/:id/desactiver' => 'structure_assurances#desactiver', as: :desactiver_structure_assurance
   end
+
   scope '/structure_sanitaire' do
     get '/:id/activer' => 'structure_sanitaires#activer', as: :activer_structure_sanitaire
     get '/:id/desactiver' => 'structure_sanitaires#desactiver', as: :desactiver_structure_sanitaire
   end
+
   scope '/contacts' do
     get '/new/:owner_type/:owner_id' => 'contacts#new', as: :new_contact
     post '/create/:owner_type/:owner_id' => 'contacts#create', as: :create_contact
@@ -39,10 +48,6 @@ Rails.application.routes.draw do
     get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
     get '/add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
     get '/edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'
-    member do
-      post 'activate'
-      post 'desactivate'
-    end
   end
 
   root 'welcome#index'
