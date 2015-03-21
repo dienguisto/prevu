@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
+  layout 'empty'
   def new
-    render layout: 'empty'
   end
 
   def create

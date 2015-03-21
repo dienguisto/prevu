@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   get '/log_in' => 'sessions#new', :as => 'log_in'
   get '/sign_up' => 'adherents#new', :as => 'sign_up'
 
-  devise_for :users
+  devise_for :users,
+             controllers: { sessions: 'users/sessions' }
   devise_scope :user do
     match '/sessions/user', to: 'devise/sessions#create', via: :post
+    match '/users/sign_out', to: 'users/sessions#destroy', via: :get
   end
   scope '/wservices' do
     post '/groupes' => 'ws#get_groupes'

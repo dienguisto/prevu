@@ -1,5 +1,4 @@
 class Adherent < ActiveRecord::Base
-  attr_accessor :password_txt, :password_txt_confirmation
   include BCrypt
   include ActsAsContact
 
@@ -29,12 +28,11 @@ class Adherent < ActiveRecord::Base
   belongs_to :groupe
   # has_many :affiliations, through: :adherents
 
-  before_save :encrypt_password
+  before_create :encrypt_password
   before_create :generate_matricule
   before_create :set_status
   after_create :set_default_contact
 
-  validates_confirmation_of :password_txt
   validates :prenom, :nom, :date_de_naissance, :lieu_de_naissance, :sexe, :status_matrimonial,
             presence: true
   #validates_presence_of :password_txt, :on => :create
@@ -53,10 +51,10 @@ class Adherent < ActiveRecord::Base
   end
 
   def encrypt_password
-    if password_txt.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_digest = BCrypt::Engine.hash_secret(password_txt, password_salt)
-    end
+    generated_password = Devise.friendly_token.first(8)
+    self.password_salt = BCrypt::Engine.generate_salt
+    self.password_digest = BCrypt::Engine.hash_secret(generated_password, password_salt)
+    AdherentMailer.welcome(self.email, generated_password).deliver_later
   end
 
   def generate_matricule
