@@ -27,7 +27,7 @@
                 <% @pharmacies.each do |pharmacy| %>
                   <% pharma = pharmacy.structure_sanitaire %>
                   <tr>
-                    <td><%= pharma.nom %></td>
+                    <td><%= link_to pharma.nom, pharmacy %></td>
                     <td><%= afficher_etat pharma.actif? %></td>
                     <td><%= pharma.date_adhesion %></td>
                     <td><%= link_to 'Show', pharmacy %></td>

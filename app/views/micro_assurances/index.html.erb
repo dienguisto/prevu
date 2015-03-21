@@ -29,7 +29,7 @@
                 <% @micro_assurances.each do |micro_assurance| %>
                   <% structure_assurance = micro_assurance.structure_assurance %>
                   <tr>
-                    <td><%= structure_assurance.nom %></td>
+                    <td><%= link_to structure_assurance.nom, micro_assurance %></td>
                     <td><%= structure_assurance.numero_agrement %></td>
                     <td><%= afficher_etat structure_assurance.actif? %></td>
                     <td><%= structure_assurance.date_adhesion %></td>

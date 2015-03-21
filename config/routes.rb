@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     get '/:id/activer' => 'structure_assurances#activer', as: :activer_structure_assurance
     get '/:id/desactiver' => 'structure_assurances#desactiver', as: :desactiver_structure_assurance
   end
+  scope '/structure_sanitaire' do
+    get '/:id/activer' => 'structure_sanitaires#activer', as: :activer_structure_sanitaire
+    get '/:id/desactiver' => 'structure_sanitaires#desactiver', as: :desactiver_structure_sanitaire
+  end
   scope '/contacts' do
     get '/new/:owner_type/:owner_id' => 'contacts#new', as: :new_contact
     post '/create/:owner_type/:owner_id' => 'contacts#create', as: :create_contact
