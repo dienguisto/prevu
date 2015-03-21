@@ -10,8 +10,8 @@
     <% end %>
 
     <%= f.email_field :email %>
-    <%= f.select :role, collection: User::ROLES, as: :radio_buttons %>
-    <%= f.select :entite, collection: Entite.all.map{ |e| [e.title, e.id]} %>
+    <%= f.select :role, collection: User::ROLES.map{ |e| [e[0], e[0]]} %>
+    <%= f.collection_select :entite_id, Entite.all, :id, :title %>
 
     <div class="form-group">
       <div class="col-sm-4 col-sm-offset-2">
