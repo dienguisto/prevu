@@ -16,7 +16,7 @@ class AdherentsController < ApplicationController
     if @adherent.save
       redirect_to root_url, :notice => "Signed up!"
     else
-      render "new"
+      render "new", layout: 'empty'
     end
   end
   # GET /adherents

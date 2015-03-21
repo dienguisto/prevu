@@ -1,5 +1,4 @@
-<%= simple_form_for(@user) do |f| %>
-  <%= f.error_notification %>
+<%= bootstrap_form_for(@user, layout: :horizontal) do |f| %>
     <% if @user.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">
           <ul>
@@ -10,13 +9,14 @@
         </div>
     <% end %>
 
-  <div class="form-inputs">
-    <%= f.input :email %>
-    <%= f.input :role, collection: User::ROLES, as: :radio_buttons %>
-    <%= f.association :entite, collection: Entite.all.map{ |e| [e.title, e.id]} %>
-  </div>
+    <%= f.email_field :email %>
+    <%= f.select :role, collection: User::ROLES, as: :radio_buttons %>
+    <%= f.select :entite, collection: Entite.all.map{ |e| [e.title, e.id]} %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="form-group">
+      <div class="col-sm-4 col-sm-offset-2">
+        <%= link_to 'Annuler', users_path, class: 'btn btn-white' %>
+        <%= f.button 'Ajouter', class: 'btn btn-primary' %>
+      </div>
+    </div>
 <% end %>

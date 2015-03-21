@@ -1,13 +1,36 @@
-<h1>Log in</h1>
+<body class="gray-bg">
 
-<%= form_tag sessions_path do %>
-    <p>
-      <%= label_tag :matricule %><br />
-      <%= text_field_tag :matricule, params[:matricule] %>
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+  <div>
+    <div>
+
+      <h1 class="logo-name">Prevu</h1>
+
+    </div>
+    <h3>Welcome to Prévu</h3>
+    <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+      <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
     </p>
-    <p>
-      <%= label_tag :password %><br />
-      <%= password_field_tag :password %>
-    </p>
-    <p class="button"><%= submit_tag "Log in" %></p>
-<% end %>
+    <p>Login in. To see it in action.</p>
+    <%= form_tag sessions_path do %>
+        <p class="form-group">
+          <%= label_tag :matricule %><br />
+          <%= text_field_tag :matricule, params[:matricule], :class => "form-control" %>
+        </p>
+        <p class="form-group">
+          <%= label_tag :password %><br />
+          <input type="password" name="password" class="form-control"/>
+        </p>
+        <p class="button">
+          <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
+        </p>
+    <% end %>
+    <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+  </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
