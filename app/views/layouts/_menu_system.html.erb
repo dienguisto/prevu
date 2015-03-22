@@ -1,0 +1,30 @@
+<li>
+  <a href=""><i class="fa fa-building-o"></i> <span class="nav-label">Structures d'Assurances</span> <span class="fa arrow"></span></a>
+  <ul class="nav nav-second-level">
+    <li><%= link_to 'Mutuelles', mutuelles_path %></li>
+    <li><%= link_to 'Micro assurance', micro_assurances_path %></li>
+  </ul>
+</li>
+<li>
+  <a href=""><i class="fa fa-medkit"></i> <span class="nav-label">Structures Sanitaires</span> <span class="fa arrow"></span></a>
+  <ul class="nav nav-second-level">
+    <li><%= link_to 'Formations sanitaires', formation_sanitaires_path %></li>
+    <li><%= link_to 'Pharmacies', pharmacies_path %></li>
+  </ul>
+</li>
+<li>
+  <%= link_to structure_aperitrices_path do %>
+      <i class="fa fa-building-o"></i> <span class="nav-label">Structures Apéritrices</span>
+  <% end %>
+</li>
+<li>
+  <%= link_to adherents_path do %>
+      <i class="fa fa-user"></i> <span class="nav-label">Adherents</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to users_path do %>
+      <i class="fa fa-user"></i> <span class="nav-label">Users</span>
+  <% end %>
+</li>

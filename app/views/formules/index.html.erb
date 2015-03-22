@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Formules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Montant adhesion</th>
+      <th>Montant cotisation</th>
+      <th>Periode</th>
+      <th>Occurrence periode</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @formules.each do |formule| %>
+      <tr>
+        <td><%= formule.nom %></td>
+        <td><%= formule.montant_adhesion %></td>
+        <td><%= formule.montant_cotisation %></td>
+        <td><%= formule.periode %></td>
+        <td><%= formule.occurrence_periode %></td>
+        <td><%= link_to 'Show', formule %></td>
+        <td><%= link_to 'Edit', edit_formule_path(formule) %></td>
+        <td><%= link_to 'Destroy', formule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Formule', new_formule_path %>

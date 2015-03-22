@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :pharmacies
   resources :formation_sanitaires
   resources :adherents
+  resources :formules
   resources :adherents do
     get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
     get '/add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'

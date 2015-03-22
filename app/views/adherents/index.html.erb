@@ -27,7 +27,7 @@
               <tbody>
                 <% @adherents.each do |adherent| %>
                   <tr>
-                    <td><%= adherent.matricule %></td>
+                    <td><%= link_to adherent.matricule, adherent %></td>
                     <td><%= adherent.full_name %></td>
                     <td><%= adherent.date_de_naissance %></td>
                     <td><%= afficher_status adherent.status %></td>

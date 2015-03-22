@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @formule.nom %>
+</p>
+
+<p>
+  <strong>Montant adhesion:</strong>
+  <%= @formule.montant_adhesion %>
+</p>
+
+<p>
+  <strong>Montant cotisation:</strong>
+  <%= @formule.montant_cotisation %>
+</p>
+
+<p>
+  <strong>Periode:</strong>
+  <%= @formule.periode %>
+</p>
+
+<p>
+  <strong>Occurrence periode:</strong>
+  <%= @formule.occurrence_periode %>
+</p>
+
+<%= link_to 'Edit', edit_formule_path(@formule) %> |
+<%= link_to 'Back', formules_path %>
