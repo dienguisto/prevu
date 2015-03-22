@@ -7,5 +7,7 @@ module ActsAsStructureAssurance
     accepts_nested_attributes_for :structure_assurance
 
     validates :structure_assurance, presence: true
+
+    delegate :nom, to: :structure_assurance
   end
 end

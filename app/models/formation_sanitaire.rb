@@ -8,4 +8,8 @@ class FormationSanitaire < ActiveRecord::Base
   }
   enum niveau: NIVEAU
   validates :niveau, presence: true
+
+  def title
+    "Formation sanitaire - #{nom}"
+  end
 end

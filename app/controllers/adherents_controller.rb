@@ -4,7 +4,7 @@ class AdherentsController < ApplicationController
   def new
     @adherent = Adherent.new
     @adherent.contacts.build
-    render layout: 'empty'
+    render layout: 'empty' unless user_signed_in?
   end
 
   def new_parrainage

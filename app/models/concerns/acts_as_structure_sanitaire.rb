@@ -7,5 +7,7 @@ module ActsAsStructureSanitaire
     accepts_nested_attributes_for :structure_sanitaire
 
     validates :structure_sanitaire, presence: true
+
+    delegate :nom, to: :structure_sanitaire
   end
 end
