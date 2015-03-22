@@ -61,3 +61,9 @@ l = StructureSanitaire.new(nom: 'Pharmacy 3', adresse: 'Adresse Pharmacie 3', da
 Pharmacy.create(:structure_sanitaire => j)
 Pharmacy.create(:structure_sanitaire => k)
 Pharmacy.create(:structure_sanitaire => l)
+
+
+Medicament.create(nom: 'Paracétamol')
+Medicament.create(nom: 'cac1000 sans dose')
+Medicament.create(nom: 'Aspirine')
+Medicament.create(nom: 'Néféréti')

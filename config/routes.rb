@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :ordonnances
+
   resources :users, path: '/custom/users'
   resources :sessions
   resources :structure_aperitrices
