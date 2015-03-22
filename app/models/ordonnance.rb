@@ -13,6 +13,10 @@ class Ordonnance < ActiveRecord::Base
 
   private
     def set_total
-
+      total = 0
+      detail_ordonnances.each do |d|
+        total += d.prix_unitaire* d.quantite
+      end
+      self.prix_total = total
     end
 end

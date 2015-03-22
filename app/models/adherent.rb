@@ -25,6 +25,7 @@ class Adherent < ActiveRecord::Base
   has_and_belongs_to_many :tags
   belongs_to :parrain, foreign_key: :parrain_id, class_name: Adherent
   has_many :adherents, foreign_key: :parrain_id
+  has_many :ordonnances
   belongs_to :default_contact, foreign_key: :contact_id, class_name: Contact
   belongs_to :groupe
   # has_many :affiliations, through: :adherents

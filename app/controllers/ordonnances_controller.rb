@@ -25,12 +25,13 @@ class OrdonnancesController < ApplicationController
   # POST /ordonnances
   # POST /ordonnances.json
   def create
+    @url_back = params[:url_back]
     @ordonnance = Ordonnance.new(ordonnance_params)
 
     respond_to do |format|
       if @ordonnance.save
 
-        format.html { redirect_to @ordonnance, notice: 'Ordonnance was successfully created.' }
+        format.html { redirect_to @ordonnance.adherent, notice: 'Ordonnance was successfully created.' }
         format.json { render :show, status: :created, location: @ordonnance }
       else
         format.html { render :new }

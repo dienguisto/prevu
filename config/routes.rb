@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :adherents
   resources :formules
   resources :adherents do
+    resources :ordonnances
     get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
     get '/add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
     get '/edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'
