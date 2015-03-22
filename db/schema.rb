@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322111418) do
+ActiveRecord::Schema.define(version: 20150322163825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 20150322111418) do
     t.string   "owner_type"
   end
 
+  create_table "detail_ordonnances", force: :cascade do |t|
+    t.integer  "quantite"
+    t.float    "prix_unitaire"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "ordonnance_id"
+    t.integer  "medicament_id"
+  end
+
   create_table "entites", force: :cascade do |t|
     t.integer  "entite_id"
     t.string   "entite_type"
@@ -119,6 +128,14 @@ ActiveRecord::Schema.define(version: 20150322111418) do
 
   add_index "groupes", ["structure_assurance_id"], name: "index_groupes_on_structure_assurance_id", using: :btree
 
+  create_table "medicaments", force: :cascade do |t|
+    t.string   "nom"
+    t.string   "reference"
+    t.boolean  "actif"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "micro_assurances", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -128,6 +145,17 @@ ActiveRecord::Schema.define(version: 20150322111418) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "ordonnances", force: :cascade do |t|
+    t.float    "prix_total"
+    t.integer  "adherent_id"
+    t.integer  "pharmacy_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "ordonnances", ["adherent_id"], name: "index_ordonnances_on_adherent_id", using: :btree
+  add_index "ordonnances", ["pharmacy_id"], name: "index_ordonnances_on_pharmacy_id", using: :btree
 
   create_table "pharmacies", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -210,5 +238,7 @@ ActiveRecord::Schema.define(version: 20150322111418) do
   add_foreign_key "affectation_aperitrices", "structure_aperitrices"
   add_foreign_key "formules", "structure_assurances"
   add_foreign_key "groupes", "structure_assurances"
+  add_foreign_key "ordonnances", "adherents"
+  add_foreign_key "ordonnances", "pharmacies"
   add_foreign_key "users", "entites"
 end

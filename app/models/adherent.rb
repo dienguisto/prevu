@@ -1,13 +1,14 @@
 class Adherent < ActiveRecord::Base
   include BCrypt
   include ActsAsContact
+  delegate :email, to: :default_contact
 
   TYPE_PIECE = {
       carte_nationale_identite: 0,
       passeport: 1
   }
 
-  SEXE = {'Masculin' => 1, 'Feminin' => 2}
+  SEXE = { 'Masculin' => 1, 'Feminin' => 2 }
 
   MATRIMONIAL = {
       "Célibataire" => 1,

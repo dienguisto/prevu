@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Prix total:</strong>
+  <%= @ordonnance.prix_total %>
+</p>
+
+<p>
+  <strong>Adherent:</strong>
+  <%= @ordonnance.adherent %>
+</p>
+
+<p>
+  <strong>Pharmacy:</strong>
+  <%= @ordonnance.pharmacy %>
+</p>
+
+<%= link_to 'Edit', edit_ordonnance_path(@ordonnance) %> |
+<%= link_to 'Back', ordonnances_path %>
