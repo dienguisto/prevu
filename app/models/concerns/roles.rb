@@ -38,6 +38,14 @@ module Roles
     entite.entite.is_a?(StructureAperitrice)
   end
 
+  def user_structure_assurance?
+    user_mutuelle? or user_micro_assurance?
+  end
+
+  def user_structure_sanitaire?
+    user_formation_sanitaire? or user_pharmacie?
+  end
+
   def admin_mutuelle?
     administrateur? and user_mutuelle?
   end
@@ -76,5 +84,21 @@ module Roles
 
   def agent_saisie_structure_aperitrice?
     agent_saisie? and user_structure_aperitrice?
+  end
+
+  def admin_structure_assurance?
+    administrateur? and user_structure_assurance?
+  end
+
+  def agent_saisie_structure_assurance?
+    agent_saisie? and user_structure_assurance?
+  end
+
+  def admin_structure_sanitaire?
+    administrateur? and user_structure_sanitaire?
+  end
+
+  def agent_saisie_structure_sanitaire?
+    agent_saisie? and user_structure_sanitaire?
   end
 end

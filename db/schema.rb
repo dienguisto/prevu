@@ -149,10 +149,10 @@ ActiveRecord::Schema.define(version: 20150322111418) do
     t.string   "adresse"
     t.date     "date_adhesion"
     t.string   "numero_agrement"
-    t.string   "couleur",           limit: 10
-    t.boolean  "actif",                        default: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.string   "couleur"
+    t.boolean  "actif",             default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"

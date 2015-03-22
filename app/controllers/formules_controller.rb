@@ -1,10 +1,11 @@
 class FormulesController < ApplicationController
+  before_action :only_for_structure_asssurance!
   before_action :set_formule, only: [:show, :edit, :update, :destroy]
 
   # GET /formules
   # GET /formules.json
   def index
-    @formules = Formule.all
+    @formules = current_structure_assurance.formules
   end
 
   # GET /formules/1
@@ -25,6 +26,7 @@ class FormulesController < ApplicationController
   # POST /formules.json
   def create
     @formule = Formule.new(formule_params)
+    @formule.structure_assurance = current_structure_assurance
 
     respond_to do |format|
       if @formule.save

@@ -26,15 +26,15 @@
               </thead>
               <tbody>
               <% @mutuelles.each do |mutuelle| %>
-              <% structure_assurance = mutuelle.structure_assurance %>
-              <tr>
-                <td><%= link_to structure_assurance.nom, mutuelle %></td>
-                <td><%= structure_assurance.numero_agrement %></td>
-                <td><%= afficher_etat structure_assurance.actif? %></td>
-                <td><%= structure_assurance.date_adhesion %></td>
-                <td><%= structure_assurance.created_at %></td>
-                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-              </tr>
+                  <% structure_assurance = mutuelle.structure_assurance %>
+                  <tr>
+                    <td><%= link_to structure_assurance.nom, mutuelle %></td>
+                    <td><%= structure_assurance.numero_agrement %></td>
+                    <td><%= afficher_etat structure_assurance.actif? %></td>
+                    <td><%= structure_assurance.date_adhesion %></td>
+                    <td><%= structure_assurance.created_at %></td>
+                    <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                  </tr>
               <% end %>
               </tbody>
             </table>
