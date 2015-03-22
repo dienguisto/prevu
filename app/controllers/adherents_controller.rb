@@ -19,12 +19,18 @@ class AdherentsController < ApplicationController
       render "new", layout: 'empty'
     end
   end
+
   # GET /adherents
   # GET /adherents.json
   def index
     @adherents = Adherent.all
-    @q = Adherent.ransack(params[:q])
-    @adherent = @q.result(distinct: true)
+    if params[:q]
+      @q = Adherent.find_by(params[:q])
+      @adherent = @q#.result
+      if @adherent
+        redirect_to @adherent
+      end
+    end
   end
 
   # GET /adherents/1
@@ -107,8 +113,8 @@ class AdherentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def adherent_params
       params.require(:adherent).permit(:nom, :prenom, :email, :status_matrimonial, :date_de_naissance, :lieu_de_naissance,
-                                       :type_piece_identite, :numero_piece_identite,:avatar,
-                                       :sexe, :parrain_id, :affiliation, :groupe_id,
+                                       :type_piece_identite, :numero_piece_identite,:avatar, :groupe_id,
+                                       :sexe, :parrain_id, :affiliation,
                                        :contacts_attributes => [:telephone, :adresse, :email])
     end
 end
