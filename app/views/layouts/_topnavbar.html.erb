@@ -2,11 +2,12 @@
     <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" method="post" action="/">
+            <form role="search" class="navbar-form-custom" method="get" action="/adherents/">
                 <div class="form-group">
-                    <input type="text" placeholder="Matricule client ..." class="form-control" name="top-search" id="top-search" />
+                    <input type="search" placeholder="Matricule client ..." class="form-control" name="q[matricule]" id="q_matricule" />
                 </div>
             </form>
+
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li>

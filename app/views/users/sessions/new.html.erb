@@ -5,19 +5,23 @@
   <div>
     <div>
 
-      <h1 class="logo-name">Prevu</h1>
+      <h1 class="logo-name">Pre</h1>
 
     </div>
     <h3>Welcome to Prévu</h3>
     <p>Login in. To see it in action.</p>
     <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
-          <%= f.email_field :email, required: false, autofocus: true %>
-          <%= f.password_field :password, required: false %>
+          <div class="form-group">
+            <input autofocus="autofocus" class="form-control" type="email" value="" name="user[email]" placeholder="Email" id="user_email"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="user[password]" id="user_password" placeholder="Password"/>
+          </div>
         </div>
 
         <div class="form-actions">
-          <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
+          <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
           <label> <input type="checkbox" class="i-checks"> Remember me </label>
         </div>
     <% end %>
