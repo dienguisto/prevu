@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+
+  resources :users, path: '/custom/users'
+  resources :sessions
+  resources :structure_aperitrices
+  resources :micro_assurances
+  resources :mutuelles
+  resources :pharmacies
+  resources :formation_sanitaires
+  resources :adherents
+  resources :adherents do
+    get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
+    get '/add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
+    get '/edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'
+  end
+
+
   get 'welcome/minor'
   get '/log_out' => 'sessions#destroy', :as => 'log_out'
   get '/log_in' => 'sessions#new', :as => 'log_in'
@@ -10,6 +26,7 @@ Rails.application.routes.draw do
     match '/sessions/user', to: 'devise/sessions#create', via: :post
     match '/users/sign_out', to: 'users/sessions#destroy', via: :get
   end
+
 
   scope '/adherents' do
     get '/:id/activate' => 'adherents#activate', as: :activer_adherent
@@ -31,22 +48,9 @@ Rails.application.routes.draw do
     post '/create/:owner_type/:owner_id' => 'contacts#create', as: :create_contact
   end
 
-  resources :users, path: '/custom/users'
-  resources :sessions
-  resources :structure_aperitrices
-  resources :micro_assurances
-  resources :mutuelles
-  resources :pharmacies
-  resources :formation_sanitaires
-  resources :adherents
-  resources :adherents do
-    get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
-    get '/add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
-    get '/edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'
-  end
+
 
   root 'welcome#index'
-
   scope '/wservices' do
     post '/groupes' => 'ws#get_groupes'
     post '/adherent' => 'ws#adherent_infos'

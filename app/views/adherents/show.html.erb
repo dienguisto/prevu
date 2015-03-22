@@ -42,7 +42,6 @@
               <%= @adherent.lieu_de_naissance %>
               <br/>
 
-
               <strong>Telephone:</strong>
               <%= @adherent.default_contact.telephone %>
               <br/>
@@ -57,14 +56,6 @@
 
               <strong>Status:</strong>
               <%= Adherent::STATUS.index(@adherent.status) %>
-              <br/>
-
-              <strong>Payer:</strong>
-              <%= @adherent.payer %>
-              <br/>
-
-              <strong>Paiement date:</strong>
-              <%= @adherent.paiement_date %>
               <br/>
 
             </p>
