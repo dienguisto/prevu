@@ -16,7 +16,12 @@ class OrdonnancesController < ApplicationController
   # GET /ordonnances/new
   def new
     @ordonnance = Ordonnance.new
-    3.times{ @ordonnance.detail_ordonnances.build }
+    @ordonnance.detail_ordonnances = []
+    2.times{ @ordonnance.detail_ordonnances << DetailOrdonnance.new }
+  end
+
+  def confirm
+    @ordonnance = Ordonnance.new(ordonnance_params)
   end
 
   # GET /ordonnances/1/edit

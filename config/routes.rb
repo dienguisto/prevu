@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :ordonnances
+
   resources :users, path: '/custom/users'
   resources :sessions
   resources :structure_aperitrices
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
     match '/users/sign_out', to: 'users/sessions#destroy', via: :get
   end
 
+  post '/ordonnances/confirm' => 'ordonnances#confirm', :as => 'confirm'
 
   scope '/adherents' do
     get '/:id/activate' => 'adherents#activate', as: :activer_adherent

@@ -1,11 +1,5 @@
-<%= f.fields_for :detail_ordonnances do |detail| %>
-    <div class="col-sm-12">
-      <div class="col-sm-3"><%= detail.collection_select :medicament_id, Medicament.all, :id, :nom,  include_blank: true %></div>
-      <div class="col-sm-3"><%= detail.text_field :quantite %></div>
-      <div class="col-sm-3"><%= detail.text_field :prix_unitaire %></div>
-      <div class="col-sm-3">
-        <label class="control-label">Total</label>
-        <input class="form-control" type="text" name="total" alue="0" disabled/>
-      </div>
-    </div>
-<% end %>
+<div class="col-sm-12">
+  <div class="col-sm-4"><%= f.collection_select :medicament_id, Medicament.all, :id, :nom,  include_blank: true, hide_label: true %></div>
+  <div class="col-sm-4"><%= f.text_field :quantite, hide_label: true %></div>
+  <div class="col-sm-4"><%= f.text_field :prix_unitaire, hide_label: true %></div>
+</div>

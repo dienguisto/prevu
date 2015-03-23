@@ -1,19 +1,22 @@
-<%= bootstrap_form_for(@ordonnance) do |f| %>
+<%= bootstrap_form_for(@ordonnance, :url => confirm_path) do |f| %>
 
     <% if params[:adherent_id] %>
         <%= f.hidden_field :adherent_id, value: params[:adherent_id] %>
     <% else %>
         <%= f.collection_select :adherent_id, Adherent.all, :id, :matricule, label_class: "chosen-select" %>
     <% end %>
-    <%= f.collection_select :pharmacy_id, Pharmacy.all, :id, :title, :input_html => { class: 'chosen-select' } %>
+    <%= f.hidden_field :pharmacy_id, value: current_user.id %>
 
     <%= render 'detail_ordonnances/form', :f => f %>
-    <%= link_to_add_fields "Add Ligne", f, :detail_ordonnances %>
 
     <div class="col-sm-4 col-sm-offset-2">
+      <%= link_to_add_fields "<button class='btn btn-primary'>Add Ligne</button>".html_safe, f, :detail_ordonnances %>
+      <% if params[:adherent_id] %>
+          <%= link_to 'Annuler', params[:url_back], class: 'btn btn-white' %>
+      <% else %>
         <%= link_to 'Annuler', ordonnances_path, class: 'btn btn-white' %>
+      <% end %>
         <%= f.button 'Ajouter', class: 'btn btn-primary' %>
     </div>
-
 
 <% end %>

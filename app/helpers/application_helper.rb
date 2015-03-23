@@ -8,6 +8,7 @@ module ApplicationHelper
 
     content_tag(:a, name, html_options.merge(:href => href, :onclick => onclick))
   end
+
   def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
   end
@@ -25,6 +26,17 @@ module ApplicationHelper
     "<div class='row wrapper border-bottom white-bg page-heading'>
   <div class='col-lg-10'>
     <h2>#{titre}</h2>
+  </div>
+  <div class='col-lg-2'>
+
+  </div>
+</div>".html_safe
+  end
+
+  def titre_page_adherent(adherent_id)
+    "<div class='row wrapper border-bottom white-bg page-heading'>
+  <div class='col-lg-10'>
+    <h2>Ajout d'une ordonnance pour #{Adherent.find(adherent_id).full_name} </h2>
   </div>
   <div class='col-lg-2'>
 
