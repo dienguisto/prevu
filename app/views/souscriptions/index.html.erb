@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Souscriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adherent</th>
+      <th>Formule</th>
+      <th>Paye</th>
+      <th>Date paiement</th>
+      <th>Actif</th>
+      <th>Actif</th>
+      <th>Date activation</th>
+      <th>Date expiration</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @souscriptions.each do |souscription| %>
+      <tr>
+        <td><%= souscription.adherent %></td>
+        <td><%= souscription.formule %></td>
+        <td><%= souscription.paye %></td>
+        <td><%= souscription.date_paiement %></td>
+        <td><%= souscription.actif %></td>
+        <td><%= souscription.actif %></td>
+        <td><%= souscription.date_activation %></td>
+        <td><%= souscription.date_expiration %></td>
+        <td><%= link_to 'Show', souscription %></td>
+        <td><%= link_to 'Edit', edit_souscription_path(souscription) %></td>
+        <td><%= link_to 'Destroy', souscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Souscription', new_souscription_path %>

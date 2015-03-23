@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  adherent_id: 
+  formule_id: 
+  paye: false
+  date_paiement: 2015-03-23 15:51:21
+  actif: false
+  actif: false
+  date_activation: 2015-03-23 15:51:21
+  date_expiration: 2015-03-23
+
+two:
+  adherent_id: 
+  formule_id: 
+  paye: false
+  date_paiement: 2015-03-23 15:51:21
+  actif: false
+  actif: false
+  date_activation: 2015-03-23 15:51:21
+  date_expiration: 2015-03-23

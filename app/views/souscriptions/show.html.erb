@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adherent:</strong>
+  <%= @souscription.adherent %>
+</p>
+
+<p>
+  <strong>Formule:</strong>
+  <%= @souscription.formule %>
+</p>
+
+<p>
+  <strong>Paye:</strong>
+  <%= @souscription.paye %>
+</p>
+
+<p>
+  <strong>Date paiement:</strong>
+  <%= @souscription.date_paiement %>
+</p>
+
+<p>
+  <strong>Actif:</strong>
+  <%= @souscription.actif %>
+</p>
+
+<p>
+  <strong>Actif:</strong>
+  <%= @souscription.actif %>
+</p>
+
+<p>
+  <strong>Date activation:</strong>
+  <%= @souscription.date_activation %>
+</p>
+
+<p>
+  <strong>Date expiration:</strong>
+  <%= @souscription.date_expiration %>
+</p>
+
+<%= link_to 'Edit', edit_souscription_path(@souscription) %> |
+<%= link_to 'Back', souscriptions_path %>

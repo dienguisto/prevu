@@ -1,0 +1,2 @@
+module SouscriptionsHelper
+end

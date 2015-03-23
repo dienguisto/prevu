@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :ordonnances
-
   resources :users, path: '/custom/users'
   resources :sessions
   resources :structure_aperitrices
@@ -13,6 +12,7 @@ Rails.application.routes.draw do
   resources :formules
   resources :adherents do
     resources :ordonnances
+    resources :souscriptions
     get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
     get '/add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
     get '/edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'

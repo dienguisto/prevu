@@ -1,0 +1,42 @@
+<% if current_user.user_structure_assurance? %>
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Souscriptions</h5>
+      </div>
+
+      <div class="ibox-content">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Formules</th>
+              <th>Actif?</th>
+              <th>Date d'activation</th>
+              <th>Payé?</th>
+              <th>Date paiement</th>
+              <th>Date d'expiration</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @adherent.souscriptions.each do |souscription| %>
+                <tr>
+                  <td><%= link_to souscription.formule.nom, souscription.formule %></td>
+                  <td><%= afficher_etat souscription.actif? %></td>
+                  <td><%= souscription.date_activation %></td>
+                  <td><%= afficher_etat souscription.paye? %></td>
+                  <td><%= souscription.date_paiement %></td>
+                  <td><%= souscription.date_expiration %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-right">
+          <% if @adherent.souscriptions.en_cours.count.zero? %>
+              <%= link_to '<strong>Ajouter une souscription</strong>'.html_safe, new_adherent_souscription_path(@adherent), class: 'btn btn-sm btn-primary m-t-n-xs' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>

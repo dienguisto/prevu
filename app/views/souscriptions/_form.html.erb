@@ -1,0 +1,16 @@
+<%= bootstrap_form_for([@adherent, @souscription], layout: :horizontal) do |f| %>
+    <div class="form-inputs">
+      <%= f.collection_radio_buttons :formule_id, current_structure_assurance.formules, :id, :nom %>
+      <%= f.form_group :paye do %>
+          <%= f.check_box :paye %>
+      <% end %>
+      <%= f.date_field :date_expiration %>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-4 col-sm-offset-2">
+        <%= link_to 'Annuler', @adherent, class: 'btn btn-white' %>
+        <%= f.button 'Ajouter', class: 'btn btn-primary' %>
+      </div>
+    </div>
+<% end %>

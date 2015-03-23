@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322163825) do
+ActiveRecord::Schema.define(version: 20150323155121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,21 @@ ActiveRecord::Schema.define(version: 20150322163825) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "souscriptions", force: :cascade do |t|
+    t.integer  "adherent_id"
+    t.integer  "formule_id"
+    t.boolean  "paye",            default: false
+    t.datetime "date_paiement"
+    t.boolean  "actif",           default: false
+    t.datetime "date_activation"
+    t.date     "date_expiration"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "souscriptions", ["adherent_id"], name: "index_souscriptions_on_adherent_id", using: :btree
+  add_index "souscriptions", ["formule_id"], name: "index_souscriptions_on_formule_id", using: :btree
+
   create_table "structure_aperitrices", force: :cascade do |t|
     t.string   "nom"
     t.string   "adresse"
@@ -240,5 +255,7 @@ ActiveRecord::Schema.define(version: 20150322163825) do
   add_foreign_key "groupes", "structure_assurances"
   add_foreign_key "ordonnances", "adherents"
   add_foreign_key "ordonnances", "pharmacies"
+  add_foreign_key "souscriptions", "adherents"
+  add_foreign_key "souscriptions", "formules"
   add_foreign_key "users", "entites"
 end

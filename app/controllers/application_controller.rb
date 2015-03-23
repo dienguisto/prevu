@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_adherent
+  helper_method :current_adherent, :current_structure_assurance
 
   def current_structure_assurance
     return nil unless user_signed_in? and current_user.user_structure_assurance?

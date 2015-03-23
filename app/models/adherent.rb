@@ -28,7 +28,8 @@ class Adherent < ActiveRecord::Base
   has_many :ordonnances
   belongs_to :default_contact, foreign_key: :contact_id, class_name: Contact
   belongs_to :groupe
-  # has_many :affiliations, through: :adherents
+  has_many :souscriptions
+  has_many :formules, through: :souscriptions
 
   before_create :encrypt_password
   before_create :generate_matricule
