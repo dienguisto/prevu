@@ -1,4 +1,5 @@
 class OrdonnancesController < ApplicationController
+  before_action :only_for_pharmacie!
   before_action :set_ordonnance, only: [:show, :edit, :update, :destroy]
 
   # GET /ordonnances
