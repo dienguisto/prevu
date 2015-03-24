@@ -1,14 +1,32 @@
 <% if current_user.user_pharmacie? %>
     <div class="ibox float-e-margins">
       <div class="ibox-title">
-        <h5>Ordonnance</h5>
+        <h5>5 dernières Ordonnances</h5>
       </div>
 
       <div class="ibox-content">
-        <div class="row">
-          <% for ordonnance in @adherent.ordonnances %>
-              <%= render 'ordonnances/show_bloc', ordonnance: ordonnance %>
-          <% end %>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th></th>
+              <th>Dates</th>
+              <th>Pharmacies</th>
+              <th>Prix Total</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for ordonnance in @adherent.ordonnances.limit(5) %>
+                <tr>
+                  <td><%= link_to "##{ordonnance.id}", [@adherent, ordonnance] %></td>
+                  <td><%= ordonnance.created_at %></td>
+                  <td><%= ordonnance.pharmacy.nom %></td>
+                  <td><%= ordonnance.prix_total %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
         <div class="text-right">
           <%= link_to '<strong>Ajouter une ordonnance</strong>'.html_safe, new_adherent_ordonnance_path(@adherent), class: 'btn btn-sm btn-primary m-t-n-xs' %>

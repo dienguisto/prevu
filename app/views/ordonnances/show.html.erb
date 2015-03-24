@@ -1,19 +1,61 @@
-<p id="notice"><%= notice %></p>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-8">
+    <h2>Détails Ordonnance</h2>
+  </div>
+</div>
 
-<p>
-  <strong>Prix total:</strong>
-  <%= @ordonnance.prix_total %>
-</p>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="ibox-content p-xl">
+        <div class="row">
+          <div class="col-sm-6">
+          </div>
 
-<p>
-  <strong>Adherent:</strong>
-  <%= @ordonnance.adherent %>
-</p>
+          <div class="col-sm-6 text-right">
+            <p>
+              <span><strong>Date ordonnance:</strong> <%= @ordonnance.created_at.strftime("%A, %d %b %Y %l:%M %p") %></span><br>
+            </p>
+          </div>
+        </div>
+        <div class="table-responsive m-t">
+          <table class="table invoice-table">
+            <thead>
+            <tr>
+              <th>Item List</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @ordonnance.detail_ordonnances.each do |ligne| %>
+                <tr>
+                  <td>
+                    <div><strong><%= ligne.medicament.nom %></strong></div>
+                  </td>
+                  <td><%= ligne.quantite %></td>
+                  <td><%= ligne.prix_unitaire %>F CFA</td>
+                  <td><%= ligne.prix_unitaire*ligne.quantite %>F CFA</td>
+                </tr>
+            <% end %>
 
-<p>
-  <strong>Pharmacy:</strong>
-  <%= @ordonnance.pharmacy %>
-</p>
+            </tbody>
+          </table>
+        </div>
 
-<%= link_to 'Edit', edit_ordonnance_path(@ordonnance) %> |
-<%= link_to 'Back', ordonnances_path %>
+        <table class="table invoice-total">
+          <tbody>
+          <tr>
+            <td><strong>TOTAL :</strong></td>
+            <td><%= @ordonnance.get_total %>F CFA</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-right">
+          <%= link_to 'Retour', @ordonnance.adherent, class: 'btn btn-white' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

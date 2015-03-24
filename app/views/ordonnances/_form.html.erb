@@ -12,8 +12,8 @@
     <%= render 'detail_ordonnances/form', :f => f %>
 
     <div class="col-sm-4 col-sm-offset-2">
+      <%= f.button 'Ajouter', class: 'btn btn-primary' %>
       <%= link_to_add_fields "<button class='btn btn-primary'>Add Ligne</button>".html_safe, f, :detail_ordonnances %>
       <%= link_to 'Annuler', @adherent, class: 'btn btn-white' %>
-      <%= f.button 'Ajouter', class: 'btn btn-primary' %>
     </div>
 <% end %>

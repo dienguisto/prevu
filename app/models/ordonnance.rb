@@ -1,4 +1,5 @@
 class Ordonnance < ActiveRecord::Base
+  default_scope {order('created_at desc')}
   belongs_to :adherent
   belongs_to :pharmacy
 
