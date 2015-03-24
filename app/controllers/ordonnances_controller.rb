@@ -22,6 +22,20 @@ class OrdonnancesController < ApplicationController
   end
 
   def confirm
+    tab = []
+    results = {}
+    details = {}
+    details = ordonnance_params[:detail_ordonnances_attributes]
+    details.each do |k, v|
+      if tab.include?(v['medicament_id'])
+        print v['medicament_id']
+        results[v['medicament_id']]['quantite'] = v['quantite'].to_i + results[v['medicament_id']]['quantite'].to_i
+      else
+        tab << v['medicament_id']
+        results[v['medicament_id']] = v
+      end
+    end
+    params[:ordonnance][:detail_ordonnances_attributes] = results
     @ordonnance = Ordonnance.new(ordonnance_params)
     @ordonnance.adherent = @adherent
     @ordonnance.pharmacy = current_pharmacy

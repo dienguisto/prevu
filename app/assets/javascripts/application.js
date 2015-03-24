@@ -17,6 +17,7 @@
 //= require detail_lignes
 //= require slimscroll/jquery.slimscroll.min.js
 //= require chosen.jquery.min
+//= require scaffold
 //= require colorpicker/bootstrap-colorpicker.min.js
 //= require datapicker/bootstrap-datepicker.js
 //= require_tree .

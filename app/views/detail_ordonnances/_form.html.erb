@@ -5,8 +5,13 @@
 </div>
 <%= f.fields_for :detail_ordonnances do |d| %>
     <div class="col-sm-12">
-      <div class="col-sm-4"><%= d.collection_select :medicament_id, Medicament.all, :id, :nom,  include_blank: true, hide_label: true %></div>
+      <div class="col-sm-4"><%= d.collection_select :medicament_id, Medicament.all, :id, :nom,
+                                                    include_blank: true, hide_label: true %></div>
       <div class="col-sm-4"><%= d.text_field :quantite, hide_label: true %></div>
       <div class="col-sm-4"><%= d.text_field :prix_unitaire, hide_label: true %></div>
     </div>
 <% end %>
+
+<script type="text/javascript">
+    $('select[class="form-control"]').addClass("chosen-select");
+</script>
