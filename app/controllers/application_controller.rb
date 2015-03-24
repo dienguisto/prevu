@@ -10,11 +10,16 @@ class ApplicationController < ActionController::Base
     current_user.entite.entite.structure_assurance
   end
 
-  private
+  def current_pharmacy
+    return nil unless user_signed_in? and current_user.user_pharmacie?
+    current_user.entite.entite.structure_sanitaire.structure
+  end
 
   def current_adherent
     @current_adherent ||= Adherent.find(session[:adherent_id]) if session[:adherent_id]
   end
+
+  private
 
   def only_for_structure_asssurance!
     unless user_signed_in? and current_user.user_structure_assurance?

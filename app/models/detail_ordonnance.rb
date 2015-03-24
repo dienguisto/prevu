@@ -2,6 +2,11 @@ class DetailOrdonnance < ActiveRecord::Base
   belongs_to :medicament
   belongs_to :ordonnance
 
-  #validates_presence_of :medicament_id
-  #validates_presence_of :ordonnance_id
+  after_save :reset_prix_total
+
+  validates :prix_unitaire, :quantite, presence: true
+
+  def reset_prix_total
+    ordonnance.reset_prix_total!
+  end
 end

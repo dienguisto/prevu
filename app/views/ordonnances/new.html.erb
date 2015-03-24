@@ -1,8 +1,4 @@
-<% if params[:adherent_id] %>
-    <%= titre_page_adherent params[:adherent_id] %>
-<% else %>
-    <%= titre_page "Ajout d'une ordonnance" %>
-<%end %>
+<%= titre_page "Ajout d'une ordonnance pour #{@adherent.full_name}" %>
 
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">

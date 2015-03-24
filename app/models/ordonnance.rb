@@ -5,18 +5,17 @@ class Ordonnance < ActiveRecord::Base
   has_many :detail_ordonnances, dependent: :destroy
   has_many :medicaments, through: :detail_ordonnances
 
-  before_create :set_total
   accepts_nested_attributes_for :detail_ordonnances,
-      :allow_destroy => true, :reject_if => :all_blank
+      allow_destroy: true, reject_if: :all_blank
 
-  #validates_presence_of :detail_ordonnances
+  validates :adherent_id, :pharmacy_id,
+            presence: true, on: :create
 
-  private
-    def set_total
-      total = 0
-      detail_ordonnances.each do |d|
-        total += d.prix_unitaire* d.quantite
-      end
-      self.prix_total = total
-    end
+  def reset_prix_total!
+    self.update(prix_total: get_total)
+  end
+
+  def get_total
+    detail_ordonnances.reduce(0) { |s, d| s + d.prix_unitaire * d.quantite }
+  end
 end

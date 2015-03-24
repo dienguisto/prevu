@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   resources :adherents
   resources :formules
   resources :adherents do
-    resources :ordonnances
     resources :souscriptions
+    resources :ordonnances do
+      post 'confirm', on: :collection
+    end
     get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
     get '/add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
     get '/edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'
@@ -31,8 +33,6 @@ Rails.application.routes.draw do
     match '/sessions/user', to: 'devise/sessions#create', via: :post
     match '/users/sign_out', to: 'users/sessions#destroy', via: :get
   end
-
-  post '/ordonnances/confirm' => 'ordonnances#confirm', :as => 'confirm'
 
   scope '/adherents' do
     get '/:id/activate' => 'adherents#activate', as: :activer_adherent

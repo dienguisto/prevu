@@ -1,12 +1,12 @@
 <div class="col-sm-12">
-  <div class="col-sm-4"><h2>Medicament</h2></div>
-  <div class="col-sm-4"><h2>Quantité</h2></div>
+  <div class="col-sm-4"><h2>Medicaments</h2></div>
+  <div class="col-sm-4"><h2>Quantités</h2></div>
   <div class="col-sm-4"><h2>Prix unitaire</h2></div>
 </div>
-<%= f.fields_for :detail_ordonnances do |detail| %>
+<%= f.fields_for :detail_ordonnances do |d| %>
     <div class="col-sm-12">
-      <div class="col-sm-4"><%= detail.collection_select :medicament_id, Medicament.all, :id, :nom,  include_blank: true, hide_label: true %></div>
-      <div class="col-sm-4"><%= detail.text_field :quantite, hide_label: true %></div>
-      <div class="col-sm-4"><%= detail.text_field :prix_unitaire, hide_label: true %></div>
+      <div class="col-sm-4"><%= d.collection_select :medicament_id, Medicament.all, :id, :nom,  include_blank: true, hide_label: true %></div>
+      <div class="col-sm-4"><%= d.text_field :quantite, hide_label: true %></div>
+      <div class="col-sm-4"><%= d.text_field :prix_unitaire, hide_label: true %></div>
     </div>
 <% end %>

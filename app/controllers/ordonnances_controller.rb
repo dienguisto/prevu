@@ -1,5 +1,6 @@
 class OrdonnancesController < ApplicationController
   before_action :only_for_pharmacie!
+  before_action :set_adherent
   before_action :set_ordonnance, only: [:show, :edit, :update, :destroy]
 
   # GET /ordonnances
@@ -22,6 +23,12 @@ class OrdonnancesController < ApplicationController
 
   def confirm
     @ordonnance = Ordonnance.new(ordonnance_params)
+    @ordonnance.adherent = @adherent
+    @ordonnance.pharmacy = current_pharmacy
+    unless @ordonnance.valid?
+      flash[:error] = "Une erreur est survenur lors de l'ajout de l'ordonnance"
+      render :new
+    end
   end
 
   # GET /ordonnances/1/edit
@@ -31,12 +38,12 @@ class OrdonnancesController < ApplicationController
   # POST /ordonnances
   # POST /ordonnances.json
   def create
-    @url_back = params[:url_back]
     @ordonnance = Ordonnance.new(ordonnance_params)
+    @ordonnance.adherent = @adherent
+    @ordonnance.pharmacy = current_pharmacy
 
     respond_to do |format|
       if @ordonnance.save
-
         format.html { redirect_to @ordonnance.adherent, notice: 'Ordonnance was successfully created.' }
         format.json { render :show, status: :created, location: @ordonnance }
       else
@@ -71,6 +78,10 @@ class OrdonnancesController < ApplicationController
   end
 
   private
+    def set_adherent
+      @adherent = Adherent.find(params[:adherent_id]) unless params[:adherent_id].nil?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_ordonnance
       @ordonnance = Ordonnance.find(params[:id])
@@ -78,7 +89,7 @@ class OrdonnancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ordonnance_params
-      params.require(:ordonnance).permit(:prix_total, :adherent_id, :pharmacy_id,
+      params.require(:ordonnance).permit(:prix_total,
                                          :detail_ordonnances_attributes =>[:prix_unitaire, :quantite, :medicament_id])
     end
 end
