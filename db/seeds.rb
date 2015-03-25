@@ -50,9 +50,9 @@ g = StructureSanitaire.new(nom: 'FormationSanitaire 1', adresse: 'Adresse FormaS
 h = StructureSanitaire.new(nom: 'FormationSanitaire 2', adresse: 'Adresse FormaSanitaire 2', date_adhesion: Time.now, actif: false, structure_type: 'FormationSanitaire')
 i = StructureSanitaire.new(nom: 'FormationSanitaire 3', adresse: 'Adresse FormaSanitaire 3', date_adhesion: Time.now, actif: true, structure_type: 'FormationSanitaire')
 
-FormationSanitaire.create(:structure_sanitaire => g)
-FormationSanitaire.create(:structure_sanitaire => h)
-FormationSanitaire.create(:structure_sanitaire => i)
+FormationSanitaire.create(:structure_sanitaire => g, :niveau => 0)
+FormationSanitaire.create(:structure_sanitaire => h, :niveau => 3)
+FormationSanitaire.create(:structure_sanitaire => i, :niveau => 2)
 
 j = StructureSanitaire.new(nom: 'Pharmacy 1', adresse: 'Adresse Pharmacie 1', date_adhesion: Time.now, actif: true, structure_type: 'Pharmacy')
 k = StructureSanitaire.new(nom: 'Pharmacy 2', adresse: 'Adresse Pharmacie 2', date_adhesion: Time.now, actif: true, structure_type: 'Pharmacy')
@@ -67,3 +67,15 @@ Medicament.create(nom: 'Paracétamol')
 Medicament.create(nom: 'cac1000 sans dose')
 Medicament.create(nom: 'Aspirine')
 Medicament.create(nom: 'Néféréti')
+
+c = CategorieActeMedical.create(nom: 'Categorie 1')
+d = CategorieActeMedical.create(nom: 'Categorie 2')
+TypeActeMedical.create(nom: 'Type 1.1', categorie_acte_medical: c)
+TypeActeMedical.create(nom: 'Type 1.2', categorie_acte_medical: c)
+TypeActeMedical.create(nom: 'Type 1.3', categorie_acte_medical: c)
+
+TypeActeMedical.create(nom: 'Type 2.1', categorie_acte_medical: d)
+TypeActeMedical.create(nom: 'Type 2.2', categorie_acte_medical: d)
+TypeActeMedical.create(nom: 'Type 2.3', categorie_acte_medical: d)
+
+

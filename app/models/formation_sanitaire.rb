@@ -1,5 +1,6 @@
 class FormationSanitaire < ActiveRecord::Base
   include ActsAsStructureSanitaire
+  has_many :consultations
   NIVEAU = {
       n1: 0,
       n2: 1,

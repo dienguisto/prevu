@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323155121) do
+ActiveRecord::Schema.define(version: 20150325004126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,22 @@ ActiveRecord::Schema.define(version: 20150323155121) do
 
   add_index "affectation_aperitrices", ["groupe_id"], name: "index_affectation_aperitrices_on_groupe_id", using: :btree
   add_index "affectation_aperitrices", ["structure_aperitrice_id"], name: "index_affectation_aperitrices_on_structure_aperitrice_id", using: :btree
+
+  create_table "categorie_acte_medicals", force: :cascade do |t|
+    t.string   "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "consultations", force: :cascade do |t|
+    t.text     "description"
+    t.float    "montant"
+    t.integer  "adherent_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "type_acte_medical_id"
+    t.integer  "formation_sanitaire_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string   "titre"
@@ -225,6 +241,13 @@ ActiveRecord::Schema.define(version: 20150323155121) do
     t.string   "libelle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "type_acte_medicals", force: :cascade do |t|
+    t.string   "nom"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "categorie_acte_medical_id"
   end
 
   create_table "users", force: :cascade do |t|

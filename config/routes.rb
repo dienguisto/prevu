@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :consultations
   resources :ordonnances
 
   resources :users, path: '/custom/users'
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   resources :formules
   resources :adherents do
     resources :souscriptions
+    resources :consultations do
+    post 'confirm', on: :collection
+  end
     resources :ordonnances do
       post 'confirm', on: :collection
     end

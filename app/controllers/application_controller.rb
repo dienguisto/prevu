@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
     current_user.entite.entite.structure_sanitaire.structure
   end
 
+  def current_formation_sanitaire
+    return nil unless user_signed_in? and current_user.user_formation_sanitaire?
+    current_user.entite.entite.structure_sanitaire.structure
+  end
+
   def current_adherent
     @current_adherent ||= Adherent.find(session[:adherent_id]) if session[:adherent_id]
   end
@@ -29,6 +34,12 @@ class ApplicationController < ActionController::Base
 
   def only_for_pharmacie!
     unless user_signed_in? and current_user.user_pharmacie?
+      redirect_to_error
+    end
+  end
+
+  def only_for_formation_sanitaire!
+    unless user_signed_in? and current_user.user_formation_sanitaire?
       redirect_to_error
     end
   end
