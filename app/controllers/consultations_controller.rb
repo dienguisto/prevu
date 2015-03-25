@@ -17,14 +17,12 @@ class ConsultationsController < ApplicationController
   # GET /consultations/new
   def new
     @consultation = Consultation.new
-    @categories = CategorieActeMedical.all
-    @type_acte = TypeActeMedical.all
   end
 
   def confirm
     @consultation = Consultation.new(consultation_params)
     @consultation.adherent = @adherent
-    @consultation.formation_sanitaire_id = current_formation_sanitaire
+    @consultation.formation_sanitaire = current_formation_sanitaire
     unless @consultation.valid?
       flash[:error] = "Une erreur est survenur lors de l'ajout de la consultation"
       render :new
@@ -40,7 +38,7 @@ class ConsultationsController < ApplicationController
   def create
     @consultation = Consultation.new(consultation_params)
     @consultation.adherent = @adherent
-    @consultation.formation_sanitaire_id = current_formation_sanitaire
+    @consultation.formation_sanitaire = current_formation_sanitaire
 
     respond_to do |format|
       if @consultation.save

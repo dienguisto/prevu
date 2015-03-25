@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-8">
-    <h2>Invoice</h2>
+    <h2>Confirmation consultation : <%= "#{@consultation.type_acte_medical.categorie_acte_medical.nom} / #{@consultation.type_acte_medical.nom}" %></h2>
   </div>
 </div>
 
@@ -24,6 +24,7 @@
                 <%= @consultation.description %>
                 <%= f.hidden_field :description %>
                 <%= f.hidden_field :montant %>
+                <%= f.hidden_field :type_acte_medical_id %>
               </p>
               <hr/>
         </div>

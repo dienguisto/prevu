@@ -1,10 +1,11 @@
 <%= bootstrap_form_for(@consultation, :url => confirm_adherent_consultations_path(@adherent), layout: :horizontal) do |f| %>
 
-  <div class="form-inputs">
-    <%= f.text_field :description %>
-    <%= f.text_field :montant %>
+    <div class="form-inputs">
+      <%= f.grouped_collection_select :type_acte_medical_id, CategorieActeMedical.all, :type_acte_medicals, :nom, :id, :nom %>
+      <%= f.number_field :montant %>
+      <%= f.text_area :description %>
 
-  </div>
+    </div>
 
     <div class="form-group">
       <div class="col-sm-4 col-sm-offset-2">

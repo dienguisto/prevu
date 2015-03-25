@@ -2,43 +2,35 @@
     <div class="ibox float-e-margins">
       <div class="ibox-title">
         <h5>Consultation</h5>
-        <div class="ibox-tools">
-          <a class="collapse-link">
-            <i class="fa fa-chevron-up"></i>
-          </a>
-          <a class="close-link">
-            <i class="fa fa-times"></i>
-          </a>
-        </div>
       </div>
 
       <div class="ibox-content">
         <div class="row">
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Centre de santé</th>
-                  <th>Type</th>
-                  <th>Categorie</th>
-                  <th>Montant</th>
-                </tr>
-                </thead>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th></th>
+                <th>Date</th>
+                <th>Centre de santé</th>
+                <th>Type</th>
+                <th>Montant</th>
+              </tr>
+              </thead>
 
-                <tbody>
-                <% @adherent.consultations.each do |consul| %>
-                    <tr>
-                      <td><%= consul.created_at %></td>
-                      <td><%= consul.formation_sanitaire.title %></td>
-                      <td><%= consul.type_acte_medical.nom %></td>
-                      <td><%= consul.type_acte_medical.categorie_acte_medical.nom %></td>
-                      <td><%= consul.montant %></td>
-                    </tr>
-                <% end %>
-                </tbody>
-              </table>
-            </div>
+              <tbody>
+              <% @adherent.consultations.each do |consultation| %>
+                  <tr>
+                    <td><%= link_to "##{consultation.id}", [@adherent, consultation] %></td>
+                    <td><%= consultation.created_at %></td>
+                    <td><%= consultation.formation_sanitaire.title %></td>
+                    <td><%= consultation.type_acte_medical.nom %></td>
+                    <td><%= consultation.montant %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="text-right">
           <%= link_to '<strong>Ajouter une consultation</strong>'.html_safe, new_adherent_consultation_path(@adherent), class: 'btn btn-sm btn-primary m-t-n-xs' %>
