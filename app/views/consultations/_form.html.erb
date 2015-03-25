@@ -1,0 +1,15 @@
+<%= bootstrap_form_for(@consultation, :url => confirm_adherent_consultations_path(@adherent), layout: :horizontal) do |f| %>
+
+  <div class="form-inputs">
+    <%= f.text_field :description %>
+    <%= f.text_field :montant %>
+
+  </div>
+
+    <div class="form-group">
+      <div class="col-sm-4 col-sm-offset-2">
+        <%= link_to 'Annuler', @adherent, class: 'btn btn-white' %>
+        <%= f.button 'Ajouter', class: 'btn btn-primary' %>
+      </div>
+    </div>
+<% end %>

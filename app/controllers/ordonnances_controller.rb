@@ -2,6 +2,7 @@ class OrdonnancesController < ApplicationController
   before_action :only_for_pharmacie!
   before_action :set_adherent
   before_action :set_ordonnance, only: [:show, :edit, :update, :destroy]
+  before_action :set_confirm_details, only: [:confirm]
 
   # GET /ordonnances
   # GET /ordonnances.json
@@ -22,6 +23,16 @@ class OrdonnancesController < ApplicationController
   end
 
   def confirm
+    @ordonnance = Ordonnance.new(ordonnance_params)
+    @ordonnance.adherent = @adherent
+    @ordonnance.pharmacy = current_pharmacy
+    unless @ordonnance.valid?
+      flash[:error] = "Une erreur est survenur lors de l'ajout de l'ordonnance"
+      render :new
+    end
+  end
+
+  def set_confirm_details
     tab = []
     results = {}
     details = {}
@@ -36,13 +47,6 @@ class OrdonnancesController < ApplicationController
       end
     end
     params[:ordonnance][:detail_ordonnances_attributes] = results
-    @ordonnance = Ordonnance.new(ordonnance_params)
-    @ordonnance.adherent = @adherent
-    @ordonnance.pharmacy = current_pharmacy
-    unless @ordonnance.valid?
-      flash[:error] = "Une erreur est survenur lors de l'ajout de l'ordonnance"
-      render :new
-    end
   end
 
   # GET /ordonnances/1/edit

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @consultation.description %>
+</p>
+
+<p>
+  <strong>Montant:</strong>
+  <%= @consultation.montant %>
+</p>
+
+<p>
+  <strong>Type categorie medical:</strong>
+  <%= @consultation.type_categorie_medical_id %>
+</p>
+
+<p>
+  <strong>Adherent:</strong>
+  <%= @consultation.adherent_id %>
+</p>
+
+<p>
+  <strong>Pharmacy:</strong>
+  <%= @consultation.pharmacy_id %>
+</p>
+
+<%= link_to 'Edit', edit_consultation_path(@consultation) %> |
+<%= link_to 'Back', consultations_path %>
