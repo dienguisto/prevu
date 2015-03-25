@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_adherent, :current_structure_assurance
 
+  before_action :authenticate_user!
+
   def current_structure_assurance
     return nil unless user_signed_in? and current_user.user_structure_assurance?
     current_user.entite.entite.structure_assurance
