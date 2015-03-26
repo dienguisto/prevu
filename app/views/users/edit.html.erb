@@ -1,6 +1,13 @@
-<h1>Editing User</h1>
-<%= render 'form' %>
+<%= titre_page "Modification d'un utilisateur" %>
 
-
-<%= link_to 'Show', @user %>
-<%= link_to 'Back', users_path %>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

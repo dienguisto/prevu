@@ -29,6 +29,7 @@ class Adherent < ActiveRecord::Base
   has_many :consultations
   belongs_to :default_contact, foreign_key: :contact_id, class_name: Contact
   belongs_to :groupe
+  belongs_to :structure_assurance
   has_many :souscriptions
   has_many :formules, through: :souscriptions
 
@@ -37,7 +38,7 @@ class Adherent < ActiveRecord::Base
   before_create :set_status
   after_create :set_default_contact
 
-  validates :prenom, :nom, :date_de_naissance, :lieu_de_naissance, :sexe, :status_matrimonial,
+  validates :prenom, :nom, :date_de_naissance, :lieu_de_naissance, :sexe, :status_matrimonial, :structure_assurance_id,
             presence: true
   #validates_presence_of :password_txt, :on => :create
 

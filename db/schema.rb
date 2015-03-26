@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325004126) do
+ActiveRecord::Schema.define(version: 20150326101709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20150325004126) do
     t.datetime "last_activation"
     t.datetime "last_suspension"
     t.datetime "last_delete"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "matricule"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -43,10 +43,12 @@ ActiveRecord::Schema.define(version: 20150325004126) do
     t.integer  "type_piece_identite"
     t.string   "numero_piece_identite"
     t.string   "email"
+    t.integer  "structure_assurance_id"
   end
 
   add_index "adherents", ["groupe_id"], name: "index_adherents_on_groupe_id", using: :btree
   add_index "adherents", ["matricule"], name: "index_adherents_on_matricule", unique: true, using: :btree
+  add_index "adherents", ["structure_assurance_id"], name: "index_adherents_on_structure_assurance_id", using: :btree
 
   create_table "adherents_tags", id: false, force: :cascade do |t|
     t.integer "adherent_id", null: false
@@ -272,6 +274,7 @@ ActiveRecord::Schema.define(version: 20150325004126) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "adherents", "groupes"
+  add_foreign_key "adherents", "structure_assurances"
   add_foreign_key "affectation_aperitrices", "groupes"
   add_foreign_key "affectation_aperitrices", "structure_aperitrices"
   add_foreign_key "formules", "structure_assurances"

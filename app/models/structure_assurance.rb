@@ -7,6 +7,7 @@ class StructureAssurance < ActiveRecord::Base
 
   belongs_to :structure, polymorphic: true
   has_many :formules
+  has_many :adherents
 
   validates :nom, presence: true
 end

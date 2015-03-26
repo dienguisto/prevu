@@ -28,20 +28,26 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def not_for_structure_sanitaire!
+    if current_user.user_structure_sanitaire?
+      redirect_to_error
+    end
+  end
+
   def only_for_structure_asssurance!
-    unless user_signed_in? and current_user.user_structure_assurance?
+    unless current_user.user_structure_assurance?
       redirect_to_error
     end
   end
 
   def only_for_pharmacie!
-    unless user_signed_in? and current_user.user_pharmacie?
+    unless current_user.user_pharmacie?
       redirect_to_error
     end
   end
 
   def only_for_formation_sanitaire!
-    unless user_signed_in? and current_user.user_formation_sanitaire?
+    unless current_user.user_formation_sanitaire?
       redirect_to_error
     end
   end

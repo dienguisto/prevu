@@ -1,4 +1,6 @@
 class AdherentsController < ApplicationController
+  before_action :not_for_structure_sanitaire!, except: [:show]
+  before_action :only_for_structure_asssurance!, only: [:new, :create, :destroy, :edit, :activate, :desactivate]
   before_action :set_adherent, only: [:show, :edit, :update, :destroy, :activate, :desactivate]
 
   def new
@@ -14,16 +16,20 @@ class AdherentsController < ApplicationController
   def signin
     @adherent = Adherent.new(params[:adherent])
     if @adherent.save
-      redirect_to root_url, :notice => "Signed up!"
+      redirect_to root_url, :notice => 'Signed up!'
     else
-      render "new", layout: 'empty'
+      render 'new', layout: 'empty'
     end
   end
 
   # GET /adherents
   # GET /adherents.json
   def index
-    @adherents = Adherent.all
+    if current_user.user_structure_assurance?
+      @adherents = current_structure_assurance.adherents
+    elsif current_user.user_system?
+      @adherents = Adherent.all
+    end
     if params[:q]
       @q = Adherent.find_by(params[:q])
       @adherent = @q#.result
@@ -50,6 +56,7 @@ class AdherentsController < ApplicationController
   # POST /adherents.json
   def create
     @adherent = Adherent.new(adherent_params)
+    @adherent.structure_assurance = current_structure_assurance
     generated_password = Devise.friendly_token.first(8)
     @adherent.password_digest = generated_password
 
@@ -65,7 +72,7 @@ class AdherentsController < ApplicationController
   end
 
   def affiliers
-    @adherents = Adherent.where('parrain_id=?', current_adherent.id)
+    @adherents = Adherent.where(parrain: current_adherent)
   end
 
   # PATCH/PUT /adherents/1
@@ -114,7 +121,7 @@ class AdherentsController < ApplicationController
     def adherent_params
       params.require(:adherent).permit(:nom, :prenom, :email, :status_matrimonial, :date_de_naissance, :lieu_de_naissance,
                                        :type_piece_identite, :numero_piece_identite,:avatar, :groupe_id,
-                                       :sexe, :parrain_id, :affiliation,
+                                       :sexe, :parrain_id, :affiliation, :structure_assurance_id,
                                        :contacts_attributes => [:telephone, :adresse, :email])
     end
 end
