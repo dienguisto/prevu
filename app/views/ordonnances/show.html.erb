@@ -22,6 +22,7 @@
           <table class="table invoice-table">
             <thead>
             <tr>
+              <th></th>
               <th>Item List</th>
               <th>Quantity</th>
               <th>Unit Price</th>
@@ -31,6 +32,7 @@
             <tbody>
             <% @ordonnance.detail_ordonnances.each do |ligne| %>
                 <tr>
+                  <td></td>
                   <td>
                     <div><strong><%= ligne.medicament.nom %></strong></div>
                   </td>

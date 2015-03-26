@@ -19,7 +19,7 @@
             <tbody>
             <% for ordonnance in @adherent.ordonnances.limit(5) %>
                 <tr>
-                  <td><%= link_to "##{ordonnance.id}", [@adherent, ordonnance] %></td>
+                  <td><%= link_to "##{ordonnance.id}", [@adherent, ordonnance], class: 'consultLink' %></td>
                   <td><%= ordonnance.created_at %></td>
                   <td><%= ordonnance.pharmacy.nom %></td>
                   <td><%= ordonnance.prix_total %></td>

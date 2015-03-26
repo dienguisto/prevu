@@ -16,6 +16,7 @@
             <table class="table table-striped">
               <thead>
                 <tr>
+                  <th>#</th>
                   <th>Prix total</th>
                   <th>Adherent</th>
                   <th>Pharmacy</th>
@@ -26,6 +27,7 @@
               <tbody>
                 <% @ordonnances.each do |ordonnance| %>
                   <tr>
+                    <td><%= link_to "##{ordonnance.id}", ordonnance, class: 'consultLink' %></td>
                     <td><%= ordonnance.prix_total %></td>
                     <td><%= ordonnance.adherent %></td>
                     <td><%= ordonnance.pharmacy %></td>
@@ -45,3 +47,4 @@
   </div>
 </div>
 
+<%= render 'adherents/modal' %>

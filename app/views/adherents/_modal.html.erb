@@ -1,0 +1,73 @@
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content animated bounceInRight">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    var infoModal = $('#myModal');
+    $('.ordLink').on('click', function(e){
+        e.preventDefault();
+        var link = $(this).attr('href');
+        $.ajax({
+            type: "GET",
+            url: link+'.json',
+            dataType: 'json',
+            success: function(data){
+                $('.modal-title').text(data.categorie_acte_medical+ ' '+data.type_acte_medical);
+                htmlData = '<div>' +
+                '<p><h4>Date: '+data.date+'</h4></p>' +
+                data.description+'</p>' +
+                '<p><strong>Total: '+data.montant+'</strong></div>';
+                infoModal.find('.modal-body').html(htmlData);
+                infoModal.modal('show');
+            }
+        });
+    });
+
+    $('.consultLink').on('click', function(e){
+        e.preventDefault();
+        var link = $(this).attr('href');
+        $.ajax({
+            type: "GET",
+            url: link+'.json',
+            dataType: 'json',
+            success: function(data){
+                $('.modal-title').text('Ordonnance du '+data.date);
+                htmlData = '<div><h2></h2>' +
+                '<table class="table table-striped">'+
+                '<thead>'+
+                '<tr>'+
+                '<th>Medicament</th>'+
+                '<th>Prix unitaire</th>'+
+                '<th>Quantite</th>'+
+                '</tr>'+
+                '</thead>'+
+                '<tbody>';
+                $.each(data.detail_ordonnances, function(k, v){
+                    htmlData+= '<tr>'+
+                    '<td>'+ v.medicament+'</td>'+
+                    '<td>'+v.prix_unitaire+' F CFA</td>'+
+                    '<td>'+v.quantite+'</td>'+
+                    '</tr>';
+                });
+
+                htmlData +=  '</tbody>'+
+                '</table>'+
+                '<strong>Total: '+data.prix_total+' F CFA</strong>';
+                '</div>';
+                infoModal.find('.modal-body').html(htmlData);
+                infoModal.modal('show');
+            }
+        });
+    });
+</script>

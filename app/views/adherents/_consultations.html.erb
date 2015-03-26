@@ -21,7 +21,7 @@
               <tbody>
               <% @adherent.consultations.each do |consultation| %>
                   <tr>
-                    <td><%= link_to "##{consultation.id}", [@adherent, consultation] %></td>
+                    <td><%= link_to "##{consultation.id}", [@adherent, consultation], class: 'ordLink' %></td>
                     <td><%= consultation.created_at %></td>
                     <td><%= consultation.formation_sanitaire.title %></td>
                     <td><%= consultation.type_acte_medical.nom %></td>
