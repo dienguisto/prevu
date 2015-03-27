@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_adherent, :current_structure_assurance
 
   before_action :authenticate_user!
+  layout :layout_by_resource
 
   def current_structure_assurance
     return nil unless user_signed_in? and current_user.user_structure_assurance?
@@ -61,5 +62,9 @@ class ApplicationController < ActionController::Base
   def redirect_to_error
     flash[:error] = 'Vous ne pouvez pas executer cette action'
     redirect_to root_path
+  end
+
+  def layout_by_resource
+    devise_controller? ? 'empty' : 'application'
   end
 end

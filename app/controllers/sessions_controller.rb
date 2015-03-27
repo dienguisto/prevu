@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   layout 'empty'
+
   def new
   end
 

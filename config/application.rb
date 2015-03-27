@@ -22,5 +22,16 @@ module Prevu
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.action_mailer.default_url_options = { host: 'http://prevu.scicasoft.com' }
+    config.action_mailer.delivery_method = :smtp
+
+    ActionMailer::Base.smtp_settings = {
+        address:        'smtp-scicasoft.alwaysdata.net',
+        port:           25,
+        authentication: :plain,
+        user_name:      'prevu@scicasoft.com',
+        password:       'prevupass'
+    }
   end
 end
