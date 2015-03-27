@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
+  before_action :only_for_admins!, only: [:create, :new, :edit, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :can_edit!, only: [:show, :edit, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user.user_system?
+      @users = User.all
+    else
+      @users = current_user.entite.users
+    end
   end
 
   # GET /users/1
@@ -26,6 +31,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.creator = current_user
     generated_password = Devise.friendly_token.first(8)
     @user.password = generated_password
 
@@ -74,5 +80,12 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :role, :entite_id)
+    end
+
+    def can_edit!
+      unless current_user.user_system? or current_user.entite == @user.entite
+        flash[:error] = 'Vous ne pouvez pas faire ce traitement'
+        redirect_to root_path
+      end
     end
 end

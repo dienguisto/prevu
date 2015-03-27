@@ -34,6 +34,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def only_for_admins!
+    unless current_user.administrateur?
+      redirect_to_error
+    end
+  end
+
   def only_for_structure_asssurance!
     unless current_user.user_structure_assurance?
       redirect_to_error

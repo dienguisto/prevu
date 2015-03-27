@@ -11,7 +11,7 @@
 
     <%= f.email_field :email %>
     <%= f.select :role, collection: User::ROLES.map{ |e| [e[0], e[0]]} %>
-    <%= f.collection_select :entite_id, Entite.all, :id, :title, {:include_blank => 'Sélectionnez une entité ...'} %>
+    <%= f.collection_select :entite_id, current_user.entities_he_can_add_for_users, :id, :title, {:include_blank => 'Sélectionnez une entité ...'} %>
 
     <div class="form-group">
       <div class="col-sm-4 col-sm-offset-2">
