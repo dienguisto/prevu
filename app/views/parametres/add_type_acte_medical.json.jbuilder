@@ -1,0 +1,1 @@
+json.extract! @type, :id, :nom, :created_at, :updated_at

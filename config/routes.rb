@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
 
+  scope '/parametres' do
+    get '/categories' => 'parametres#categories'
+    post '/groupes/add' => 'parametres#add_groupe'
+    post '/tags/add' => 'parametres#add_tag'
+    post '/medicaments/add' => 'parametres#add_medicament'
+    post '/type_acte_medical/add' => 'parametres#add_type_acte_medical'
+    post '/categorie_acte_medical/add' => 'parametres#add_categorie_acte_medical'
+  end
+
   resources :consultations
   resources :ordonnances
 
   resources :users, path: '/custom/users'
   resources :sessions
+  resources :parametres
   resources :structure_aperitrices
   resources :micro_assurances
   resources :mutuelles

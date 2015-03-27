@@ -1,0 +1,1 @@
+json.extract! @medicament, :id, :nom, :reference, :actif, :created_at, :updated_at

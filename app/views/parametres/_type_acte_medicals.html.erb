@@ -1,0 +1,46 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5>Type acte medical
+    </h5>
+    <div class="ibox-tools">
+      <a class="collapse-link">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+      <a class="close-link">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+  </div>
+  <div class="ibox-content">
+
+    <div class="table-responsive">
+      <table class="table table-striped  myTable">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Nom</th>
+          <th>Created at</th>
+          <th>Update</th>
+          <th colspan="2"></th>
+        </tr>
+        </thead>
+
+        <tbody class="type_acte_table">
+        <% @type_acte_medicals.each do |type| %>
+            <tr>
+              <td><%= link_to "##{type.id}", '#', class: 'consultLink' %></td>
+              <td><%= type.nom %></td>
+              <td><%= type.created_at %></td>
+              <td><%= type.updated_at %></td>
+              <td><%= link_to 'Edit', '#' %></td>
+              <td><%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <div class="actions_bouton">
+        <%= link_to '<i class="fa fa-plus"></i> Ajouter'.html_safe, '#', class: 'btn btn-primary addTypeActe' %>
+      </div>
+    </div>
+  </div>
+</div>

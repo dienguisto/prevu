@@ -1,0 +1,1 @@
+json.extract! @tag, :id, :libelle, :created_at, :updated_at
