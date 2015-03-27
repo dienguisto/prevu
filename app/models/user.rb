@@ -14,4 +14,12 @@ class User < ActiveRecord::Base
   validates :role, presence: true
 
   belongs_to :entite
+
+  def profil
+    if entite.nil?
+      "#{role} - systeme"
+    else
+      "#{role} - #{entite.title}"
+    end
+  end
 end

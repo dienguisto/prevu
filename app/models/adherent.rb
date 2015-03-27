@@ -73,11 +73,10 @@ class Adherent < ActiveRecord::Base
   end
 
   def full_name
-    nom+" "+prenom
+    "#{prenom} #{nom}"
   end
 
   def set_default_contact
-    self.default_contact = contacts.first
-    self.save
+    self.update(default_contact: contacts.first)
   end
 end
