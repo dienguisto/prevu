@@ -21,4 +21,5 @@
  *= require rails_bootstrap_forms
  *= require colorpicker/css/bootstrap-colorpicker.min.css
  *= require datapicker/datepicker3.css
+ *= require toastr/toastr.min.css
  */
