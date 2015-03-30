@@ -31,9 +31,8 @@ class Souscription < ActiveRecord::Base
     if date_prochain_paiement > Time.now
       return nil
     end
-    Cotisation.new(souscription: self,
-                   adherent: adherent,
-                   montant: formule.montant_cotisation,
-                   pour_la_date: date_prochain_paiement)
+    self.cotisations.create(adherent: adherent,
+                            montant: formule.montant_cotisation,
+                            pour_la_date: date_prochain_paiement)
   end
 end
