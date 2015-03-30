@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_error
     flash[:error] = 'Vous ne pouvez pas executer cette action'
-    redirect_to root_path
+    redirect_to (request.referrer || root_path)
   end
 
   def layout_by_resource

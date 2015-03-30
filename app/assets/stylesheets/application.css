@@ -22,4 +22,6 @@
  *= require colorpicker/css/bootstrap-colorpicker.min.css
  *= require datapicker/datepicker3.css
  *= require toastr/toastr.min.css
+ *= require iCheck/custom.css
+ *= require steps/jquery.steps.css
  */

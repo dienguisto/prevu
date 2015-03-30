@@ -2,6 +2,7 @@
     <%= f.text_field :nom %>
     <%= f.number_field :montant_adhesion %>
     <%= f.number_field :montant_cotisation %>
+    <%= f.number_field :ticket_moderateur %>
     <%= f.select :periode, Formule::PERIODES.keys %>
     <%= f.number_field :occurrence_periode %>
 
