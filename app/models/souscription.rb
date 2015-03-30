@@ -14,7 +14,7 @@ class Souscription < ActiveRecord::Base
   before_create :set_date_paiement
 
   def activate!
-    update(actif: true, date_activation: Time.now)
+    update(actif: true, date_activation: Time.now) if date_expiration >= Time.now
   end
 
   def payer!

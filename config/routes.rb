@@ -23,10 +23,13 @@ Rails.application.routes.draw do
   resources :adherents
   resources :formules
   resources :adherents do
-    resources :souscriptions
+    resources :souscriptions do
+      get 'activer'
+      get 'desactiver'
+    end
     resources :consultations do
-    post 'confirm', on: :collection
-  end
+      post 'confirm', on: :collection
+    end
     resources :ordonnances do
       post 'confirm', on: :collection
     end

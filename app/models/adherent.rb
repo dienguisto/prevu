@@ -87,4 +87,8 @@ class Adherent < ActiveRecord::Base
   def souscription_en_cours
     souscriptions.en_cours.last
   end
+
+  def cotisation_a_payer
+    cotisations.non_payes.first
+  end
 end

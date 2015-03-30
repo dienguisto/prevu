@@ -1,0 +1,6 @@
+<% unless @adherent.cotisations.non_payes.empty? %>
+    <div class="alert alert-danger">
+      N'A PAS ENCORE PAYÉ SA COTISATION (<%= @adherent.cotisation_a_payer.montant %> F CFA)
+      <%= link_to 'PAYER', '#', class: 'btn-sm btn-primary' %>
+    </div>
+<% end %>

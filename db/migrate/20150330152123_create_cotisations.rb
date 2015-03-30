@@ -11,6 +11,6 @@ class CreateCotisations < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :cotisations, :adherents
-    add_foreign_key :cotisations, :formules
+    add_foreign_key :cotisations, :souscriptions
   end
 end
