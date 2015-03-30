@@ -17,4 +17,25 @@ class Formule < ActiveRecord::Base
 
   validates :structure_assurance_id, :nom, :periode, :montant_adhesion, :montant_cotisation, :occurrence_periode, presence: true
   validates :occurrence_periode, numericality: {greater_than: 0}
+
+  def interval_paiement
+    if journaliere?
+      return occurrence_periode.days
+    end
+    if hebdomadaire?
+      return occurrence_periode.weeks
+    end
+    if mensuel?
+      return occurrence_periode.months
+    end
+    if trimestriel?
+      return (3 * occurrence_periode).months
+    end
+    if semestriel?
+      return (6 * occurrence_periode).months
+    end
+    if annuel?
+      return occurrence_periode.years
+    end
+  end
 end

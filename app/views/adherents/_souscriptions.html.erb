@@ -33,7 +33,7 @@
           </table>
         </div>
         <div class="text-right">
-          <% if @adherent.souscriptions.en_cours.count.zero? %>
+          <% if @adherent.souscription_en_cours.nil? %>
               <%= link_to '<strong>Ajouter une souscription</strong>'.html_safe, new_adherent_souscription_path(@adherent), class: 'btn btn-sm btn-primary m-t-n-xs' %>
           <% end %>
         </div>

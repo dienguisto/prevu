@@ -32,6 +32,7 @@ class Adherent < ActiveRecord::Base
   belongs_to :structure_assurance
   has_many :souscriptions
   has_many :formules, through: :souscriptions
+  has_many :cotisations
 
   before_create :encrypt_password
   before_create :generate_matricule
@@ -81,5 +82,9 @@ class Adherent < ActiveRecord::Base
 
   def set_default_contact
     self.update(default_contact: contacts.first)
+  end
+
+  def souscription_en_cours
+    souscriptions.en_cours.last
   end
 end

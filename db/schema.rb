@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330151012) do
+ActiveRecord::Schema.define(version: 20150330152123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,21 @@ ActiveRecord::Schema.define(version: 20150330151012) do
     t.integer  "owner_id"
     t.string   "owner_type"
   end
+
+  create_table "cotisations", force: :cascade do |t|
+    t.integer  "adherent_id"
+    t.integer  "formule_id"
+    t.float    "montant",                       null: false
+    t.date     "pour_la_date",                  null: false
+    t.boolean  "paye",          default: false
+    t.datetime "date_paiement"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "cotisations", ["adherent_id"], name: "index_cotisations_on_adherent_id", using: :btree
+  add_index "cotisations", ["formule_id"], name: "index_cotisations_on_formule_id", using: :btree
+  add_index "cotisations", ["pour_la_date"], name: "index_cotisations_on_pour_la_date", using: :btree
 
   create_table "detail_ordonnances", force: :cascade do |t|
     t.integer  "quantite"
@@ -279,6 +294,8 @@ ActiveRecord::Schema.define(version: 20150330151012) do
   add_foreign_key "adherents", "structure_assurances"
   add_foreign_key "affectation_aperitrices", "groupes"
   add_foreign_key "affectation_aperitrices", "structure_aperitrices"
+  add_foreign_key "cotisations", "adherents"
+  add_foreign_key "cotisations", "formules"
   add_foreign_key "formules", "structure_assurances"
   add_foreign_key "groupes", "structure_assurances"
   add_foreign_key "ordonnances", "adherents"
