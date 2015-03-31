@@ -32,7 +32,7 @@ class VersementsController < ApplicationController
 
     respond_to do |format|
       if @versement.save
-        format.html { redirect_to @versement, notice: 'Versement was successfully created.' }
+        format.html { redirect_to @adherent, notice: 'Le versement est bien pris en compte.' }
         format.json { render :show, status: :created, location: @versement }
       else
         format.html { render :new }

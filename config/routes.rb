@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :adherents
   resources :formules
   resources :adherents do
-    resources :versements
+    resources :versements, except: [:destroy, :update, :edit]
     resources :souscriptions do
       get 'activer'
       get 'desactiver'
