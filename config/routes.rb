@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   scope '/parametres' do
     get '/categories' => 'parametres#categories'
     post '/groupes/add' => 'parametres#add_groupe'
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   resources :adherents
   resources :formules
   resources :adherents do
+    resources :versements
     resources :souscriptions do
       get 'activer'
       get 'desactiver'

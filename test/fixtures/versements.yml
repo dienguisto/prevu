@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  compte_id: 
+  mandataire_id: 
+  montant: 1.5
+
+two:
+  compte_id: 
+  mandataire_id: 
+  montant: 1.5

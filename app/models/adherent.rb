@@ -1,6 +1,7 @@
 class Adherent < ActiveRecord::Base
   include BCrypt
   include ActsAsContact
+  include ActsAsAccountOwner
   delegate :email, to: :default_contact
 
   TYPE_PIECE = {
@@ -86,9 +87,5 @@ class Adherent < ActiveRecord::Base
 
   def souscription_en_cours
     souscriptions.en_cours.last
-  end
-
-  def cotisation_a_payer
-    cotisations.non_payes.first
   end
 end

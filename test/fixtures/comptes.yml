@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  proprietaire: 
+  total_versement: 1.5
+  solde: 1.5
+
+two:
+  proprietaire: 
+  total_versement: 1.5
+  solde: 1.5

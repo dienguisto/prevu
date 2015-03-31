@@ -1,6 +1,6 @@
-<% unless @adherent.cotisations.non_payes.empty? %>
+<% if current_user.user_structure_assurance? and @adherent.solde_negatif? %>
     <div class="alert alert-danger">
-      N'A PAS ENCORE PAYÉ SA COTISATION (<%= @adherent.cotisation_a_payer.montant %> F CFA)
-      <%= link_to 'PAYER', '#', class: 'btn-sm btn-primary' %>
+      N'A PAS ENCORE PAYÉ SA COTISATION (<%= -@adherent.solde %> F CFA)
+      <%= link_to 'FAIRE UN VERSEMENT', new_adherent_versement_path(@adherent), class: 'btn-sm btn-primary' %>
     </div>
 <% end %>

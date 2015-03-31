@@ -3,6 +3,11 @@ class Cotisation < ActiveRecord::Base
   belongs_to :adherent
   belongs_to :souscription
 
-  scope :payes, -> { where(paye: true) }
-  scope :non_payes, -> { where(paye: false) }
+  after_create :update_compte!
+
+  private
+
+  def update_compte!
+    adherent.compte.ajouter_retrait!(montant)
+  end
 end
