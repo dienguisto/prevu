@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150327155031) do
     t.integer  "status_matrimonial"
     t.date     "date_de_naissance"
     t.string   "lieu_de_naissance"
+    t.string   "email"
     t.string   "password_digest"
     t.integer  "status"
     t.datetime "last_activation"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150327155031) do
     t.integer  "structure_assurance_id"
   end
 
+  add_index "adherents", ["email"], name: "index_adherents_on_email", unique: true, using: :btree
   add_index "adherents", ["groupe_id"], name: "index_adherents_on_groupe_id", using: :btree
   add_index "adherents", ["matricule"], name: "index_adherents_on_matricule", unique: true, using: :btree
   add_index "adherents", ["structure_assurance_id"], name: "index_adherents_on_structure_assurance_id", using: :btree
@@ -209,10 +211,10 @@ ActiveRecord::Schema.define(version: 20150327155031) do
     t.string   "adresse"
     t.date     "date_adhesion"
     t.string   "numero_agrement"
-    t.string   "couleur"
-    t.boolean  "actif",             default: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "couleur",           limit: 10
+    t.boolean  "actif",                        default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
