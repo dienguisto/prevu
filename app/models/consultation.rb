@@ -5,4 +5,5 @@ class Consultation < ActiveRecord::Base
 
   validates :description, :montant, :type_acte_medical_id, :formation_sanitaire_id, :adherent_id,
             presence: true
+  validates :montant, numericality: {greater_than: 0}
 end

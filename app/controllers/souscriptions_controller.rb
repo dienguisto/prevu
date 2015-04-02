@@ -1,6 +1,19 @@
 class SouscriptionsController < ApplicationController
-  before_action :set_souscription, only: [:show, :edit, :update, :destroy]
+  before_action :only_for_structure_asssurance!
+  before_action :set_souscription, only: [:show, :edit, :update, :destroy, :activer, :desactiver]
   before_action :set_adherent
+
+  def activer
+    @souscription.activate!
+    flash[:notice] = 'Souscription activée'
+    redirect_to @souscription.adherent
+  end
+
+  def desactiver
+    @souscription.desactivate!
+    flash[:notice] = 'Souscription desactivée'
+    redirect_to @souscription.adherent
+  end
 
   # GET /souscriptions
   # GET /souscriptions.json
@@ -66,7 +79,7 @@ class SouscriptionsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_souscription
-    @souscription = Souscription.find(params[:id])
+    @souscription = Souscription.find(params[:id] || params[:souscription_id])
   end
 
   def set_adherent

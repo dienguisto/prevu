@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Compte:</strong>
+  <%= @versement.compte %>
+</p>
+
+<p>
+  <strong>Mandataire:</strong>
+  <%= @versement.mandataire %>
+</p>
+
+<p>
+  <strong>Montant:</strong>
+  <%= @versement.montant %>
+</p>
+
+<%= link_to 'Edit', edit_versement_path(@versement) %> |
+<%= link_to 'Back', versements_path %>

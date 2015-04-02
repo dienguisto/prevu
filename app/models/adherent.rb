@@ -1,6 +1,7 @@
 class Adherent < ActiveRecord::Base
   include BCrypt
   include ActsAsContact
+  include ActsAsAccountOwner
   delegate :email, to: :default_contact
 
   TYPE_PIECE = {
@@ -32,6 +33,7 @@ class Adherent < ActiveRecord::Base
   belongs_to :structure_assurance
   has_many :souscriptions
   has_many :formules, through: :souscriptions
+  has_many :cotisations
 
   before_create :encrypt_password
   before_create :generate_matricule
@@ -45,6 +47,9 @@ class Adherent < ActiveRecord::Base
   #  has_secure_password
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  accepts_nested_attributes_for :souscriptions,
+                                allow_destroy: true, reject_if: :all_blank
 
   def self.authenticate(matricule, password_txt)
     adherent = find_by_matricule(matricule)
@@ -78,5 +83,9 @@ class Adherent < ActiveRecord::Base
 
   def set_default_contact
     self.update(default_contact: contacts.first)
+  end
+
+  def souscription_en_cours
+    souscriptions.en_cours.last
   end
 end

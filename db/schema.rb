@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327155031) do
+ActiveRecord::Schema.define(version: 20150331123151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,18 @@ ActiveRecord::Schema.define(version: 20150327155031) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comptes", force: :cascade do |t|
+    t.integer  "proprietaire_id"
+    t.string   "proprietaire_type"
+    t.float    "total_versement",   default: 0.0, null: false
+    t.float    "solde",             default: 0.0, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.float    "total_retrait",     default: 0.0, null: false
+  end
+
+  add_index "comptes", ["proprietaire_type", "proprietaire_id"], name: "index_comptes_on_proprietaire_type_and_proprietaire_id", using: :btree
+
   create_table "consultations", force: :cascade do |t|
     t.text     "description"
     t.float    "montant"
@@ -95,6 +107,19 @@ ActiveRecord::Schema.define(version: 20150327155031) do
     t.integer  "owner_id"
     t.string   "owner_type"
   end
+
+  create_table "cotisations", force: :cascade do |t|
+    t.integer  "adherent_id"
+    t.integer  "souscription_id"
+    t.float    "montant",         null: false
+    t.date     "pour_la_date",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "cotisations", ["adherent_id"], name: "index_cotisations_on_adherent_id", using: :btree
+  add_index "cotisations", ["pour_la_date"], name: "index_cotisations_on_pour_la_date", using: :btree
+  add_index "cotisations", ["souscription_id"], name: "index_cotisations_on_formule_id", using: :btree
 
   create_table "detail_ordonnances", force: :cascade do |t|
     t.integer  "quantite"
@@ -122,13 +147,14 @@ ActiveRecord::Schema.define(version: 20150327155031) do
 
   create_table "formules", force: :cascade do |t|
     t.integer  "structure_assurance_id"
-    t.string   "nom",                                null: false
-    t.integer  "periode",                            null: false
-    t.integer  "occurrence_periode",     default: 1, null: false
-    t.float    "montant_adhesion",                   null: false
-    t.float    "montant_cotisation",                 null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "nom",                                  null: false
+    t.integer  "periode",                              null: false
+    t.integer  "occurrence_periode",     default: 1,   null: false
+    t.float    "montant_adhesion",                     null: false
+    t.float    "montant_cotisation",                   null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.float    "ticket_moderateur",      default: 0.0, null: false
   end
 
   add_index "formules", ["structure_assurance_id"], name: "index_formules_on_structure_assurance_id", using: :btree
@@ -146,6 +172,17 @@ ActiveRecord::Schema.define(version: 20150327155031) do
   end
 
   add_index "groupes", ["structure_assurance_id"], name: "index_groupes_on_structure_assurance_id", using: :btree
+
+  create_table "mandataires", force: :cascade do |t|
+    t.string   "prenom",       null: false
+    t.string   "nom",          null: false
+    t.string   "telephone"
+    t.string   "adresse"
+    t.integer  "type_piece"
+    t.string   "numero_piece"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "medicaments", force: :cascade do |t|
     t.string   "nom"
@@ -276,10 +313,23 @@ ActiveRecord::Schema.define(version: 20150327155031) do
   add_index "users", ["entite_id"], name: "index_users_on_entite_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "versements", force: :cascade do |t|
+    t.integer  "compte_id",     null: false
+    t.integer  "mandataire_id"
+    t.float    "montant",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "versements", ["compte_id"], name: "index_versements_on_compte_id", using: :btree
+  add_index "versements", ["mandataire_id"], name: "index_versements_on_mandataire_id", using: :btree
+
   add_foreign_key "adherents", "groupes"
   add_foreign_key "adherents", "structure_assurances"
   add_foreign_key "affectation_aperitrices", "groupes"
   add_foreign_key "affectation_aperitrices", "structure_aperitrices"
+  add_foreign_key "cotisations", "adherents"
+  add_foreign_key "cotisations", "formules", column: "souscription_id"
   add_foreign_key "formules", "structure_assurances"
   add_foreign_key "groupes", "structure_assurances"
   add_foreign_key "ordonnances", "adherents"
@@ -287,4 +337,6 @@ ActiveRecord::Schema.define(version: 20150327155031) do
   add_foreign_key "souscriptions", "adherents"
   add_foreign_key "souscriptions", "formules"
   add_foreign_key "users", "entites"
+  add_foreign_key "versements", "comptes"
+  add_foreign_key "versements", "mandataires"
 end

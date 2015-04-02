@@ -15,6 +15,7 @@
               <th>Payé?</th>
               <th>Date paiement</th>
               <th>Date d'expiration</th>
+              <th></th>
             </tr>
             </thead>
 
@@ -27,13 +28,20 @@
                   <td><%= afficher_etat souscription.paye? %></td>
                   <td><%= souscription.date_paiement %></td>
                   <td><%= souscription.date_expiration %></td>
+                  <td>
+                    <% if souscription.actif? %>
+                        <%= link_to 'desactiver', adherent_souscription_desactiver_path(@adherent, souscription) %>
+                    <% else %>
+                        <%= link_to 'activer', adherent_souscription_activer_path(@adherent, souscription) %>
+                    <% end %>
+                  </td>
                 </tr>
             <% end %>
             </tbody>
           </table>
         </div>
         <div class="text-right">
-          <% if @adherent.souscriptions.en_cours.count.zero? %>
+          <% if @adherent.souscription_en_cours.nil? %>
               <%= link_to '<strong>Ajouter une souscription</strong>'.html_safe, new_adherent_souscription_path(@adherent), class: 'btn btn-sm btn-primary m-t-n-xs' %>
           <% end %>
         </div>

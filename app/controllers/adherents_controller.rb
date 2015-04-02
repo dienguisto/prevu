@@ -6,6 +6,7 @@ class AdherentsController < ApplicationController
   def new
     @adherent = Adherent.new
     @adherent.contacts.build
+    @adherent.souscriptions.build
     render layout: 'empty' unless user_signed_in?
   end
 
@@ -122,6 +123,7 @@ class AdherentsController < ApplicationController
       params.require(:adherent).permit(:nom, :prenom, :email, :status_matrimonial, :date_de_naissance, :lieu_de_naissance,
                                        :type_piece_identite, :numero_piece_identite,:avatar, :groupe_id,
                                        :sexe, :parrain_id, :affiliation, :structure_assurance_id,
-                                       :contacts_attributes => [:telephone, :adresse, :email])
+                                       contacts_attributes: [:telephone, :adresse, :email],
+                                       souscriptions_attributes: [:formule_id, :paye, :date_expiration])
     end
 end
