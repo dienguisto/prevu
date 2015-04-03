@@ -14,7 +14,7 @@
                 <th>Date</th>
                 <th>Centre de santé</th>
                 <th>Type</th>
-                <th>Montant</th>
+                <th>Montant Total</th>
               </tr>
               </thead>
 
@@ -25,7 +25,7 @@
                     <td><%= consultation.created_at %></td>
                     <td><%= consultation.formation_sanitaire.title %></td>
                     <td><%= consultation.type_acte_medical.nom %></td>
-                    <td><%= consultation.montant %></td>
+                    <td><%= consultation.montant_total %></td>
                   </tr>
               <% end %>
               </tbody>

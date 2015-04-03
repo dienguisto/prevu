@@ -88,4 +88,8 @@ class Adherent < ActiveRecord::Base
   def souscription_en_cours
     souscriptions.en_cours.last
   end
+
+  def formule_en_cours
+    souscription_en_cours.try :formule
+  end
 end

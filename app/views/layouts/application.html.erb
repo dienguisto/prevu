@@ -10,6 +10,7 @@
 
   <!-- Main javascript files -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>
   <%= csrf_meta_tags %>
 
 </head>
