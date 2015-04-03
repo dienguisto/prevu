@@ -1,4 +1,6 @@
 class Ordonnance < ActiveRecord::Base
+  include ActsAsServices
+
   default_scope {order('created_at desc')}
   belongs_to :adherent
   belongs_to :pharmacy
@@ -13,7 +15,7 @@ class Ordonnance < ActiveRecord::Base
             presence: true, on: :create
 
   def reset_prix_total!
-    self.update(prix_total: get_total)
+    self.update(montant_total: get_total)
   end
 
   def get_total

@@ -12,7 +12,7 @@
               <th></th>
               <th>Dates</th>
               <th>Pharmacies</th>
-              <th>Prix Total</th>
+              <th>Montant Total</th>
             </tr>
             </thead>
 
@@ -22,7 +22,7 @@
                   <td><%= link_to "##{ordonnance.id}", [@adherent, ordonnance], class: 'consultLink' %></td>
                   <td><%= ordonnance.created_at %></td>
                   <td><%= ordonnance.pharmacy.nom %></td>
-                  <td><%= ordonnance.prix_total %></td>
+                  <td><%= ordonnance.montant_total %></td>
                 </tr>
             <% end %>
             </tbody>

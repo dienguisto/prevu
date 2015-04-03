@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331123151) do
+ActiveRecord::Schema.define(version: 20150402164125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,12 +85,14 @@ ActiveRecord::Schema.define(version: 20150331123151) do
 
   create_table "consultations", force: :cascade do |t|
     t.text     "description"
-    t.float    "montant"
+    t.float    "montant_total"
     t.integer  "adherent_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "type_acte_medical_id"
     t.integer  "formation_sanitaire_id"
+    t.float    "montant_pris_en_charge"
+    t.float    "montant_paye_par_adherent"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -201,11 +203,13 @@ ActiveRecord::Schema.define(version: 20150331123151) do
   end
 
   create_table "ordonnances", force: :cascade do |t|
-    t.float    "prix_total"
+    t.float    "montant_total"
     t.integer  "adherent_id"
     t.integer  "pharmacy_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.float    "montant_pris_en_charge"
+    t.float    "montant_paye_par_adherent"
   end
 
   add_index "ordonnances", ["adherent_id"], name: "index_ordonnances_on_adherent_id", using: :btree

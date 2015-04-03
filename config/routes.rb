@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   end
 
 
-  get 'welcome/minor'
+  get 'dashboard/minor'
   get '/log_out' => 'sessions#destroy', :as => 'log_out'
   get '/log_in' => 'sessions#new', :as => 'log_in'
   get '/sign_up' => 'adherents#new', :as => 'sign_up'
@@ -71,7 +71,7 @@ Rails.application.routes.draw do
     post '/create/:owner_type/:owner_id' => 'contacts#create', as: :create_contact
   end
 
-  root 'welcome#index'
+  root 'dashboard#index'
   scope '/wservices' do
     post '/groupes' => 'ws#get_groupes'
     post '/adherent' => 'ws#adherent_infos'
