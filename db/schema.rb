@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402164125) do
+ActiveRecord::Schema.define(version: 20150403115207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,7 +93,10 @@ ActiveRecord::Schema.define(version: 20150402164125) do
     t.integer  "formation_sanitaire_id"
     t.float    "montant_pris_en_charge"
     t.float    "montant_paye_par_adherent"
+    t.integer  "structure_assurance_id"
   end
+
+  add_index "consultations", ["structure_assurance_id"], name: "index_consultations_on_structure_assurance_id", using: :btree
 
   create_table "contacts", force: :cascade do |t|
     t.string   "titre"
@@ -210,10 +213,12 @@ ActiveRecord::Schema.define(version: 20150402164125) do
     t.datetime "updated_at",                null: false
     t.float    "montant_pris_en_charge"
     t.float    "montant_paye_par_adherent"
+    t.integer  "structure_assurance_id"
   end
 
   add_index "ordonnances", ["adherent_id"], name: "index_ordonnances_on_adherent_id", using: :btree
   add_index "ordonnances", ["pharmacy_id"], name: "index_ordonnances_on_pharmacy_id", using: :btree
+  add_index "ordonnances", ["structure_assurance_id"], name: "index_ordonnances_on_structure_assurance_id", using: :btree
 
   create_table "pharmacies", force: :cascade do |t|
     t.datetime "created_at", null: false

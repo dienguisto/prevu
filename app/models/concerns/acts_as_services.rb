@@ -2,7 +2,14 @@ module ActsAsServices
   extend ActiveSupport::Concern
 
   included do
+    belongs_to :structure_assurance
+
+    before_create :set_structure_assurance
     before_save :set_montants
+  end
+
+  def set_structure_assurance
+    self.structure_assurance = adherent.formule_en_cours.structure_assurance
   end
 
   def set_montants
