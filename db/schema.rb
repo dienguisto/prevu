@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 20150402164125) do
     t.datetime "updated_at",                null: false
     t.integer  "type_acte_medical_id"
     t.integer  "formation_sanitaire_id"
-    t.float    "montant_pris_en_charge"
-    t.float    "montant_paye_par_adherent"
+    t.float    "montant_pris_en_charge",    null: false
+    t.float    "montant_paye_par_adherent", null: false
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20150402164125) do
 
   add_index "cotisations", ["adherent_id"], name: "index_cotisations_on_adherent_id", using: :btree
   add_index "cotisations", ["pour_la_date"], name: "index_cotisations_on_pour_la_date", using: :btree
-  add_index "cotisations", ["souscription_id"], name: "index_cotisations_on_formule_id", using: :btree
+  add_index "cotisations", ["souscription_id"], name: "index_cotisations_on_souscription_id", using: :btree
 
   create_table "detail_ordonnances", force: :cascade do |t|
     t.integer  "quantite"
@@ -149,14 +149,14 @@ ActiveRecord::Schema.define(version: 20150402164125) do
 
   create_table "formules", force: :cascade do |t|
     t.integer  "structure_assurance_id"
-    t.string   "nom",                                  null: false
-    t.integer  "periode",                              null: false
-    t.integer  "occurrence_periode",     default: 1,   null: false
-    t.float    "montant_adhesion",                     null: false
-    t.float    "montant_cotisation",                   null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.float    "ticket_moderateur",      default: 0.0, null: false
+    t.string   "nom",                                null: false
+    t.integer  "periode",                            null: false
+    t.integer  "occurrence_periode",     default: 1, null: false
+    t.float    "montant_adhesion",                   null: false
+    t.float    "montant_cotisation",                 null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.float    "ticket_moderateur",                  null: false
   end
 
   add_index "formules", ["structure_assurance_id"], name: "index_formules_on_structure_assurance_id", using: :btree
@@ -210,8 +210,8 @@ ActiveRecord::Schema.define(version: 20150402164125) do
     t.integer  "pharmacy_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.float    "montant_pris_en_charge"
-    t.float    "montant_paye_par_adherent"
+    t.float    "montant_pris_en_charge",    null: false
+    t.float    "montant_paye_par_adherent", null: false
   end
 
   add_index "ordonnances", ["adherent_id"], name: "index_ordonnances_on_adherent_id", using: :btree
@@ -333,7 +333,7 @@ ActiveRecord::Schema.define(version: 20150402164125) do
   add_foreign_key "affectation_aperitrices", "groupes"
   add_foreign_key "affectation_aperitrices", "structure_aperitrices"
   add_foreign_key "cotisations", "adherents"
-  add_foreign_key "cotisations", "formules", column: "souscription_id"
+  add_foreign_key "cotisations", "souscriptions"
   add_foreign_key "formules", "structure_assurances"
   add_foreign_key "groupes", "structure_assurances"
   add_foreign_key "ordonnances", "adherents"

@@ -10,7 +10,15 @@
         <div class="ibox-content">
           <%= bootstrap_form_for(@adherent, layout: :horizontal) do |f| %>
               <p>
-                This is basic example of Step
+                <% if @adherent.errors.any? %>
+                  <div id="error_explanation" class="alert alert-danger">
+                    <ul>
+                      <% @adherent.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
               </p>
               <div id="wizard">
                 <h1>Basics</h1>

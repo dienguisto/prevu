@@ -31,8 +31,8 @@
               <td><%= tag.libelle %></td>
               <td><%= tag.created_at %></td>
               <td><%= tag.updated_at %></td>
-              <td><%= link_to 'Edit', '#' %></td>
-              <td><%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, '#'+tag.id.to_s, { :class => 'editTag'} %></td>
+              <td><%= link_to '<i class="fa fa-remove"></i>'.html_safe, parametre_path(tag), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
         <% end %>
         </tbody>

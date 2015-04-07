@@ -56,4 +56,12 @@ class ParametresController < ApplicationController
       render :nothing => true, :status => :not_acceptable
     end
   end
+
+  def destroy
+    @consultation.destroy
+    respond_to do |format|
+      format.html { redirect_to parametres_path, notice: 'Was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 end

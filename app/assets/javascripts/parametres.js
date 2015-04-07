@@ -84,46 +84,6 @@ $(document).on('click', '.validerCategActeMedical',function(e){
 
 
 
-
-$('.addGroupe').on('click', function(e){
-    e.preventDefault();
-    $('.modal-title').text('Ajout groupe');
-    var htmlData = '<div class="form-group"><label>Nom du groupe</label> <input type="text" id="idGroupe" placeholder="Nom..." class="form-control"></div>';
-    htmlData += '<div class="modal-footer"><button type="button" class="btn btn-white" data-dismiss="modal">' +
-    'Close</button><button type="button" class="btn btn-primary validerGroupe">Save changes</button></div>';
-    infoModal.find('.modal-body').html(htmlData);
-    infoModal.modal('show');
-});
-
-
-$(document).on('click', '.validerGroupe',function(e){
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: '/parametres/groupes/add',
-        dataType: 'json',
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: {nom: $('#idGroupe').val()},
-        success: function(data, textStatus, xhr){
-            console.log(data);
-            $('.groupe_table > tr:first').before('<tr><td><a href="#">#' + data.id + '</a></td><td>' + data.nom + '' +
-            '</td><td>' + data.created_at + '</td><td>' + data.updated_at + '</td><td><a href="#' + data.id + '" class="editGroupe">' +
-            'Edit</a></td><td><a href="#' + data.id + '" class="delGroupe">Destroy</a></td></tr>');
-            infoModal.modal('hide');
-
-        },
-        error: function(xhr){
-            console.log(xhr.status);
-            if(xhr.status == 406)
-                alert("L'element est invalide verifier qu'il n'existe pas deja");
-            console.log('erreur');
-        }
-    });
-});
-
-
-
-
 $('.addTag').on('click', function(e){
     e.preventDefault();
     $('.modal-title').text('Ajout tag');
@@ -159,45 +119,4 @@ $(document).on('click', '.validerTag',function(e){
         }
     });
 });
-
-
-
-
-$('.addMedicament').on('click', function(e){
-    e.preventDefault();
-    $('.modal-title').text('Ajout medicament');
-    var htmlData = '<div class="form-group"><label>Nom</label> <input type="text" id="idNomMedic" placeholder="Nom..." class="form-control"></div>' +
-        '<div class="form-group"><label>Reference</label> <input type="text" id="idRefMedic" placeholder="Reference..." class="form-control"></div>';
-    htmlData += '<div class="modal-footer"><button type="button" class="btn btn-white" data-dismiss="modal">' +
-    'Close</button><button type="button" class="btn btn-primary validerMedic">Save changes</button></div>';
-    infoModal.find('.modal-body').html(htmlData);
-    infoModal.modal('show');
-});
-
-
-$(document).on('click', '.validerMedic',function(e){
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: '/parametres/medicaments/add',
-        dataType: 'json',
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: {nom: $('#idNomMedic').val(), reference: $('#idRefMedic').val()},
-        success: function(data, textStatus, xhr){
-            console.log(data);
-            $('.medicament_table > tr:first').before('<tr><td><a href="#">#' + data.id + '</a></td><td>' + data.nom + '' +
-            '</td><td>' + data.actif + '</td><td>' + data.created_at + '</td><td>' + data.updated_at + '</td><td><a href="#' + data.id + '" class="editTag">' +
-            'Edit</a></td><td><a href="#' + data.id + '" class="delTag">Destroy</a></td></tr>');
-            infoModal.modal('hide');
-
-        },
-        error: function(xhr){
-            console.log(xhr.status);
-            if(xhr.status == 406)
-                alert("L'element est invalide verifier qu'il n'existe pas deja");
-            console.log('erreur');
-        }
-    });
-});
-
 
