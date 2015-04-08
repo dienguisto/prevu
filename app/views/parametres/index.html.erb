@@ -1,17 +1,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
     <div class="col-lg-6">
-      <%= render 'groupes' %>
-    </div>
-    <div class="col-lg-6">
-      <%= render 'medicaments' %>
-    </div>
-  </div>
-</div>
-
-<div class="wrapper wrapper-content animated fadeInRight">
-  <div class="row">
-    <div class="col-lg-6">
       <%= render 'type_acte_medicals' %>
     </div>
     <div class="col-lg-6">
@@ -33,4 +22,6 @@
 </div>
 
 <%= render 'modal' %>
-<%= javascript_include_tag 'parametre_groupe' %>
+<%= javascript_include_tag 'parametres' %>
+<%= javascript_include_tag 'parametres_edit' %>
+<%= javascript_include_tag 'parametres_delete' %>

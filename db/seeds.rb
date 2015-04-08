@@ -50,17 +50,17 @@ g = StructureSanitaire.new(nom: 'FormationSanitaire 1', adresse: 'Adresse FormaS
 h = StructureSanitaire.new(nom: 'FormationSanitaire 2', adresse: 'Adresse FormaSanitaire 2', date_adhesion: Time.now, actif: false, structure_type: 'FormationSanitaire')
 i = StructureSanitaire.new(nom: 'FormationSanitaire 3', adresse: 'Adresse FormaSanitaire 3', date_adhesion: Time.now, actif: true, structure_type: 'FormationSanitaire')
 
-FormationSanitaire.create(:structure_sanitaire => g, :niveau => 0)
-FormationSanitaire.create(:structure_sanitaire => h, :niveau => 3)
-FormationSanitaire.create(:structure_sanitaire => i, :niveau => 2)
+f1 = FormationSanitaire.create(:structure_sanitaire => g, :niveau => 0)
+f2 = FormationSanitaire.create(:structure_sanitaire => h, :niveau => 3)
+f3 = FormationSanitaire.create(:structure_sanitaire => i, :niveau => 2)
 
 j = StructureSanitaire.new(nom: 'Pharmacy 1', adresse: 'Adresse Pharmacie 1', date_adhesion: Time.now, actif: true, structure_type: 'Pharmacy')
 k = StructureSanitaire.new(nom: 'Pharmacy 2', adresse: 'Adresse Pharmacie 2', date_adhesion: Time.now, actif: true, structure_type: 'Pharmacy')
 l = StructureSanitaire.new(nom: 'Pharmacy 3', adresse: 'Adresse Pharmacie 3', date_adhesion: Time.now, actif: true, structure_type: 'Pharmacy')
 
-Pharmacy.create(:structure_sanitaire => j)
-Pharmacy.create(:structure_sanitaire => k)
-Pharmacy.create(:structure_sanitaire => l)
+p1 = Pharmacy.create(:structure_sanitaire => j)
+p2 = Pharmacy.create(:structure_sanitaire => k)
+p3 = Pharmacy.create(:structure_sanitaire => l)
 
 
 Medicament.create(nom: 'Paracétamol')
@@ -78,4 +78,4 @@ TypeActeMedical.create(nom: 'Type 2.1', categorie_acte_medical: d)
 TypeActeMedical.create(nom: 'Type 2.2', categorie_acte_medical: d)
 TypeActeMedical.create(nom: 'Type 2.3', categorie_acte_medical: d)
 
-
+#u = User.create(email='pharmacy@gmail.com', password='passer', entity_id=p1.id)

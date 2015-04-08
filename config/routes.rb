@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     post '/medicaments/add' => 'parametres#add_medicament'
     post '/type_acte_medical/add' => 'parametres#add_type_acte_medical'
     post '/categorie_acte_medical/add' => 'parametres#add_categorie_acte_medical'
+    delete '/:id' => 'parametres#destroy', :as => 'destroy'
   end
 
   resources :consultations

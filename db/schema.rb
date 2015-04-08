@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150403163051) do
     t.integer  "status_matrimonial"
     t.date     "date_de_naissance"
     t.string   "lieu_de_naissance"
+    t.string   "email"
     t.string   "password_digest"
     t.integer  "status"
     t.datetime "last_activation"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150403163051) do
     t.integer  "structure_assurance_id"
   end
 
+  add_index "adherents", ["email"], name: "index_adherents_on_email", unique: true, using: :btree
   add_index "adherents", ["groupe_id"], name: "index_adherents_on_groupe_id", using: :btree
   add_index "adherents", ["matricule"], name: "index_adherents_on_matricule", unique: true, using: :btree
   add_index "adherents", ["structure_assurance_id"], name: "index_adherents_on_structure_assurance_id", using: :btree
@@ -91,9 +93,14 @@ ActiveRecord::Schema.define(version: 20150403163051) do
     t.datetime "updated_at",                null: false
     t.integer  "type_acte_medical_id"
     t.integer  "formation_sanitaire_id"
+<<<<<<< HEAD
     t.float    "montant_pris_en_charge"
     t.float    "montant_paye_par_adherent"
     t.integer  "structure_assurance_id"
+=======
+    t.float    "montant_pris_en_charge",    null: false
+    t.float    "montant_paye_par_adherent", null: false
+>>>>>>> 3e82579f04d1f7f6f26e1e440de33ff8505abb5d
   end
 
   add_index "consultations", ["structure_assurance_id"], name: "index_consultations_on_structure_assurance_id", using: :btree
@@ -122,7 +129,7 @@ ActiveRecord::Schema.define(version: 20150403163051) do
 
   add_index "cotisations", ["adherent_id"], name: "index_cotisations_on_adherent_id", using: :btree
   add_index "cotisations", ["pour_la_date"], name: "index_cotisations_on_pour_la_date", using: :btree
-  add_index "cotisations", ["souscription_id"], name: "index_cotisations_on_formule_id", using: :btree
+  add_index "cotisations", ["souscription_id"], name: "index_cotisations_on_souscription_id", using: :btree
 
   create_table "detail_ordonnances", force: :cascade do |t|
     t.integer  "quantite"
@@ -161,14 +168,14 @@ ActiveRecord::Schema.define(version: 20150403163051) do
 
   create_table "formules", force: :cascade do |t|
     t.integer  "structure_assurance_id"
-    t.string   "nom",                                  null: false
-    t.integer  "periode",                              null: false
-    t.integer  "occurrence_periode",     default: 1,   null: false
-    t.float    "montant_adhesion",                     null: false
-    t.float    "montant_cotisation",                   null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.float    "ticket_moderateur",      default: 0.0, null: false
+    t.string   "nom",                                null: false
+    t.integer  "periode",                            null: false
+    t.integer  "occurrence_periode",     default: 1, null: false
+    t.float    "montant_adhesion",                   null: false
+    t.float    "montant_cotisation",                 null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.float    "ticket_moderateur",                  null: false
   end
 
   add_index "formules", ["structure_assurance_id"], name: "index_formules_on_structure_assurance_id", using: :btree
@@ -261,10 +268,10 @@ ActiveRecord::Schema.define(version: 20150403163051) do
     t.string   "adresse"
     t.date     "date_adhesion"
     t.string   "numero_agrement"
-    t.string   "couleur"
-    t.boolean  "actif",             default: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "couleur",           limit: 10
+    t.boolean  "actif",                        default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -291,7 +298,7 @@ ActiveRecord::Schema.define(version: 20150403163051) do
   add_index "structure_sanitaires", ["structure_type", "structure_id"], name: "index_structure_sanitaires_on_structure_type_and_structure_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string   "libelle"
+    t.string   "nom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
