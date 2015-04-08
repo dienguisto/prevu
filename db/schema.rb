@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403115207) do
+ActiveRecord::Schema.define(version: 20150403163051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,17 @@ ActiveRecord::Schema.define(version: 20150403115207) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "formule_structure_sanitaires", force: :cascade do |t|
+    t.integer  "formule_id"
+    t.integer  "formation_sanitaire_id"
+    t.boolean  "actif",                  default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "formule_structure_sanitaires", ["formation_sanitaire_id"], name: "index_formule_structure_sanitaires_on_formation_sanitaire_id", using: :btree
+  add_index "formule_structure_sanitaires", ["formule_id"], name: "index_formule_structure_sanitaires_on_formule_id", using: :btree
+
   create_table "formules", force: :cascade do |t|
     t.integer  "structure_assurance_id"
     t.string   "nom",                                  null: false
@@ -161,11 +172,6 @@ ActiveRecord::Schema.define(version: 20150403115207) do
   end
 
   add_index "formules", ["structure_assurance_id"], name: "index_formules_on_structure_assurance_id", using: :btree
-
-  create_table "formules_structure_sanitaires", id: false, force: :cascade do |t|
-    t.integer "structure_sanitaire_id", null: false
-    t.integer "formule_id",             null: false
-  end
 
   create_table "groupes", force: :cascade do |t|
     t.integer  "structure_assurance_id"
@@ -337,6 +343,8 @@ ActiveRecord::Schema.define(version: 20150403115207) do
   add_foreign_key "affectation_aperitrices", "structure_aperitrices"
   add_foreign_key "cotisations", "adherents"
   add_foreign_key "cotisations", "formules", column: "souscription_id"
+  add_foreign_key "formule_structure_sanitaires", "formation_sanitaires"
+  add_foreign_key "formule_structure_sanitaires", "formules"
   add_foreign_key "formules", "structure_assurances"
   add_foreign_key "groupes", "structure_assurances"
   add_foreign_key "ordonnances", "adherents"

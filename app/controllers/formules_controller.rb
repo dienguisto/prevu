@@ -1,6 +1,12 @@
 class FormulesController < ApplicationController
   before_action :only_for_structure_asssurance!
-  before_action :set_formule, only: [:show, :edit, :update, :destroy]
+  before_action :set_formule, only: [:show, :edit, :update, :destroy, :ajouter_structure_sanitaire]
+
+  def ajouter_structure_sanitaire
+    structure_sanitaire = StructureSanitaire.find(params[:id_structure])
+    @formule.ajouter_structure_sanitaire!(structure_sanitaire)
+    redirect_to @formule
+  end
 
   # GET /formules
   # GET /formules.json
@@ -66,7 +72,7 @@ class FormulesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_formule
-      @formule = Formule.find(params[:id])
+      @formule = Formule.find(params[:id] || params[:formule_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

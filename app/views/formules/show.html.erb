@@ -1,29 +1,13 @@
-<p id="notice"><%= notice %></p>
+<%= titre_page "Formule : #{@formule.nom} / #{@formule.structure_assurance.nom}" %>
 
-<p>
-  <strong>Nom:</strong>
-  <%= @formule.nom %>
-</p>
-
-<p>
-  <strong>Montant adhesion:</strong>
-  <%= @formule.montant_adhesion %>
-</p>
-
-<p>
-  <strong>Montant cotisation:</strong>
-  <%= @formule.montant_cotisation %>
-</p>
-
-<p>
-  <strong>Periode:</strong>
-  <%= @formule.periode %>
-</p>
-
-<p>
-  <strong>Occurrence periode:</strong>
-  <%= @formule.occurrence_periode %>
-</p>
-
-<%= link_to 'Edit', edit_formule_path(@formule) %> |
-<%= link_to 'Back', formules_path %>
+<div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'formules/details' %>
+    </div>
+    <div class="col-md-8">
+      <%= render 'formules/liste_pharmacies' %>
+      <%= render 'formules/liste_formation_sanitaires' %>
+    </div>
+  </div>
+</div>

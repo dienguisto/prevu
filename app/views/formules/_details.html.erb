@@ -1,0 +1,23 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5>Détails</h5>
+  </div>
+  <div class="ibox-content">
+    <h4><strong><%= @formule.nom %></strong></h4>
+    <p>
+      <strong>frais d'inscription : </strong><%= @formule.montant_adhesion %> <br/>
+      <strong>montant cotisation : </strong><%= @formule.montant_cotisation %> <br/>
+      <strong>fréquence cotisation : </strong><%= "#{@formule.occurrence_periode} X " if @formule.occurrence_periode > 1 %> <%= @formule.periode %> <br/>
+    </p>
+    <div class="user-button">
+      <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+          <%= link_to '<i class="fa fa-edit"></i> modifier'.html_safe, edit_formule_path(@formule), class: 'btn btn-default btn-sm btn-block' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

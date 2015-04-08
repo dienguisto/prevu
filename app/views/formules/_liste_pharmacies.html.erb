@@ -1,0 +1,57 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5>Liste des pharmacies</h5>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Noms</th>
+            <th>Actifs ?</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @formule.formule_structure_sanitaires.each do |fss| %>
+              <% if fss.structure_sanitaire.structure_type == 'Pharmacy' %>
+                  <tr>
+                    <td><%= fss.structure_sanitaire.nom %></td>
+                    <td width="75px"><%= afficher_etat(fss.actif) %></td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="text-right">
+      <%= link_to '<strong>Ajouter pharmacie</strong>'.html_safe, '#', class: 'btn btn-sm btn-primary m-t-n-xs',
+                  data: {toggle: :modal, target: '#ajout_pharmacie' } %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ajout_pharmacie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajout d'une pharmacie</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <% for pharmacy in Pharmacy.all - @formule.structure_sanitaires.type_pharmacies.map(&:structure) %>
+              <tr>
+                <td><%= pharmacy.nom %></td>
+                <td><%= link_to 'ajouter', formule_ajouter_structure_sanitaire_path(@formule, pharmacy.structure_sanitaire) %></td>
+              </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

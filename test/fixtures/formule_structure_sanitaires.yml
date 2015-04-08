@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  formule_id: 
+  formation_sanitaire_id: 
+  actif: false
+
+two:
+  formule_id: 
+  formation_sanitaire_id: 
+  actif: false

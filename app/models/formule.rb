@@ -11,12 +11,17 @@ class Formule < ActiveRecord::Base
   enum periode: PERIODES
 
   belongs_to :structure_assurance
-  has_and_belongs_to_many :structure_sanitaires
   has_many :souscriptions
   has_many :adherents, through: :souscriptions
+  has_many :formule_structure_sanitaires
+  has_many :structure_sanitaires, through: :formule_structure_sanitaires
 
   validates :structure_assurance_id, :nom, :periode, :montant_adhesion, :montant_cotisation, :occurrence_periode, presence: true
   validates :occurrence_periode, numericality: {greater_than: 0}
+
+  def ajouter_structure_sanitaire!(structure_sanitaire)
+    formule_structure_sanitaires.create(structure_sanitaire: structure_sanitaire, actif: true)
+  end
 
   def interval_paiement
     if journaliere?
