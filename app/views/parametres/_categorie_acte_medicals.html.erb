@@ -32,7 +32,7 @@
               <td><%= categ.created_at %></td>
               <td><%= categ.updated_at %></td>
               <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, '#'+categ.id.to_s, { :class => 'editCateg'} %></td>
-              <td><%= link_to '<i class="fa fa-remove"></i>'.html_safe, parametre_path(categ), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to '<i class="fa fa-remove"></i>'.html_safe, '#'+categ.id.to_s, { class: 'delCateg' } %></td>
             </tr>
         <% end %>
         </tbody>

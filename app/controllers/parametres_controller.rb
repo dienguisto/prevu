@@ -1,9 +1,11 @@
 class ParametresController < ApplicationController
   before_action :set_update_params, only: [:update]
+  before_action :delete_params, only: [:destroy]
 
   def categories
     @categories = CategorieActeMedical.all
   end
+
   def index
     @groupes = Groupe.all
     @medicaments = Medicament.all
@@ -50,9 +52,9 @@ class ParametresController < ApplicationController
   end
 
   def destroy
-    @consultation.destroy
+    @entite.destroy
     respond_to do |format|
-      format.html { redirect_to parametres_path, notice: 'Was successfully destroyed.' }
+      format.html { redirect_to parametres_path, notice: 'Element was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,7 +68,23 @@ class ParametresController < ApplicationController
     elsif params[:categ_id]
       @entite = CategorieActeMedical.find(params[:categ_id])
       data = {:nom => params[:nom], :id => params[:categ_id]}
+    elsif params[:type_id]
+      @entite = TypeActeMedical.find(params[:type_id])
+      data = {:nom => params[:nom], :id => params[:type_id], :categorie_id => params[:categ_id]}
     end
     data
   end
+
+  def delete_params
+    @entite = nil
+    if params[:tag_id]
+      @entite = Tag.find(params[:tag_id])
+    elsif params[:categ_id]
+      @entite = CategorieActeMedical.find(params[:categ_id])
+    elsif params[:type_id]
+      @entite = TypeActeMedical.find(params[:type_id])
+    end
+    @entite
+  end
+
 end

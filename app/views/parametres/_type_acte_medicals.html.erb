@@ -33,7 +33,7 @@
               <td><%= type.created_at %></td>
               <td><%= type.updated_at %></td>
               <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, '#'+type.id.to_s, { :class => 'editType'} %></td>
-              <td><%= link_to '<i class="fa fa-remove"></i>'.html_safe, parametre_path(type), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to '<i class="fa fa-remove"></i>'.html_safe, '#'+type.id.to_s, { class: 'delType' } %></td>
             </tr>
         <% end %>
         </tbody>
