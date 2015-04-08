@@ -105,7 +105,7 @@ $(document).on('click', '.validerTag',function(e){
         data: {nom: $('#idTag').val()},
         success: function(data, textStatus, xhr){
             console.log(data);
-            $('.tag_table > tr:first').before('<tr><td><a href="#">#' + data.id + '</a></td><td>' + data.libelle + '' +
+            $('.tag_table > tr:first').before('<tr><td><a href="#">#' + data.id + '</a></td><td>' + data.nom + '' +
             '</td><td>' + data.created_at + '</td><td>' + data.updated_at + '</td><td><a href="#' + data.id + '" class="editTag">' +
             'Edit</a></td><td><a href="#' + data.id + '" class="delTag">Destroy</a></td></tr>');
             infoModal.modal('hide');

@@ -28,7 +28,7 @@
         <% @tags.each do |tag| %>
             <tr>
               <td><%= link_to "##{tag.id}", '#', class: 'consultLink' %></td>
-              <td><%= tag.libelle %></td>
+              <td><%= tag.nom %></td>
               <td><%= tag.created_at %></td>
               <td><%= tag.updated_at %></td>
               <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, '#'+tag.id.to_s, { :class => 'editTag'} %></td>
