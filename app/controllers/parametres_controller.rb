@@ -70,7 +70,7 @@ class ParametresController < ApplicationController
       data = {:nom => params[:nom], :id => params[:categ_id]}
     elsif params[:type_id]
       @entite = TypeActeMedical.find(params[:type_id])
-      data = {:nom => params[:nom], :id => params[:type_id], :categorie_id => params[:categ_id]}
+      data = {:nom => params[:nom], :id => params[:type_id], :categorie_acte_medical_id => params[:categorie_id]}
     end
     data
   end

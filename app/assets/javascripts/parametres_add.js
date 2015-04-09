@@ -1,6 +1,9 @@
 /**
  * Created by nmtsylla on 26/03/15.
  */
+
+$(document).on('ready', function(){
+
 var infoModal = $('#myModal');
 
 
@@ -35,8 +38,7 @@ $(document).on('click', '.validerTypeActeMedical',function(e){
         success: function(data){
             console.log(data);
             $('.type_acte_table > tr:first').before('<tr><td><a href="#">#'+data.id+'</a></td><td>'+data.nom+'' +
-            '</td><td>'+data.created_at+'</td><td>'+data.updated_at+'</td><td><a href="#'+data.id+'" class="editType">' +
-            'Edit</a></td><td><a href="#'+data.id+'" class="delType">Destroy</a></td></tr>');
+            '</td><td>'+data.created_at+'</td><td>'+data.updated_at+'</td><td><a class="editType" href="#'+data.id+'"><i class="fa fa-edit"></i></a></td><td><a class="delType" href="#'+data.id+'"><i class="fa fa-remove"></i></a></td></tr>');
             infoModal.modal('hide');
         },
         error: function(){
@@ -68,8 +70,7 @@ $(document).on('click', '.validerCategActeMedical',function(e){
         success: function(data, textStatus, xhr){
             console.log(data);
             $('.categ_acte_table > tr:first').before('<tr><td><a href="#">#' + data.id + '</a></td><td>' + data.nom + '' +
-            '</td><td>' + data.created_at + '</td><td>' + data.updated_at + '</td><td><a href="#' + data.id + '" class="editCateg">' +
-            'Edit</a></td><td><a href="#' + data.id + '" class="delCateg">Destroy</a></td></tr>');
+            '</td><td>' + data.created_at + '</td><td>' + data.updated_at + '</td><td><a class="editCateg" href="#'+data.id+'"><i class="fa fa-edit"></i></a></td><td><a class="delCateg" href="#'+data.id+'"><i class="fa fa-remove"></i></a></td></tr>');
             infoModal.modal('hide');
 
         },
@@ -106,8 +107,7 @@ $(document).on('click', '.validerTag',function(e){
         success: function(data, textStatus, xhr){
             console.log(data);
             $('.tag_table > tr:first').before('<tr><td><a href="#">#' + data.id + '</a></td><td>' + data.nom + '' +
-            '</td><td>' + data.created_at + '</td><td>' + data.updated_at + '</td><td><a href="#' + data.id + '" class="editTag">' +
-            'Edit</a></td><td><a href="#' + data.id + '" class="delTag">Destroy</a></td></tr>');
+            '</td><td>' + data.created_at + '</td><td>' + data.updated_at + '</td><td><a class="editTag" href="#'+data.id+'"><i class="fa fa-edit"></i></a></td><td><a class="delTag" href="#'+data.id+'"><i class="fa fa-remove"></i></a></td></tr>');
             infoModal.modal('hide');
 
         },
@@ -120,3 +120,4 @@ $(document).on('click', '.validerTag',function(e){
     });
 });
 
+});

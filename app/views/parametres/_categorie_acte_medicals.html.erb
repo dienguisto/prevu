@@ -18,8 +18,6 @@
         <tr>
           <th>#</th>
           <th>Nom</th>
-          <th>Created at</th>
-          <th>Update</th>
           <th colspan="2"></th>
         </tr>
         </thead>
@@ -29,8 +27,6 @@
             <tr>
               <td><%= link_to "##{categ.id}", '#', class: 'consultLink' %></td>
               <td><%= categ.nom %></td>
-              <td><%= categ.created_at %></td>
-              <td><%= categ.updated_at %></td>
               <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, '#'+categ.id.to_s, { :class => 'editCateg'} %></td>
               <td><%= link_to '<i class="fa fa-remove"></i>'.html_safe, '#'+categ.id.to_s, { class: 'delCateg' } %></td>
             </tr>
