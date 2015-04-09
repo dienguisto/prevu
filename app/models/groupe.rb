@@ -1,5 +1,6 @@
 class Groupe < ActiveRecord::Base
-  belongs_to :structure_assurance
+  include ActsAsContact
+
   has_many :affectation_aperitrices
   has_many :structure_aperitrices, through: :affectation_aperitrices
 

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :pharmacies
   resources :formation_sanitaires
   resources :adherents
+  resources :groupes
   resources :formules do
     get 'ajouter_structure_sanitaire/:id_structure' => 'formules#ajouter_structure_sanitaire', as: :ajouter_structure_sanitaire
   end

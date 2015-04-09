@@ -1,0 +1,41 @@
+<%= titre_page 'Liste des Structures apéritrices' %>
+
+<div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="actions_bouton">
+                <%= link_to '<i class="fa fa-plus"></i> Ajouter'.html_safe, new_groupe_path, class: 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>Nom</th>
+                <th colspan="2"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @groupes.each do |groupe| %>
+                  <tr>
+                    <td><%= link_to groupe.nom, groupe %></td>
+                    <td width="80px"><%= link_to 'Edit', edit_groupe_path(groupe) %></td>
+                    <td width="80px"><%= link_to 'Destroy', groupe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
