@@ -64,7 +64,7 @@ class Adherent < ActiveRecord::Base
     generated_password = Devise.friendly_token.first(8)
     self.password_salt = BCrypt::Engine.generate_salt
     self.password_digest = BCrypt::Engine.hash_secret(generated_password, password_salt)
-    AdherentMailer.welcome(self.email, generated_password).deliver_later
+    AdherentMailer.welcome(self.email, generated_password).deliver_later unless self.try(:default_contact).try(:email).nil?
   end
 
   def generate_matricule
