@@ -1,6 +1,8 @@
 /**
  * Created by nmtsylla on 06/04/15.
  */
+$(document).on('ready', function(){
+
 var infoModal = $('#myModalDel');
 
 
@@ -116,4 +118,6 @@ $(document).on('click', '.removeType',function(e){
             console.log('erreur');
         }
     });
+});
+
 });

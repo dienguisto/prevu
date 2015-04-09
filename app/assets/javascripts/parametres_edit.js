@@ -1,6 +1,10 @@
 /**
  * Created by nmtsylla on 06/04/15.
  */
+
+$(document).on('ready', function(){
+
+
 var infoModal = $('#myModal');
 
 
@@ -85,4 +89,6 @@ $(document).on('click', '.updateCateg',function(e){
             console.log('erreur');
         }
     });
+});
+
 });
