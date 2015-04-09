@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :consultations
-  resources :ordonnances
+  resources :ordonnances do
+    get '/facture' => 'ordonnances#facture'
+  end
 
   resources :users, path: '/custom/users'
   resources :sessions

@@ -1,7 +1,7 @@
 class OrdonnancesController < ApplicationController
   before_action :only_for_pharmacie!
   before_action :set_adherent
-  before_action :set_ordonnance, only: [:show, :edit, :update, :destroy]
+  before_action :set_ordonnance, only: [:show, :edit, :update, :destroy, :facture]
   before_action :set_confirm_details, only: [:confirm]
 
   # GET /ordonnances
@@ -13,6 +13,10 @@ class OrdonnancesController < ApplicationController
   # GET /ordonnances/1
   # GET /ordonnances/1.json
   def show
+  end
+
+  def facture
+    render :layout => false
   end
 
   # GET /ordonnances/new

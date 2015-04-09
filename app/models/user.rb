@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  paginates_per 50
   include Roles
   ROLES = {
       administrateur: 0,

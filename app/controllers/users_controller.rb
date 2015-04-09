@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     if current_user.user_system?
-      @users = User.all
+      @users = User.order(:id).page params[:page]
     else
-      @users = current_user.entite.users
+      @users = current_user.entite.users.order(:id).page params[:page]
     end
   end
 
