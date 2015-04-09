@@ -7,7 +7,11 @@ class OrdonnancesController < ApplicationController
   # GET /ordonnances
   # GET /ordonnances.json
   def index
-    @ordonnances = Ordonnance.all
+    if current_user.user_system?
+      @ordonnances = Ordonnance.all
+    else
+      @ordonnances = current_pharmacy.ordonnances
+    end
   end
 
   # GET /ordonnances/1

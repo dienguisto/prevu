@@ -20,16 +20,18 @@
                 <th>Roles</th>
                 <th>Entites</th>
                 <th>Date création</th>
+                <th></th>
               </tr>
               </thead>
 
               <tbody>
               <% @users.each do |user| %>
                   <tr>
-                    <td><%= link_to user.email, user %></td>
+                    <td><%= user.email %></td>
                     <td><%= user.role %></td>
                     <td><%= user.entite.try :title %></td>
                     <td><%= user.created_at %></td>
+                    <td><%= link_to 'modifier', edit_user_path(user) %></td>
                   </tr>
               <% end %>
               </tbody>

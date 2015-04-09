@@ -1,4 +1,4 @@
-json.extract! @ordonnance, :id, :prix_total, :adherent_id, :pharmacy_id, :created_at, :updated_at
+json.extract! @ordonnance, :id, :montant_total, :adherent_id, :pharmacy_id, :created_at, :updated_at
 json.date @ordonnance.created_at.strftime("%a, %e %b %Y ")
 
 json.detail_ordonnances @ordonnance.detail_ordonnances do |detail|

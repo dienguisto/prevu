@@ -8,21 +8,25 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   layout :layout_by_resource
 
+  # @return [StructureSanitaire]
   def current_structure_assurance
     return nil unless user_signed_in? and current_user.user_structure_assurance?
     current_user.entite.entite.structure_assurance
   end
 
+  # @return [Pharmacy]
   def current_pharmacy
     return nil unless user_signed_in? and current_user.user_pharmacie?
     current_user.entite.entite.structure_sanitaire.structure
   end
 
+  # @return [FormationSanitaire]
   def current_formation_sanitaire
     return nil unless user_signed_in? and current_user.user_formation_sanitaire?
     current_user.entite.entite.structure_sanitaire.structure
   end
 
+  # @return [Adherent]
   def current_adherent
     @current_adherent ||= Adherent.find(session[:adherent_id]) if session[:adherent_id]
   end
