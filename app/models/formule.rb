@@ -1,4 +1,5 @@
 class Formule < ActiveRecord::Base
+  paginates_per 50
   PERIODES = {
       journaliere: 0,
       hebdomadaire: 1,

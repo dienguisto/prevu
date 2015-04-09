@@ -1,7 +1,7 @@
 class ConsultationsController < ApplicationController
   before_action :set_adherent
   before_action :only_for_formation_sanitaire!
-  before_action :set_consultation, only: [:show, :edit, :update, :destroy]
+  before_action :set_consultation, only: [:show, :edit, :update, :destroy, :facture]
 
   # GET /consultations
   # GET /consultations.json
@@ -31,6 +31,10 @@ class ConsultationsController < ApplicationController
 
   # GET /consultations/1/edit
   def edit
+  end
+
+  def facture
+    render :layout => false
   end
 
   # POST /consultations

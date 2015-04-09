@@ -11,7 +11,7 @@ class FormulesController < ApplicationController
   # GET /formules
   # GET /formules.json
   def index
-    @formules = current_structure_assurance.formules
+    @formules = current_structure_assurance.formules.order(:id).page params[:page]
   end
 
   # GET /formules/1

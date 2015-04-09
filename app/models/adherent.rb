@@ -1,4 +1,5 @@
 class Adherent < ActiveRecord::Base
+  paginates_per 50
   include BCrypt
   include ActsAsContact
   include ActsAsAccountOwner

@@ -70,6 +70,7 @@ Medicament.create(nom: 'Néféréti')
 
 c = CategorieActeMedical.create(nom: 'Categorie 1')
 d = CategorieActeMedical.create(nom: 'Categorie 2')
+
 TypeActeMedical.create(nom: 'Type 1.1', categorie_acte_medical: c)
 TypeActeMedical.create(nom: 'Type 1.2', categorie_acte_medical: c)
 TypeActeMedical.create(nom: 'Type 1.3', categorie_acte_medical: c)
@@ -77,5 +78,11 @@ TypeActeMedical.create(nom: 'Type 1.3', categorie_acte_medical: c)
 TypeActeMedical.create(nom: 'Type 2.1', categorie_acte_medical: d)
 TypeActeMedical.create(nom: 'Type 2.2', categorie_acte_medical: d)
 TypeActeMedical.create(nom: 'Type 2.3', categorie_acte_medical: d)
+
+
+f = Formule.create(structure_assurance_id: d.id, nom: "Formule 1 ", periode: 2, occurrence_periode: 1,
+                   montant_adhesion: 2500.0, montant_cotisation: 20000.0, ticket_moderateur: 10.0)
+g = Formule.create(structure_assurance_id: d.id, nom: "Formule 2 ", periode: 2, occurrence_periode: 1,
+                   montant_adhesion: 1000.0, montant_cotisation: 15000.0, ticket_moderateur: 31.0)
 
 #u = User.create(email='pharmacy@gmail.com', password='passer', entity_id=p1.id)
