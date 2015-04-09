@@ -26,12 +26,12 @@ class AdherentsController < ApplicationController
   # GET /adherents
   # GET /adherents.json
   def index
-    @adherents = Adherent.none
-    if current_user.user_structure_assurance?
-      @adherents = current_structure_assurance.adherents.order(:id).page params[:page]
-    elsif current_user.user_system?
-      @adherents = Adherent.all.order(:id).page params[:page]
-    end
+    @adherents = Adherent.none.page params[:page]
+    # if current_user.user_structure_assurance?
+    #   @adherents = current_structure_assurance.adherents.order(:id).page params[:page]
+    # elsif current_user.user_system?
+    #   @adherents = Adherent.all.order(:id).page params[:page]
+    # end
     if params[:q]
       @q = Adherent.find_by(params[:q])
       @adherent = @q#.result
