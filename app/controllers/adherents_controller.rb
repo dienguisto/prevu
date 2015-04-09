@@ -26,6 +26,7 @@ class AdherentsController < ApplicationController
   # GET /adherents
   # GET /adherents.json
   def index
+    @adherents = Adherent.none
     if current_user.user_structure_assurance?
       @adherents = current_structure_assurance.adherents.order(:id).page params[:page]
     elsif current_user.user_system?
