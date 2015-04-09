@@ -28,7 +28,7 @@ class MedicamentsController < ApplicationController
 
     respond_to do |format|
       if @medicament.save
-        format.html { redirect_to @medicament, notice: 'Medicament was successfully created.' }
+        format.html { redirect_to medicaments_path, notice: 'Medicament was successfully created.' }
         format.json { render :show, status: :created, location: @medicament }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MedicamentsController < ApplicationController
   def update
     respond_to do |format|
       if @medicament.update(medicament_params)
-        format.html { redirect_to @medicament, notice: 'Medicament was successfully updated.' }
+        format.html { redirect_to medicaments_path, notice: 'Medicament was successfully updated.' }
         format.json { render :show, status: :ok, location: @medicament }
       else
         format.html { render :edit }
