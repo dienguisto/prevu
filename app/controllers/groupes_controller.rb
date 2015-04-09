@@ -70,6 +70,6 @@ class GroupesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def groupe_params
-      params.require(:groupe).permit(:nom, contacts_attributes: [:titre, :nom, :prenom, :telephone, :adresse, :email])
+      params.require(:groupe).permit(:nom, :structure_aperitrice_id, contacts_attributes: [:titre, :nom, :prenom, :telephone, :adresse, :email])
     end
 end

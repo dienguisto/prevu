@@ -53,6 +53,35 @@
           </div>
         </div>
       </div>
+
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Groupes</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>Noms</th>
+                  <th width="75px">Nb adhérents</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% for groupe in @structure_aperitrice.groupes %>
+                    <tr>
+                      <td><%= groupe.nom %></td>
+                      <td><%= groupe.adherents.count %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>

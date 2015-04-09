@@ -1,0 +1,31 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5>Structures apéritrices</h5>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Noms</th>
+            <th width="75px">Actifs ?</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% for affectation_aperitrice in @groupe.affectation_aperitrices %>
+              <tr>
+                <td><%= affectation_aperitrice.structure_aperitrice.nom %></td>
+                <td><%= afficher_etat(structure_aperitrice.actif) %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="text-right">
+      <%= link_to '<strong>Ajouter un contact</strong>'.html_safe, new_contact_path(@groupe.class, @groupe.id, url_back: groupe_path(@groupe)), class: 'btn btn-sm btn-primary m-t-n-xs' %>
+    </div>
+  </div>
+</div>

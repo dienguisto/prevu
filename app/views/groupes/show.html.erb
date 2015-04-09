@@ -9,10 +9,15 @@
         </div>
         <div>
           <div class="ibox-content no-padding border-left-right">
-            <img alt="image" class="img-responsive" src="http://lorempixum.com/100/100">
+            <img alt="image" class="img-responsive" src="http://lorempixum.com/400/200">
           </div>
           <div class="ibox-content profile-content">
             <h4><strong><%= @groupe.nom %></strong></h4>
+            <p>
+              <strong>Structure Apéritrice:</strong>
+              <%= @groupe.structure_aperitrice.try(:nom) || '-' %>
+              <br/>
+            </p>
             <div class="user-button">
               <div class="row">
                 <div class="col-md-6">
@@ -45,6 +50,5 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
