@@ -19,8 +19,7 @@
         <tr>
           <th>#</th>
           <th>Nom</th>
-          <th>Created at</th>
-          <th>Update</th>
+          <th>Categorie</th>
           <th colspan="2"></th>
         </tr>
         </thead>
@@ -30,8 +29,7 @@
             <tr>
               <td><%= link_to "##{type.id}", '#', class: 'consultLink' %></td>
               <td><%= type.nom %></td>
-              <td><%= type.created_at %></td>
-              <td><%= type.updated_at %></td>
+              <td><%= type.categorie_acte_medical.nom %></td>
               <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, '#'+type.id.to_s, { :class => 'editType'} %></td>
               <td><%= link_to '<i class="fa fa-remove"></i>'.html_safe, '#'+type.id.to_s, { class: 'delType' } %></td>
             </tr>

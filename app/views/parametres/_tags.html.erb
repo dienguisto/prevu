@@ -17,9 +17,7 @@
         <thead>
         <tr>
           <th>#</th>
-          <th>Libelle</th>
-          <th>Created at</th>
-          <th>Update</th>
+          <th>Nom</th>
           <th colspan="2"></th>
         </tr>
         </thead>
@@ -29,8 +27,6 @@
             <tr>
               <td><%= link_to "##{tag.id}", '#', class: 'consultLink' %></td>
               <td><%= tag.nom %></td>
-              <td><%= tag.created_at %></td>
-              <td><%= tag.updated_at %></td>
               <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, '#'+tag.id.to_s, { :class => 'editTag'} %></td>
               <td><%= link_to '<i class="fa fa-remove"></i>'.html_safe, '#'+tag.id.to_s, { class: 'delTag' } %></td>
             </tr>
