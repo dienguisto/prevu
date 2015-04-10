@@ -6,6 +6,10 @@ module ActsAsServices
 
     before_create :set_structure_assurance
     before_save :set_montants
+
+    def self.montant_total
+      all.reduce(0) {|m, o| m + o.montant_total}
+    end
   end
 
   def set_structure_assurance
