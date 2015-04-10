@@ -1,4 +1,4 @@
-json.extract! @consultation, :id, :description, :montant,
+json.extract! @consultation, :id, :description, :montant_total,
               :type_acte_medical_id, :adherent_id,
               :formation_sanitaire_id, :created_at, :updated_at
 json.formation_sanitaire @consultation.formation_sanitaire.title
