@@ -13,4 +13,12 @@ class FormationSanitaire < ActiveRecord::Base
   def title
     "Formation sanitaire - #{nom}"
   end
+
+  def montant_engage(date=nil)
+    if date.nil?
+      consultations.reduce(0) {|s, o| s + o.montant_pris_en_charge}
+    else
+      consultations.where('DATE(created_at)=?', date).reduce(0) {|s, o| s + o.montant_pris_en_charge}
+    end
+  end
 end

@@ -20,7 +20,7 @@
     <%= render 'dashboard/structure_assurance' %>
 <% end %>
 <% if current_user.user_formation_sanitaire? %>
-    <%= render 'dashboard/copie' %>
+    <%= render 'dashboard/formation_sanitaire' %>
 <% end %>
 <% if current_user.user_pharmacie? %>
     <%= render 'dashboard/pharmacy' %>

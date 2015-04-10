@@ -1,0 +1,63 @@
+<div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>nombre d'utilisateurs</h5>
+        </div>
+        <div class="ibox-content text-right">
+          <h1 class="no-margins"><%= current_formation_sanitaire.entite.users.count %></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Total préstation pharmacies</h5>
+        </div>
+        <div class="ibox-content text-right">
+          <h1 class="no-margins"><%= current_formation_sanitaire.consultations.count %></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Nombre de patients</h5>
+        </div>
+        <div class="ibox-content text-right">
+          <h1 class="no-margins"><%= current_formation_sanitaire.consultations.unscoped.select(:adherent_id).uniq.count %></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <span class="label label-primary pull-right">Ajourd'hui</span>
+          <h5>montant engagé</h5>
+        </div>
+        <div class="ibox-content text-right">
+          <h1 class="no-margins"><%= current_formation_sanitaire.montant_engage(Date.today).to_s(:delimited, delimiter: ' ') %> F CFA</h1>
+          <small>pour pharmacies</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <span class="label label-success pull-right">Depuis ouverture</span>
+          <h5>montant engagé</h5>
+        </div>
+        <div class="ibox-content text-right">
+          <h1 class="no-margins"><%= current_formation_sanitaire.montant_engage.to_s(:delimited, delimiter: ' ') %> F CFA</h1>
+          <small>pour pharmacies</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
