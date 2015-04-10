@@ -110,7 +110,7 @@ class OrdonnancesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_ordonnance
-      @ordonnance = Ordonnance.find(params[:id])
+      @ordonnance = Ordonnance.find(params[:id] || params[:ordonnance_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

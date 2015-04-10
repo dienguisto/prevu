@@ -13,8 +13,10 @@ module ActsAsServices
   end
 
   def set_montants
-    ticket_moderateur = adherent.formule_en_cours.ticket_moderateur
-    self.montant_pris_en_charge = montant_total * (100 - ticket_moderateur) / 100
-    self.montant_paye_par_adherent = montant_total * ticket_moderateur / 100
+    unless montant_total.nil?
+      ticket_moderateur = adherent.formule_en_cours.ticket_moderateur
+      self.montant_pris_en_charge = montant_total * (100 - ticket_moderateur) / 100
+      self.montant_paye_par_adherent = montant_total * ticket_moderateur / 100
+    end
   end
 end

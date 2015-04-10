@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-sm-6">
             <h2>Prévu</h2>
-            <h4><%= @consultation.formation_sanitaire.title %></h4>
+            <h4><%= @ordonnance.pharmacy.nom %></h4>
           </div>
 
           <div class="col-sm-6 text-right">
@@ -60,7 +60,7 @@
           </tbody>
         </table>
         <div class="text-right">
-          <%= link_to 'Retour', @ordonnance.adherent, class: 'btn btn-white' %>
+          <%#= link_to 'Retour', @ordonnance.adherent, class: 'btn btn-white' %>
         </div>
       </div>
     </div>
