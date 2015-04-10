@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     delete '/:id' => 'parametres#destroy', :as => 'destroy'
   end
 
-  resources :consultations
+  resources :consultations do
+    get '/facture' => 'consultations#facture'
+  end
   resources :ordonnances do
     get '/facture' => 'ordonnances#facture'
   end

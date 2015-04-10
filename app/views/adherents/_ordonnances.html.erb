@@ -13,6 +13,7 @@
               <th>Dates</th>
               <th>Pharmacies</th>
               <th>Montant Total</th>
+              <th>Imprimer</th>
             </tr>
             </thead>
 
@@ -23,6 +24,7 @@
                   <td><%= ordonnance.created_at %></td>
                   <td><%= ordonnance.pharmacy.nom %></td>
                   <td><%= ordonnance.montant_total %></td>
+                  <td><%= link_to '<i class="fa fa-print"></i>'.html_safe, ordonnance_facture_path(ordonnance), {target: '_blank'} %></td>
                 </tr>
             <% end %>
             </tbody>

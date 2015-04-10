@@ -1,0 +1,48 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="ibox-content p-xl">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2>Prévu</h2>
+            <h4><%= @consultation.formation_sanitaire.title %></h4>
+          </div>
+
+          <div class="col-sm-6 text-right">
+            <p>
+              <span><strong>Date consultation:</strong> <%= @consultation.created_at.strftime("%A, %d %b %Y %l:%M %p") %></span><br>
+            </p>
+          </div>
+        </div>
+        <div class="responsive m-t">
+          <p>
+            <h2 class="center-block">Description</h2>
+            <p><%= @consultation.description %></p>
+          </p>
+
+        </div>
+
+        <table class="table responsive invoice-total">
+          <tbody>
+              <tr>
+                <td><strong>Montant payé par l'adherent :</strong></td>
+                <td><%= @consultation.montant_paye_par_adherent %>F CFA</td>
+              </tr>
+              <tr>
+                <td><strong>Montant pris en charge :</strong></td>
+                <td><%= @consultation.montant_pris_en_charge %>F CFA</td>
+              </tr>
+              <tr>
+                <td><strong>Montant total :</strong></td>
+                <td><%= @consultation.montant_total %>F CFA</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/javascript">
+  window.print();
+</script>

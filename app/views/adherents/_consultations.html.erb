@@ -15,6 +15,7 @@
                 <th>Centre de santé</th>
                 <th>Type</th>
                 <th>Montant Total</th>
+                <th>Imprimer</th>
               </tr>
               </thead>
 
@@ -26,6 +27,7 @@
                     <td><%= consultation.formation_sanitaire.title %></td>
                     <td><%= consultation.type_acte_medical.nom %></td>
                     <td><%= consultation.montant_total %></td>
+                    <td><%= link_to '<i class="fa fa-print"></i>'.html_safe, consultation_facture_path(consultation), {target: '_blank'} %></td>
                   </tr>
               <% end %>
               </tbody>

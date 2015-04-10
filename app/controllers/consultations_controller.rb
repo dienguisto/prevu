@@ -82,7 +82,7 @@ class ConsultationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_consultation
-      @consultation = Consultation.find(params[:id])
+      @consultation = Consultation.find(params[:id] || params[:consultation_id])
     end
 
     def set_adherent
