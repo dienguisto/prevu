@@ -1,5 +1,5 @@
 class MedicamentsController < ApplicationController
-  before_action :set_medicament, only: [:show, :edit, :update, :destroy]
+  before_action :set_medicament, only: [:show, :edit, :update, :destroy, :activer, :desactiver]
 
   # GET /medicaments
   # GET /medicaments.json
@@ -51,6 +51,18 @@ class MedicamentsController < ApplicationController
     end
   end
 
+  def activer
+    @medicament.activate!
+    flash[:notice] = 'Medicament activé'
+    redirect_to @medicament
+  end
+
+  def desactiver
+    @medicament.desactivate!
+    flash[:notice] = 'Medicament desactivé'
+    redirect_to @medicament
+  end
+
   # DELETE /medicaments/1
   # DELETE /medicaments/1.json
   def destroy
@@ -64,7 +76,7 @@ class MedicamentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_medicament
-      @medicament = Medicament.find(params[:id])
+      @medicament = Medicament.find(params[:id] || params[:medicament_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

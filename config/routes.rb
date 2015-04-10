@@ -20,13 +20,16 @@ Rails.application.routes.draw do
   resources :structure_aperitrices
   resources :micro_assurances
   resources :mutuelles
-  resources :medicaments
   resources :pharmacies
   resources :formation_sanitaires
   resources :adherents
   resources :groupes
   resources :formules do
     get 'ajouter_structure_sanitaire/:id_structure' => 'formules#ajouter_structure_sanitaire', as: :ajouter_structure_sanitaire
+  end
+  resources :medicaments do
+    get 'activer'
+    get 'desactiver'
   end
   resources :adherents do
     resources :versements, except: [:destroy, :update, :edit]

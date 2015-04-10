@@ -1,4 +1,5 @@
 class Medicament < ActiveRecord::Base
+  include Activable
   has_many :detail_ordonnances
   before_create :set_status
 

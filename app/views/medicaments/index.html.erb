@@ -28,7 +28,7 @@
               <tbody>
                 <% @medicaments.each do |medicament| %>
                   <tr>
-                    <td>#<%= medicament.id %></td>
+                    <td><%= link_to '#'+medicament.id.to_s, medicament %></td>
                     <td><%= medicament.nom %></td>
                     <td><%= medicament.reference %></td>
                     <td><%= afficher_etat(medicament.actif) %></td>
