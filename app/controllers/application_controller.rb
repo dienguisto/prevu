@@ -28,7 +28,11 @@ class ApplicationController < ActionController::Base
 
   # @return [Adherent]
   def current_adherent
-    @current_adherent ||= Adherent.find(session[:adherent_id]) if session[:adherent_id]
+    if session[:adherent_id]
+      @current_adherent ||= Adherent.find(session[:adherent_id])
+    elsif params[:adherent_id]
+      @current_adherent ||= Adherent.find(params[:adherent_id])
+    end
   end
 
   private

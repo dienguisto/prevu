@@ -20,13 +20,14 @@ class Adherent < ActiveRecord::Base
   }
 
   STATUS = {'En attente' => 1, 'Actif' => 2, 'Suspendu' => 3, 'Supprimé' => 4}
+  AFFILIATION = {"Aucune relation" => 0, "Fils" => 1, "Fille" => 2, "Epoux" => 3, "Epouse" => 4}
 
-  enum affiliation: [:fils, :fille, :epoux, :epouse, :aucune_relation]
+  enum affiliations: AFFILIATION
   enum type_piece_identite: TYPE_PIECE
 
   has_and_belongs_to_many :tags
   belongs_to :parrain, foreign_key: :parrain_id, class_name: Adherent
-  has_many :adherents, foreign_key: :parrain_id
+  has_many :filleuls, foreign_key: :parrain_id, :class_name => Adherent
   has_many :ordonnances
   has_many :consultations
   belongs_to :default_contact, foreign_key: :contact_id, class_name: Contact
@@ -51,6 +52,8 @@ class Adherent < ActiveRecord::Base
 
   accepts_nested_attributes_for :souscriptions,
                                 allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :filleuls,
+                                allow_destroy: true
 
   def self.authenticate(matricule, password_txt)
     adherent = find_by_matricule(matricule)

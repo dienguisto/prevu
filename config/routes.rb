@@ -45,9 +45,9 @@ Rails.application.routes.draw do
     resources :ordonnances do
       post 'confirm', on: :collection
     end
-    get '/affiliers' => 'adherents#affiliers', :as => 'affiliers'
-    get '/add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
-    get '/edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'
+    get 'affiliers' => 'adherents#affiliers', :as => 'affiliers'
+    get 'add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
+    get 'edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'
   end
 
 

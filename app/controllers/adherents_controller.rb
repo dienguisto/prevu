@@ -1,7 +1,7 @@
 class AdherentsController < ApplicationController
   before_action :not_for_structure_sanitaire!, except: [:show, :index]
   before_action :only_for_structure_asssurance!, only: [:new, :create, :destroy, :edit, :activate, :desactivate]
-  before_action :set_adherent, only: [:show, :edit, :update, :destroy, :activate, :desactivate]
+  before_action :set_adherent, only: [:show, :edit, :update, :destroy, :activate, :desactivate, :new_parrainage]
 
   def new
     @adherent = Adherent.new
@@ -12,6 +12,8 @@ class AdherentsController < ApplicationController
 
   def new_parrainage
     @adherent = Adherent.new
+    @adherent.contacts.build
+    @adherent.souscriptions.build
   end
 
   def signin
@@ -74,7 +76,7 @@ class AdherentsController < ApplicationController
   end
 
   def affiliers
-    @adherents = Adherent.where(parrain: current_adherent)
+    @adherents = Adherent.where(parrain: params[:adherent_id]).order(:id).page params[:page]
   end
 
   # PATCH/PUT /adherents/1
@@ -116,7 +118,7 @@ class AdherentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_adherent
-      @adherent = Adherent.find(params[:id])
+      @adherent = Adherent.find(params[:id] || params[:adherent_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

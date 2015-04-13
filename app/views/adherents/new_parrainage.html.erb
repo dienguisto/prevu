@@ -1,29 +1,173 @@
-<%= simple_form_for(@adherent) do |f| %>
-    <%= f.error_notification %>
+<%= bootstrap_form_for(@adherent, layout: :horizontal) do |f| %>
 
-    <div class="form-inputs">
-      <div class="form-group">
-        <label class="control-label" for="parrain">Parrain</label>
-        <input class="string form-control" id="parrain" name="parrain" value="<%= @adherent.parrain.matricule if @adherent.parrain %>" type="text">
-      </div>
-      <%= f.input :parrain_id, :as => :hidden %>
-      <%= f.input :affiliation, collection: Adherent.affiliations.keys%>
-      <%= f.file_field :avatar %>
-      <%= f.input :nom %>
-      <%= f.input :prenom %>
-      <%= f.input :sexe, collection: Adherent::SEXE %>
-      <%= f.input :status_matrimonial, collection: Adherent::MATRIMONIAL %>
-      <%= f.input :date_de_naissance, :as => :date_picker %>
-      <%= f.input :lieu_de_naissance %>
-      <%= f.input :adresse %>
-      <%= f.input :telephone1 %>
-      <%= f.input :telephone2 %>
-      <%= f.input :montant_cotisation %>
-    </div>
+    <%= f.fields_for @adherent.filleuls do %>
+        <div class="wrapper wrapper-content animated fadeInRight">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="ibox">
+                <div class="ibox-title">
+                  <h5>Inscription</h5>
+                </div>
+                <div class="ibox-content">
+                  <%= bootstrap_form_for(@adherent, layout: :horizontal) do |f| %>
+                      <p>
+                        <% if @adherent.errors.any? %>
+                          <div id="error_explanation" class="alert alert-danger">
+                            <ul>
+                              <% @adherent.errors.full_messages.each do |msg| %>
+                                  <li><%= msg %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                      <% end %>
+                      </p>
+                      <div id="wizard">
+                        <h1>Basics</h1>
+                        <div class="step-content">
+                          <%= f.select :affiliation, Adherent.affiliations.keys %>
+                          <%= f.text_field :nom %>
+                          <%= f.hidden_field :parrain_id, {value: params[:adherent_id]} %>
+                          <%= f.text_field :prenom %>
+                          <%= f.select :sexe, Adherent::SEXE.keys %>
+                          <%= f.select :status_matrimonial, Adherent::MATRIMONIAL.keys %>
+                          <%= f.date_field :date_de_naissance, :as => :date_picker %>
+                          <%= f.text_field :lieu_de_naissance %>
+                          <%= render 'contacts/form', f: f %>
+                        </div>
 
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
+                        <h1>Identification</h1>
+                        <div class="step-content">
+                          <%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
+                          <%= f.text_field :numero_piece_identite %>
+                          <%= f.hidden_field :groupe_id %>
+                          <%= f.file_field :avatar %>
+
+                          <div class="form-group">
+                            <label class="control-label col-sm-2" for="groupe">Groupe</label>
+                            <div class="col-sm-10">
+                              <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
+                            </div>
+                          </div>
+
+                          <%= f.select :tags,
+                                       Tag.all.map{ |c| [c.nom, c.id] },
+                                       input_html: {multiple: true,
+                                                    class: 'chosen-select chosen-container chosen-container-multi chosen-with-drop chosen-container-active' }
+                          %>
+                        </div>
+
+                        <h1>Choix formule et paiement</h1>
+                        <div class="step-content">
+                          <%= f.fields_for :souscriptions do |s| %>
+                              <%= s.collection_radio_buttons :formule_id, current_structure_assurance.formules, :id, :nom %>
+                              <%= s.form_group :paye do %>
+                                  <%= s.check_box :paye %>
+                              <% end %>
+                              <%= s.date_field :date_expiration %>
+                          <% end %>
+                        </div>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            $(function() {
+
+                $("#wizard").steps({
+                    autoFocus: true,
+                    enableCancelButton: false,
+                    onFinished: function (event, currentIndex) {
+                        var form = $('form#new_adherent');
+
+                        // Submit form input
+                        form.submit();
+                    },
+                    labels: {
+                        finish: "Envoyer",
+                        next: "Suivant",
+                        previous: "Précédent"
+                    }
+                });
+
+                $('.datetimepicker').datetimepicker();
+
+                $('#groupe').autocomplete({
+                    minLength: 3,
+                    source: function(request, response) {
+                        $.ajax({
+                            url: "<%= groupes_path %>",
+                            method: 'post',
+                            dataType: "json",
+                            data: {nom: request.term},
+                            success: function( data ) {
+                                console.log(data);
+                                response( $.map( data, function( item ) {
+                                    //alert(item.label);
+                                    return {
+                                        label: item.nom,
+                                        value: item.nom,
+                                        id: item.id
+                                    }
+                                }));
+                            }
+                        });
+                    },
+                    select: function (event, ui) {
+                        $("#adherent_groupe_id").val(ui.item.id);  // ui.item.value contains the id of the selected label
+                        $("#groupe").val(ui.item.label);
+                        return false;
+                    }
+                });
+
+            });
+        </script>
+
+        <style type="text/css">
+            .wizard > .content {
+                min-height: <%= @adherent.errors.any? ? 630 : 530 %>px;
+            }
+        </style>
+
+        <script type="text/javascript">
+            $('.datetimepicker').datetimepicker();
+
+            $('#parrain').autocomplete({
+                minLength: 7,
+                source: function(request, response) {
+                    $.ajax({
+                        url: "/wservices/adherent",
+                        method: 'post',
+                        dataType: "json",
+                        data: {matricule: request.term},
+                        success: function( data ) {
+                            console.log(data);
+                            response( $.map( data, function( item ) {
+                                //alert(item.label);
+                                return {
+                                    label: item.matricule+', '+item.prenom+' '+item.nom,
+                                    value: item.matricule+', '+item.prenom+' '+item.nom,
+                                    id: item.id
+                                }
+                            }));
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $("#adherent_parrain_id").val(ui.item.id);  // ui.item.value contains the id of the selected label
+                    $("#parrain").val(ui.item.label);
+                    return false;
+                }
+            });
+        </script>
+    <% end %>
 <% end %>
 
 <script type="text/javascript">
