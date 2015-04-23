@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     get 'affiliers' => 'adherents#affiliers', :as => 'affiliers'
     get 'add_affiliation' => 'adherents#new_parrainage', :as => 'new_parrainage'
     get 'edit_affiliation' => 'adherents#edit_parrainage', :as => 'edit_parrainage'
+    get 'carte_assurance' => 'adherents#carte_assurances', as: :carte_assurance_adherent
   end
 
 
@@ -65,6 +66,8 @@ Rails.application.routes.draw do
 
   scope '/adherents' do
     get '/:id/activate' => 'adherents#activate', as: :activer_adherent
+
+    post '/carte_assurance' => 'adherents#carte_assurances', as: :carte_assurances_adherent
     get '/:id/desactivate' => 'adherents#desactivate', as: :desactiver_adherent
   end
 

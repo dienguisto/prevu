@@ -29,6 +29,7 @@ class AdherentsController < ApplicationController
   # GET /adherents.json
   def index
     @adherents = Adherent.none.page params[:page]
+    @ids = []
     if current_user.user_structure_assurance?
       @adherents = current_structure_assurance.adherents.order(:id).page params[:page]
     elsif current_user.user_system?
@@ -46,6 +47,18 @@ class AdherentsController < ApplicationController
   # GET /adherents/1
   # GET /adherents/1.json
   def show
+  end
+
+  def carte_assurances
+    @adherents = []
+    if params[:id] or params[:adherent_id]
+      @adherents << Adherent.find(params[:id] || params[:adherent_id])
+    elsif params[:ids]
+      params[:ids].each do |i|
+        @adherents << Adherent.find(i)
+      end
+    end
+    render :layout => false
   end
 
   # GET /adherents/1/edit
