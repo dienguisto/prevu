@@ -70,6 +70,6 @@ class MutuellesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mutuelle_params
-      params.require(:mutuelle).permit(structure_assurance_attributes: [:nom, :adresse, :date_adhesion, :numero_agrement, :logo, :couleur])
+      params.require(:mutuelle).permit(structure_assurance_attributes: [:id, :nom, :adresse, :date_adhesion, :numero_agrement, :logo, :couleur])
     end
 end

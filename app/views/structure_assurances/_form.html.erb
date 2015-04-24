@@ -9,6 +9,7 @@
 
 <!--<div class="form-inputs">-->
 <%= f.fields_for :structure_assurance do |structure_form| %>
+    <%= structure_form.hidden_field :id %>
     <%= structure_form.text_field :nom %>
     <%= structure_form.text_field :adresse %>
     <%= structure_form.date_field :date_adhesion %>

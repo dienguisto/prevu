@@ -70,6 +70,6 @@ class PharmaciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pharmacy_params
-      params.require(:pharmacy).permit(structure_sanitaire_attributes: [:nom, :adresse, :date_adhesion, :logo])
+      params.require(:pharmacy).permit(structure_sanitaire_attributes: [:id, :nom, :adresse, :date_adhesion, :logo])
     end
 end
