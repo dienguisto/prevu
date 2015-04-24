@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<style type="text/css">
+  * {
+      -webkit-print-color-adjust: exact;
+  }
+</style>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <% @adherents.each do |adherent| %>
+        <div class="col-lg-4">
+          <div class="contact-box">
+            <div class="col-sm-12">
+              <div class="col-sm-6">
+                <%= adherent.structure_assurance.nom %>
+              </div>
+              <div class="col-sm-6">
+                <%= adherent.formule_en_cours.nom %>
+              </div>
+            </div>
+            <a href="#">
+              <div class="col-sm-4">
+                <div class="text-center">
+                  <img alt="image" class="img-square m-t-xs img-responsive" src="<%= image_path(adherent.avatar.url) %>">
+                  <div class="m-t-xs font-bold"><%= adherent.matricule %></div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                Nom complet: <h3><strong><%= adherent.full_name %></strong></h3>
+                Date de naissance:<h4><%= adherent.date_de_naissance.strftime('%d-%m-%Y') %></h4>
+                Ticket modérateur: <h4><%= adherent.formule_en_cours.ticket_moderateur %>%</h4>
+                Date d'expiration:<h4><%= adherent.souscription_en_cours.date_expiration.strftime('%d-%m-%Y') %></h4>
+              </div>
+              <div class="clearfix"></div>
+            </a>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

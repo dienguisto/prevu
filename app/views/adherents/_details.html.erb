@@ -56,7 +56,7 @@
       </p>
       <div class="user-button">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <% if @adherent.status == 2 %>
                 <%= link_to t('Desactiver', :default => 'Desactiver'),
                             desactiver_adherent_path(@adherent),
@@ -69,8 +69,11 @@
                 %>
             <% end %>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <%= link_to '<i class="fa fa-edit"></i> modifier'.html_safe, edit_adherent_path(@adherent), class: 'btn btn-default btn-sm btn-block' %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to '<i class="fa fa-print"></i> Imprimer'.html_safe, adherent_carte_assurance_adherent_path(@adherent), class: 'btn btn-default' %>
           </div>
         </div>
       </div>
