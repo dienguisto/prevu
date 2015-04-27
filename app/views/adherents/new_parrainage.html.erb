@@ -49,7 +49,7 @@
                             </div>
                           </div>
 
-                          <%= f.select :tags,
+                          <%#= f.select :tags,
                                        Tag.all.map{ |c| [c.nom, c.id] },
                                        input_html: {multiple: true,
                                                     class: 'chosen-select chosen-container chosen-container-multi chosen-with-drop chosen-container-active' }

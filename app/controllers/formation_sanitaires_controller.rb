@@ -4,7 +4,7 @@ class FormationSanitairesController < ApplicationController
   # GET /formation_sanitaires
   # GET /formation_sanitaires.json
   def index
-    @formation_sanitaires = FormationSanitaire.all
+    @formation_sanitaires = FormationSanitaire.all.page(params[:page])
   end
 
   # GET /formation_sanitaires/1

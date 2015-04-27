@@ -4,7 +4,7 @@ class StructureAperitricesController < ApplicationController
   # GET /structure_aperitrices
   # GET /structure_aperitrices.json
   def index
-    @structure_aperitrices = StructureAperitrice.all
+    @structure_aperitrices = StructureAperitrice.all.page(params[:page])
   end
 
   # GET /structure_aperitrices/1

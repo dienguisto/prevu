@@ -44,6 +44,8 @@ class Adherent < ActiveRecord::Base
 
   validates :prenom, :nom, :date_de_naissance, :lieu_de_naissance, :sexe, :status_matrimonial, :structure_assurance_id,
             presence: true
+
+  validates :numero_piece_identite, uniqueness: true
   #validates_presence_of :password_txt, :on => :create
 
   #  has_secure_password

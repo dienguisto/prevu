@@ -19,28 +19,23 @@
                   <th>Nom</th>
                   <th>Adresse</th>
                   <th>Date adhesion</th>
-                  <th colspan="3"></th>
                 </tr>
               </thead>
 
               <tbody>
                 <% @structure_aperitrices.each do |structure_aperitrice| %>
                   <tr>
-                    <td><%= structure_aperitrice.nom %></td>
+                    <td><%= link_to structure_aperitrice.nom, structure_aperitrice %></td>
                     <td><%= structure_aperitrice.adresse %></td>
                     <td><%= structure_aperitrice.date_adhesion %></td>
-                    <td><%= link_to 'Show', structure_aperitrice %></td>
-                    <td><%= link_to 'Edit', edit_structure_aperitrice_path(structure_aperitrice) %></td>
-                    <td><%= link_to 'Destroy', structure_aperitrice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
                 <% end %>
               </tbody>
             </table>
+            <%= paginate @structure_aperitrices %>
           </div>
-
         </div>
       </div>
     </div>
-
   </div>
 </div>

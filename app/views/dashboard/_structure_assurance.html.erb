@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>nombre d'utilisateurs</h5>
+          <h5>NOMBRE D'UTILISATEURS</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_structure_assurance.structure.entite.users.count %></h1>
@@ -14,7 +14,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>nombre d'adhérents</h5>
+          <h5>ADHÉRENTS</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_structure_assurance.adherents.count %></h1>
@@ -25,7 +25,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>nombre d'actes médicaux</h5>
+          <h5>ACTES MÉDICAUX</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_structure_assurance.consultations.count %></h1>
@@ -36,7 +36,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>Total préstation pharmacies</h5>
+          <h5>PRESTATION PHARMACIES</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_structure_assurance.ordonnances.count %></h1>
@@ -48,13 +48,13 @@
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <span class="label label-primary pull-right">Ajourd'hui</span>
-          <h5>montant payé</h5>
+          <h5>MONTANT PAYÉ</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_structure_assurance.total_a_verser_pharmacies(Date.today).to_s(:delimited, delimiter: ' ') %> F CFA</h1>
           <small>pour pharmacies</small>
           <h1 class="no-margins"><%= current_structure_assurance.total_a_verser_structure_sanitaires(Date.today).to_s(:delimited, delimiter: ' ') %> F CFA</h1>
-          <small>pour structure sanitaire</small>
+          <small>pour structures sanitaires</small>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <span class="label label-success pull-right">Depuis ouverture</span>
-          <h5>montant payé</h5>
+          <h5>MONTANT PAYÉ</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_structure_assurance.total_a_verser_pharmacies.to_s(:delimited, delimiter: ' ') %> F CFA</h1>

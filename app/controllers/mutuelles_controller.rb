@@ -4,7 +4,7 @@ class MutuellesController < ApplicationController
   # GET /mutuelles
   # GET /mutuelles.json
   def index
-    @mutuelles = Mutuelle.all
+    @mutuelles = Mutuelle.all.page(params[:page])
   end
 
   # GET /mutuelles/1

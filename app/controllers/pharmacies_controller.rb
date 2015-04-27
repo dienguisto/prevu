@@ -4,7 +4,7 @@ class PharmaciesController < ApplicationController
   # GET /pharmacies
   # GET /pharmacies.json
   def index
-    @pharmacies = Pharmacy.all
+    @pharmacies = Pharmacy.all.page(params[:page])
   end
 
   # GET /pharmacies/1

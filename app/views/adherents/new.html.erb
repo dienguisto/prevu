@@ -1,4 +1,4 @@
-<%= titre_page "Ajout d'un adherent" %>
+<%= titre_page 'Prevu Enrol' %>
 
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
@@ -46,7 +46,7 @@
                     </div>
                   </div>
 
-                  <%= f.select :tags,
+                  <%#= f.select :tags,
                                Tag.all.map{ |c| [c.nom, c.id] },
                                input_html: {multiple: true,
                                             class: 'chosen-select chosen-container chosen-container-multi chosen-with-drop chosen-container-active' }
