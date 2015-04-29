@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( parametres_add.js )
 Rails.application.config.assets.precompile += %w( parametres_edit.js )
 Rails.application.config.assets.precompile += %w( parametres_delete.js )
+Rails.application.config.assets.precompile += %w( impression.css )
