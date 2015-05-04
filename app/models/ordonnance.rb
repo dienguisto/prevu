@@ -21,4 +21,14 @@ class Ordonnance < ActiveRecord::Base
   def get_total
     detail_ordonnances.reduce(0) { |s, d| s + d.prix_unitaire * d.quantite }
   end
+
+  def get_total_ticket_moderateur
+    ticket_moderateur = adherent.souscriptions.en_cours.last.formule.ticket_moderateur
+    ticket_moderateur * get_total / 100
+  end
+
+  def get_total_pris_en_charge
+    ticket_moderateur = adherent.souscriptions.en_cours.last.formule.ticket_moderateur
+    (100 - ticket_moderateur) * get_total / 100
+  end
 end

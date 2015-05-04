@@ -10,6 +10,7 @@ class GroupesController < ApplicationController
   # GET /groupes/1
   # GET /groupes/1.json
   def show
+    @adherents = @groupe.adherents.page params[:page]
   end
 
   # GET /groupes/new

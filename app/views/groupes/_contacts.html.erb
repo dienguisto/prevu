@@ -1,0 +1,15 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5>Contacts</h5>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <% for contact in @groupe.contacts %>
+          <%= render 'contacts/show_bloc', contact: contact %>
+      <% end %>
+    </div>
+    <div class="text-right">
+      <%= link_to '<strong>Ajouter un contact</strong>'.html_safe, new_contact_path(@groupe.class, @groupe.id, url_back: groupe_path(@groupe)), class: 'btn btn-sm btn-primary m-t-n-xs' %>
+    </div>
+  </div>
+</div>

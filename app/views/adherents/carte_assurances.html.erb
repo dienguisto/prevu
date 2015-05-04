@@ -1,51 +1,51 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= stylesheet_link_tag    'impression', media: 'print', 'data-turbolinks-track' => true %>
 <style type="text/css">
-  * {
-      -webkit-print-color-adjust: exact;
-  }
+    * {
+        -webkit-print-color-adjust: exact;
+    }
 </style>
 
 <div class="">
 
-    <% @adherents.each do |adherent| %>
-			<% structure_assurance = adherent.structure_assurance %>
-        <div class="bloc">
-          <div>
-            <div class="row" style="margin-top: 10%">
-							<div class="col-md-12">
+  <% @adherents.each do |adherent| %>
+      <% structure_assurance = adherent.structure_assurance %>
+      <div class="bloc">
+        <div>
+          <div class="row" style="margin-top: 10%">
+            <div class="col-md-12">
               <div class="col-xs-4 col-md-2" style="float: left;">
                 <%= structure_assurance.nom %>
               </div>
-							<div class="col-xs-4 col-md-2">
+              <div class="col-xs-4 col-md-2">
 
-							</div>
+              </div>
               <div class="col-xs-4 col-md-2" style="float: right;">
                 <% if adherent.formule_en_cours %>
                     <%= adherent.formule_en_cours.nom %>
                 <% else %>
-                    <%= adherent.souscriptions.last %>
+                    <%= adherent.souscriptions.en_cours.last %>
                 <% end %>
               </div>
             </div>
-						</div>
-            <br/>
-            <div class="col-sm-4"  style="float: left">
+          </div>
+          <br/>
+          <div class="col-sm-4"  style="float: left">
             <div class="text-center">
               <div class="m-t-xs font-bold"><%= adherent.matricule %></div>
               <img alt="image" class="avatar" src="<%= image_path(adherent.avatar.url) %>">
             </div>
-            </div>
-            <div class="col-sm-8"  style="margin-left: 3cm">
-							<p class="line">Nom complet: <span class="titre"><%= adherent.full_name %></span> </p>
-							<p class="line">Date de naissance: <span class="titre"><%= adherent.date_de_naissance.strftime('%d-%m-%Y') %></span></p>
-							<p class="line">Ticket modérateur: <span class="titre"><%= adherent.formule_en_cours.ticket_moderateur %>%</span></p>
-							<p class="line">Date d'expiration: <span class="titre"><%= adherent.souscription_en_cours.date_expiration.strftime('%d-%m-%Y') %></span></p>
-            </div>
-            <div class="clearfix"></div>
           </div>
+          <div class="col-sm-8"  style="margin-left: 3cm">
+            <p class="line">Nom complet: <span class="titre"><%= adherent.full_name %></span> </p>
+            <p class="line">Date de naissance: <span class="titre"><%= adherent.date_de_naissance.strftime('%d-%m-%Y') %></span></p>
+            <p class="line">Ticket modérateur: <span class="titre"><%= adherent.formule_en_cours.ticket_moderateur %>%</span></p>
+            <p class="line">Date d'expiration: <span class="titre"><%= adherent.souscription_en_cours.date_expiration.strftime('%d-%m-%Y') %></span></p>
+          </div>
+          <div class="clearfix"></div>
         </div>
-    <% end %>
+      </div>
+  <% end %>
 
 </div>
 <script type="text/javascript">

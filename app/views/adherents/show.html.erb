@@ -1,4 +1,4 @@
-<%= titre_page "Adherent : #{@adherent.matricule}" %>
+<%= titre_page "Adherent : #{@adherent.matricule} #{"(ticket modérateut : #{@adherent.souscriptions.en_cours.last.formule.ticket_moderateur} %)" unless @adherent.souscriptions.en_cours.empty?}" %>
 
 <div class="wrapper wrapper-content">
   <div class="row">

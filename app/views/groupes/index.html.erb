@@ -1,4 +1,4 @@
-<%= titre_page 'Liste des Structures apéritrices' %>
+<%= titre_page 'Liste des groupements' %>
 
 <div class="wrapper wrapper-content">
   <div class="row">
@@ -17,7 +17,6 @@
               <thead>
               <tr>
                 <th>Nom</th>
-                <th colspan="2"></th>
               </tr>
               </thead>
 
@@ -25,8 +24,6 @@
               <% @groupes.each do |groupe| %>
                   <tr>
                     <td><%= link_to groupe.nom, groupe %></td>
-                    <td width="80px"><%= link_to 'Edit', edit_groupe_path(groupe) %></td>
-                    <td width="80px"><%= link_to 'Destroy', groupe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
               <% end %>
               </tbody>

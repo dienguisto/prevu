@@ -43,7 +43,6 @@ class OrdonnancesController < ApplicationController
   def set_confirm_details
     tab = []
     results = {}
-    details = {}
     details = ordonnance_params[:detail_ordonnances_attributes]
     details.each do |k, v|
       if tab.include?(v['medicament_id'])

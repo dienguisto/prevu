@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>nombre d'utilisateurs</h5>
+          <h5>UTILISATEURS</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_pharmacy.entite.users.count %></h1>
@@ -14,7 +14,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>Total préstation pharmacies</h5>
+          <h5>PRÉSTATIONS</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_pharmacy.ordonnances.count %></h1>
@@ -25,7 +25,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>Nombre de patients</h5>
+          <h5>PATIENTS</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_pharmacy.ordonnances.unscoped.select(:adherent_id).uniq.count %></h1>
@@ -37,7 +37,7 @@
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <span class="label label-primary pull-right">Ajourd'hui</span>
-          <h5>montant engagé</h5>
+          <h5>MONTANT ENGAGÉ</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_pharmacy.montant_engage(Date.today).to_s(:delimited, delimiter: ' ') %> F CFA</h1>
@@ -50,7 +50,7 @@
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <span class="label label-success pull-right">Depuis ouverture</span>
-          <h5>montant engagé</h5>
+          <h5>MONTANT ENGAGÉ</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_pharmacy.montant_engage.to_s(:delimited, delimiter: ' ') %> F CFA</h1>

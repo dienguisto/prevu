@@ -1,8 +1,4 @@
-<div class="row wrapper border-bottom white-bg page-heading">
-  <div class="col-lg-8">
-    <h2>Confirmation</h2>
-  </div>
-</div>
+<%= titre_page 'Confirmation' %>
 
 <div class="row">
   <div class="col-lg-12">
@@ -20,13 +16,13 @@
         </div>
         <div class="table-responsive m-t">
           <%= bootstrap_form_for([@adherent, @ordonnance]) do |f| %>
-            <table class="table invoice-table">
+              <table class="table invoice-table">
                 <thead>
                 <tr>
-                  <th>Item List</th>
-                  <th>Quantity</th>
-                  <th>Unit Price</th>
-                  <th>Total Price</th>
+                  <th>Médicaments</th>
+                  <th>Quantité</th>
+                  <th>Prix unitaire</th>
+                  <th>Prix total</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,23 +45,31 @@
 
                 </tbody>
               </table>
-        </div>
+              </div>
 
-        <table class="table invoice-total">
-          <tbody>
-          <tr>
-            <td><strong>TOTAL :</strong></td>
-            <td><%= @ordonnance.get_total %>F CFA</td>
-          </tr>
-          </tbody>
-        </table>
-        <div class="text-right">
-          <%= f.button 'Valider ordonnance', class: 'btn btn-primary' %>
-          <%= link_to 'Annuler', @adherent, class: 'btn btn-white' %>
+              <table class="table invoice-total">
+                <tbody>
+                <tr>
+                  <td><strong>TOTAL PRIS EN CHARGE :</strong></td>
+                  <td><%= @ordonnance.get_total_pris_en_charge %>F CFA</td>
+                </tr>
+                <tr>
+                  <td><strong>TOTAL TICKET MODERATEUR :</strong></td>
+                  <td><%= @ordonnance.get_total_ticket_moderateur %>F CFA</td>
+                </tr>
+                <tr>
+                  <td><strong>TOTAL :</strong></td>
+                  <td><%= @ordonnance.get_total %>F CFA</td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="text-right">
+                <%= f.button 'Valider ordonnance', class: 'btn btn-primary' %>
+                <%= link_to 'Annuler', @adherent, class: 'btn btn-white' %>
+              </div>
+          <% end %>
+
           </div>
-        <% end %>
-
-      </div>
     </div>
   </div>
 </div>

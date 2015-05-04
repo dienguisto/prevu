@@ -54,9 +54,7 @@ class AdherentsController < ApplicationController
     if params[:id] or params[:adherent_id]
       @adherents << Adherent.find(params[:id] || params[:adherent_id])
     elsif params[:ids]
-      params[:ids].each do |i|
-        @adherents << Adherent.find(i)
-      end
+      @adherents += params[:ids].map { |i| Adherent.find(i) }
     end
     render :layout => false
   end

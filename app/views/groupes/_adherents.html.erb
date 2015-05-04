@@ -1,0 +1,36 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5>Adhérents</h5>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Matricule</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @adherents.each do |adherent| %>
+              <tr>
+                <td><%= link_to adherent.matricule, adherent %></td>
+                <td><%= adherent.full_name %></td>
+                <td><%= adherent.date_de_naissance %></td>
+                <td><%= afficher_status adherent.status %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= paginate @adherents %>
+      </div>
+      <div class="text-right">
+        <%= link_to '<strong>Ajouter un contact</strong>'.html_safe, new_contact_path(@groupe.class, @groupe.id, url_back: groupe_path(@groupe)), class: 'btn btn-sm btn-primary m-t-n-xs' %>
+      </div>
+    </div>
+  </div>
+</div>

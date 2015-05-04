@@ -1,27 +1,22 @@
 <div class="row border-bottom">
-    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" method="get" action="/adherents/">
-                <div class="form-group">
-                    <input type="search" placeholder="Recherche par matricule client ou ayant droit" class="form-control" name="q[matricule]" id="q_matricule" />
-                </div>
-            </form>
-
+  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+      <form role="search" class="navbar-form-custom" method="get" action="/adherents/">
+        <div class="form-group">
+          <input type="search" placeholder="Recherche par matricule client ou ayant droit" class="form-control" name="q[matricule]" id="q_matricule" />
         </div>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <% if current_user %>
-                  <a href="/users/sign_out">
-                    <i class="fa fa-sign-out"></i> Déconnexion
-                  </a>
-                <% end %>
-                <% if current_adherent %>
-                  <a href="/log_out">
-                    <i class="fa fa-sign-out"></i> Déconnexion
-                  </a>
-                <% end %>
-            </li>
-        </ul>
-    </nav>
+      </form>
+
+    </div>
+    <ul class="nav navbar-top-links navbar-right">
+      <li>
+        <% if current_user %>
+            <a href="/users/sign_out">
+              <i class="fa fa-sign-out"></i> Déconnexion
+            </a>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
 </div>
