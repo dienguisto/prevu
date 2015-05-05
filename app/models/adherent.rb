@@ -53,7 +53,8 @@ class Adherent < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   accepts_nested_attributes_for :souscriptions,
-                                allow_destroy: true, reject_if: :all_blank
+                                allow_destroy: true,
+                                reject_if: proc { |attributes| attributes['formule'].nil? }
   accepts_nested_attributes_for :filleuls,
                                 allow_destroy: true
 
