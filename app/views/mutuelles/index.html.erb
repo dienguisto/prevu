@@ -5,16 +5,25 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-content">
-					<div class="row">
-						<div class="col-sm-12">
-							<%= search_form_for @search, {:class => 'navbar-form-custom'} do |f| %>
-								<div class="form-group" >
-									<%= f.search_field :structure_assurance_nom_cont,
-																		 {:class => 'form-control', :placeholder => 'Faites votre recherche ici...'} %>
-								</div>
-							<% end %>
-						</div>
-					</div>
+          <div class="row">
+            <div class="col-sm-12">
+              <%= search_form_for @search, html: { class: 'form-inline' } do |f| %>
+                  <div class="row">
+                    <div class="form-group col-sm-3">
+                      <%= f.label :structure_assurance_nom_cont, 'Nom' %>
+                      <%= f.search_field :structure_assurance_nom_cont, class: 'form-control' %>
+                    </div>
+                    <div class="form-group col-sm-3">
+                      <%= f.label :structure_assurance_numero_agrement_cont, 'Numéro agrément' %>
+                      <%= f.search_field :structure_assurance_numero_agrement_cont, class: 'form-control' %>
+                    </div>
+                  </div>
+                  <br/>
+                  <%= f.submit 'Rechercher', class: 'btn btn-primary' %>
+              <% end %>
+            </div>
+          </div>
+          <hr/>
           <div class="row">
             <div class="col-sm-12">
               <div class="actions_bouton">
