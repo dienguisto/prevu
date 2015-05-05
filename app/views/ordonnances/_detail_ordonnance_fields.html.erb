@@ -1,5 +1,8 @@
 <div class="col-sm-12">
   <div class="col-sm-4"><%= f.collection_select :medicament_id, Medicament.all, :id, :nom,  include_blank: true, hide_label: true %></div>
-  <div class="col-sm-4"><%= f.text_field :quantite, hide_label: true %></div>
+  <div class="col-sm-3"><%= f.text_field :quantite, hide_label: true %></div>
   <div class="col-sm-4"><%= f.text_field :prix_unitaire, hide_label: true %></div>
+	<div class="col-sm-1">
+		<button class=""><i class="fa fa-remove"></i></button>
+	</div>
 </div>

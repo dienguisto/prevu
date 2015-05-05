@@ -4,7 +4,8 @@ class PharmaciesController < ApplicationController
   # GET /pharmacies
   # GET /pharmacies.json
   def index
-    @pharmacies = Pharmacy.all.page(params[:page])
+    @search = Pharmacy.ransack(params[:q])
+    @pharmacies = @search.result.page params[:page]
   end
 
   # GET /pharmacies/1

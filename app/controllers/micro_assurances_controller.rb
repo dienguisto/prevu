@@ -4,7 +4,8 @@ class MicroAssurancesController < ApplicationController
   # GET /micro_assurances
   # GET /micro_assurances.json
   def index
-    @micro_assurances = MicroAssurance.all.page(params[:page])
+    @search = MicroAssurance.ransack(params[:q])
+    @micro_assurances = @search.result.page params[:page]
   end
 
   # GET /micro_assurances/1

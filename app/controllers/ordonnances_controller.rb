@@ -27,7 +27,7 @@ class OrdonnancesController < ApplicationController
   def new
     @ordonnance = Ordonnance.new
     @ordonnance.detail_ordonnances = []
-    2.times{ @ordonnance.detail_ordonnances << DetailOrdonnance.new }
+    1.times{ @ordonnance.detail_ordonnances << DetailOrdonnance.new }
   end
 
   def confirm

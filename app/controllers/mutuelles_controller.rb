@@ -4,7 +4,8 @@ class MutuellesController < ApplicationController
   # GET /mutuelles
   # GET /mutuelles.json
   def index
-    @mutuelles = Mutuelle.all.page(params[:page])
+    @search = Mutuelle.ransack(params[:q])
+    @mutuelles = @search.result.page params[:page]
   end
 
   # GET /mutuelles/1
