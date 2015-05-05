@@ -28,7 +28,9 @@ class AdherentsController < ApplicationController
   # GET /adherents
   # GET /adherents.json
   def index
-    @adherents = Adherent.none.page params[:page]
+    @search = Adherent.ransack(params[:q])
+    @adherents =  @search.result.page params[:page]
+=begin
     @ids = []
     if current_user.user_structure_assurance?
       @adherents = current_structure_assurance.adherents.order(:id).page params[:page]
@@ -42,6 +44,7 @@ class AdherentsController < ApplicationController
         redirect_to @adherent
       end
     end
+=end
   end
 
   # GET /adherents/1

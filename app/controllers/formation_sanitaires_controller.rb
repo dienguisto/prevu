@@ -4,7 +4,8 @@ class FormationSanitairesController < ApplicationController
   # GET /formation_sanitaires
   # GET /formation_sanitaires.json
   def index
-    @formation_sanitaires = FormationSanitaire.all.page(params[:page])
+    @search = FormationSanitaire.ransack(params[:q])
+    @formation_sanitaires = @search.result.page params[:page]
   end
 
   # GET /formation_sanitaires/1

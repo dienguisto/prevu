@@ -5,6 +5,16 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-content">
+					<div class="row">
+						<div class="col-sm-12">
+							<%= search_form_for @search, {:class => 'navbar-form-custom'} do |f| %>
+								<div class="form-group" >
+									<%= f.search_field :structure_sanitaire_nom_start,
+																		 {:class => 'form-control', :placeholder => 'Faites votre recherche ici...'} %>
+								</div>
+							<% end %>
+						</div>
+					</div>
           <div class="row">
             <div class="col-sm-12">
               <div class="actions_bouton">
