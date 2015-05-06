@@ -3,13 +3,21 @@
     <ul class="nav" id="side-menu">
       <li class="nav-header">
         <div class="dropdown profile-element">
+					<span>
+						<% if current_formation_sanitaire or current_pharmacy %>
+							<img alt="image" class="img-circle" src="<%= image_path(current_user.entite.entite.structure_sanitaire.logo.url(:thumb)) %>" />
+						<% elsif current_structure_assurance %>
+							<img alt="image" class="img-circle" src="<%= image_path(current_user.entite.entite.structure_assurance.logo.url(:thumb)) %>" />
+						<%else %>
+							<img alt="image" class="img-circle" src="" />
+						<% end %>
+					</span>
           <a href="#">
             <span class="clear">
                 <span class="block m-t-xs">
                     <strong class="font-bold"><%= current_user.email %></strong> <br/>
                   <%= current_user.entite.try :title %>
                 </span>
-              <!--<span class="text-muted text-xs block">Example menu <b class="caret"></b></span>-->
             </span>
           </a>
         </div>

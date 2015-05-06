@@ -7,11 +7,20 @@
         <div class="ibox-content">
 					<div class="row">
 						<div class="col-sm-12">
-							<%= search_form_for @search, {:class => 'navbar-form-custom'} do |f| %>
+							<%= search_form_for @search, {:class => 'form-inline'} do |f| %>
 								<div class="form-group" >
-									<%= f.search_field :nom_or_prenom_or_numero_piece_identite_or_lieu_de_naissance_or_date_de_naissance_cont,
-																		 {:class => 'form-control', :placeholder => 'Faites votre recherche ici...'} %>
+									<%= f.search_field :nom_cont,
+																		 {:class => 'form-control',:placeholder => 'Nom...'} %>
+									<%= f.search_field :prenom_cont,
+																		 {:class => 'form-control',:placeholder => 'Prénom...'} %>
+									<%= f.search_field :numero_piece_identite_cont,
+																		 {:class => 'form-control',:placeholder => 'Numéro de piéce d''identité...'} %>
+									<%= f.search_field :lieu_de_naissance_cont,
+																		 {:class => 'form-control',:placeholder => 'Lieu de naissance...'} %>
+									<%= f.search_field :date_de_naissance_cont,
+																		 {:class => 'form-control',:placeholder => 'Date de naissance...'} %>
 								</div>
+								<%= f.submit 'Rechercher', class: 'btn btn-primary' %>
 							<% end %>
 						</div>
 					</div>

@@ -12,7 +12,7 @@
 				<%= d.text_field :prix_unitaire, hide_label: true %>
 			</div>
 			<div class="col-sm-1">
-				<span class=""><i class="fa fa-remove"></i></span>
+				<%= link_to_remove_fields "<span class='btn btn-primary'><i class='fa fa-remove'></i></span>".html_safe, f %>
 			</div>
 
     </div>

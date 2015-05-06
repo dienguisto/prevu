@@ -7,10 +7,13 @@
         <div class="ibox-content">
 					<div class="row">
 						<div class="col-sm-12">
-							<%= search_form_for @search, {:class => 'navbar-form-custom'} do |f| %>
+							<%= search_form_for @search, {:class => 'inline-form'} do |f| %>
 								<div class="form-group" >
 									<%= f.search_field :structure_assurance_nom_cont,
-																		 {:class => 'form-control', :placeholder => 'Faites votre recherche ici...'} %>
+																		 {:placeholder => 'Nom...'} %>
+									<%= f.search_field :structure_assurance_adresse_cont,
+																		 {:placeholder => 'Adresse...'} %>
+									<%= f.submit 'Rechercher', class: 'btn btn-primary' %>
 								</div>
 							<% end %>
 						</div>
