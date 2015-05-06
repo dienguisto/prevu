@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_adherent, :current_structure_assurance, :current_pharmacy, :current_formation_sanitaire,
-                :current_structure
+                :current_structure_aperitrice
 
   before_action :authenticate_user!
   layout :layout_by_resource

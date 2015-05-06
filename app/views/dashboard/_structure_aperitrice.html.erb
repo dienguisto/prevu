@@ -1,0 +1,57 @@
+<div class="wrapper wrapper-content">
+  <div class="row">
+
+    <!--<div class="col-md-3">-->
+      <!--<div class="ibox float-e-margins">-->
+        <!--<div class="ibox-title">-->
+          <!--<h5>UTILISATEURS</h5>-->
+        <!--</div>-->
+        <!--<div class="ibox-content text-right">-->
+          <!--<h1 class="no-margins"><%= current_structure_aperitrice.entite.users.count %></h1>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div class="col-md-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <!--<span class="label label-success pull-right">Depuis ouverture</span>-->
+          <h5>Ordonnances</h5>
+        </div>
+        <div class="ibox-content text-right">
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="no-margins"><%= current_structure_aperitrice.nombres_ordonnances %></h1>
+              <small>ordonnances</small>
+            </div>
+            <div class="col-md-8">
+              <h1 class="no-margins"><%= current_structure_aperitrice.total_a_verser_pharmacies.to_s(:delimited, delimiter: ' ') %> F CFA</h1>
+              <small>montant total</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <!--<span class="label label-success pull-right">Depuis ouverture</span>-->
+          <h5>Actes médicaux</h5>
+        </div>
+        <div class="ibox-content text-right">
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="no-margins"><%= current_structure_aperitrice.nombres_actes_medicaux %></h1>
+              <small>actes médicaux</small>
+            </div>
+            <div class="col-md-8">
+              <h1 class="no-margins"><%= current_structure_aperitrice.total_a_verser_structure_sanitaires.to_s(:delimited, delimiter: ' ') %> F CFA</h1>
+              <small>montant total</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

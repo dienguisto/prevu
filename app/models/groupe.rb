@@ -9,6 +9,22 @@ class Groupe < ActiveRecord::Base
 
   validates :nom, presence: true, uniqueness: true
 
+  def nombres_ordonnances(date=nil)
+    ordonnances = Ordonnance.where(adherent: adherents)
+    unless date.nil?
+      ordonnances = ordonnances.where('DATE(created_at)=?', date)
+    end
+    ordonnances.count
+  end
+
+  def nombres_actes_medicaux(date=nil)
+    consultations = Consultation.where(adherent: adherents)
+    unless date.nil?
+      consultations = consultations.where('DATE(created_at)=?', date)
+    end
+    consultations.count
+  end
+
   def total_a_verser_pharmacies(date=nil)
     ordonnances = Ordonnance.where(adherent: adherents)
     if date.nil?

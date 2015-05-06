@@ -11,4 +11,20 @@ class StructureAperitrice < ActiveRecord::Base
   def title
     "Structure apéritrice - #{nom}"
   end
+
+  def total_a_verser_pharmacies(date=nil)
+    groupes.map{|g| g.total_a_verser_pharmacies(date)}.reduce(&:+)
+  end
+
+  def total_a_verser_structure_sanitaires(date=nil)
+    groupes.map{|g| g.total_a_verser_structure_sanitaires(date)}.reduce(&:+)
+  end
+
+  def nombres_ordonnances(date=nil)
+    groupes.map{|g| g.nombres_ordonnances(date)}.reduce(&:+)
+  end
+
+  def nombres_actes_medicaux(date=nil)
+    groupes.map{|g| g.nombres_actes_medicaux(date)}.reduce(&:+)
+  end
 end
