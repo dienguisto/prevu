@@ -5,13 +5,15 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-content">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="actions_bouton">
-                <%= link_to '<i class="fa fa-plus"></i> Ajouter'.html_safe, new_groupe_path, class: 'btn btn-primary' %>
+          <% if current_user.user_system? %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="actions_bouton">
+                    <%= link_to '<i class="fa fa-plus"></i> Ajouter'.html_safe, new_groupe_path, class: 'btn btn-primary' %>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+          <% end %>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>

@@ -4,7 +4,12 @@ class GroupesController < ApplicationController
   # GET /groupes
   # GET /groupes.json
   def index
-    @groupes = Groupe.all
+    @groupes = Groupe.none
+    if current_user.user_system?
+      @groupes = Groupe.all
+    elsif current_user.user_structure_aperitrice?
+      @groupes = current_structure_aperitrice.groupes
+    end
   end
 
   # GET /groupes/1

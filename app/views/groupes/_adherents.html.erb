@@ -28,9 +28,6 @@
         </table>
         <%= paginate @adherents %>
       </div>
-      <div class="text-right">
-        <%= link_to '<strong>Ajouter un contact</strong>'.html_safe, new_contact_path(@groupe.class, @groupe.id, url_back: groupe_path(@groupe)), class: 'btn btn-sm btn-primary m-t-n-xs' %>
-      </div>
     </div>
   </div>
 </div>

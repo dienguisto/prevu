@@ -17,9 +17,11 @@
             </p>
             <div class="user-button">
               <div class="row">
-                <div class="col-md-6">
-                  <%= link_to '<i class="fa fa-edit"></i> Modifier'.html_safe, edit_groupe_path(@groupe), class: 'btn btn-default btn-sm btn-block' %>
-                </div>
+                <% if current_user.user_system? %>
+                    <div class="col-md-6">
+                      <%= link_to '<i class="fa fa-edit"></i> Modifier'.html_safe, edit_groupe_path(@groupe), class: 'btn btn-default btn-sm btn-block' %>
+                    </div>
+                <% end %>
                 <div class="col-md-6">
                   <%= link_to 'Retour', groupes_path, class: 'btn btn-default btn-sm btn-block'  %>
                 </div>
