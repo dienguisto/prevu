@@ -19,6 +19,9 @@
               <thead>
               <tr>
                 <th>Nom</th>
+                <th width="150px">Nbr adhérents</th>
+                <th width="150px">pharmacies</th>
+                <th width="150px">structure sanitaires</th>
               </tr>
               </thead>
 
@@ -26,6 +29,9 @@
               <% @groupes.each do |groupe| %>
                   <tr>
                     <td><%= link_to groupe.nom, groupe %></td>
+                    <td align="right"><%= groupe.adherents.count %></td>
+                    <td align="right"><%= groupe.total_a_verser_pharmacies.to_s(:delimited, delimiter: ' ') %> F CFA</td>
+                    <td align="right"><%= groupe.total_a_verser_structure_sanitaires.to_s(:delimited, delimiter: ' ') %> F CFA</td>
                   </tr>
               <% end %>
               </tbody>
