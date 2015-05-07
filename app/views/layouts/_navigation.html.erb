@@ -49,6 +49,11 @@
           <% if current_user.user_structure_aperitrice? %>
               <%= render 'layouts/menu_structure_aperitrice' %>
           <% end %>
+          <li>
+            <%= link_to edit_user_registration_path do %>
+                <i class="fa fa-user"></i> <span class="nav-label">Modifier mon compte</span>
+            <% end %>
+          </li>
       <% end %>
     </ul>
 

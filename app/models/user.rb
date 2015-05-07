@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   enum role: ROLES
 
   validates :role, presence: true
-  validates :entite_id, presence: true, unless: 'creator.try(:user_system?)'
+  # validates :entite_id , presence: true, unless: 'creator.try(:user_system?)'
 
   belongs_to :entite
   belongs_to :creator, foreign_key: :creator_id, class_name: User

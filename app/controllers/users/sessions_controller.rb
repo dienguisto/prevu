@@ -1,6 +1,6 @@
 class  Users::SessionsController < Devise::SessionsController
   skip_before_filter :check_concurrent_session
-  layout 'empty'
+  # layout 'empty'
 
   def create
     super

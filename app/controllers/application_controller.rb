@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
                 :current_structure_aperitrice
 
   before_action :authenticate_user!
-  layout :layout_by_resource
+  # layout :layout_by_resource
 
   # @return [StructureAperitrice]
   def current_structure_aperitrice
@@ -79,7 +79,11 @@ class ApplicationController < ActionController::Base
     redirect_to (request.referrer || root_path)
   end
 
-  def layout_by_resource
-    devise_controller? ? 'empty' : 'application'
-  end
+  # def layout_by_resource
+  #   if  devise_controller? && action_name == 'new'
+  #     'empty'
+  #   else
+  #     'application'
+  #   end
+  # end
 end

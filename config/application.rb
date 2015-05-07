@@ -25,6 +25,10 @@ module Prevu
 
     config.assets.precompile += [ 'dashboards.js' ]
 
+    config.to_prepare do
+      Devise::SessionsController.layout 'empty'
+    end
+
     config.action_mailer.default_url_options = { host: 'http://prevu.scicasoft.com' }
     config.action_mailer.delivery_method = :smtp
 
