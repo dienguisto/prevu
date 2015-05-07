@@ -1,0 +1,22 @@
+<%= titre_page "Prevu Pay - Ajout d'un versement" %>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <%= bootstrap_form_for(Adherent.new, url: redirect_versement_versements_path, layout: :horizontal) do |f| %>
+              <%= f.text_field :matricule %>
+
+              <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                  <%= link_to 'Annuler', '#', class: 'btn btn-white' %>
+                  <%= f.button 'Valider', class: 'btn btn-primary' %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

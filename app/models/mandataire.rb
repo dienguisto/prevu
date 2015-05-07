@@ -4,4 +4,8 @@ class Mandataire < ActiveRecord::Base
   has_one :versement
   validates :prenom, :nom, presence: true
   validates :type_piece, presence: true, unless: 'numero_piece.empty?'
+
+  def full_name
+    "#{prenom} #{nom}"
+  end
 end

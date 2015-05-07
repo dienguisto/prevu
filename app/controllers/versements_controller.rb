@@ -6,7 +6,7 @@ class VersementsController < ApplicationController
   # GET /versements
   # GET /versements.json
   def index
-    @versements = Versement.all
+    @versements = current_structure_assurance.versements.order('created_at DESC').page params[:page]
   end
 
   # GET /versements/1
@@ -20,6 +20,21 @@ class VersementsController < ApplicationController
     @versement.build_mandataire
   end
 
+  def new_versement
+
+  end
+
+  def redirect_versement
+    matricule = params[:adherent][:matricule]
+    @adherent = current_structure_assurance.adherents.find_by(matricule: matricule)
+    if @adherent
+      redirect_to new_adherent_versement_path(@adherent)
+    else
+      flash[:error] = "L'adhérent avec le matricule #{matricule} n'existe pas sur notre base"
+      render :new_versement
+    end
+  end
+
   # GET /versements/1/edit
   def edit
   end
@@ -28,6 +43,7 @@ class VersementsController < ApplicationController
   # POST /versements.json
   def create
     @versement = Versement.new(versement_params)
+    @versement.structure_assurance = current_structure_assurance
     @versement.compte = @adherent.compte
 
     respond_to do |format|

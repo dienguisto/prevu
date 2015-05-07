@@ -33,6 +33,10 @@ Rails.application.routes.draw do
     get 'activer'
     get 'desactiver'
   end
+  resources :versements, only: [:index] do
+    get 'new_versement', on: :collection
+    post 'redirect_versement', on: :collection
+  end
   resources :adherents do
     resources :versements, except: [:destroy, :update, :edit]
     resources :souscriptions do

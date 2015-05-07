@@ -1,6 +1,7 @@
 class Versement < ActiveRecord::Base
   belongs_to :compte
   belongs_to :mandataire
+  belongs_to :structure_assurance
 
   after_create :update_compte!
 
