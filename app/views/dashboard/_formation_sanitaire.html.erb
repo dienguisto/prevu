@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>nombre d'utilisateurs</h5>
+          <h5>Nombre d'utilisateurs</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_formation_sanitaire.entite.users.count %></h1>
@@ -14,7 +14,7 @@
     <div class="col-md-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>Total préstation pharmacies</h5>
+          <h5>TOTAL PRESTATIONS PHARMACIE</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_formation_sanitaire.consultations.count %></h1>
@@ -36,8 +36,8 @@
     <div class="col-md-4">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <span class="label label-primary pull-right">Ajourd'hui</span>
-          <h5>montant engagé</h5>
+          <span class="label label-primary pull-right">Aujourd'hui</span>
+          <h5>MONTANT ENGAGÉ</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_formation_sanitaire.montant_engage(Date.today).to_s(:delimited, delimiter: ' ') %> F CFA</h1>
@@ -50,7 +50,7 @@
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <span class="label label-success pull-right">Depuis ouverture</span>
-          <h5>montant engagé</h5>
+          <h5>MONTANT ENGAGÉ</h5>
         </div>
         <div class="ibox-content text-right">
           <h1 class="no-margins"><%= current_formation_sanitaire.montant_engage.to_s(:delimited, delimiter: ' ') %> F CFA</h1>

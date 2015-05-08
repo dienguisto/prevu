@@ -5,8 +5,8 @@ default: &default
 
 development:
   <<: *default
-  username: postgres
-  password: passer 
+  username: idrissadiatta 
+  password:
   database: prevu_development
   host: localhost
 
