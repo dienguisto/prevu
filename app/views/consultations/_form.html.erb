@@ -4,6 +4,8 @@
       <%= f.grouped_collection_select :type_acte_medical_id, CategorieActeMedical.all, :type_acte_medicals, :nom, :id, :nom %>
       <%= f.number_field :montant_total %>
       <%= f.text_area :description %>
+      <%= f.select :origine_id, FormationSanitaire.all.map{ |a| [a.nom, a.id]}, include_blank: true %>
+      <%= f.date_field :date_referencement %>
 
     </div>
 

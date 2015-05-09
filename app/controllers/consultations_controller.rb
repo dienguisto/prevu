@@ -91,6 +91,6 @@ class ConsultationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def consultation_params
-      params.require(:consultation).permit(:description, :montant_total, :type_acte_medical_id)
+      params.require(:consultation).permit(:description, :montant_total, :type_acte_medical_id, :origine_id, :date_referencement)
     end
 end
