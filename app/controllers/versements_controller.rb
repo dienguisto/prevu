@@ -100,7 +100,7 @@ class VersementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def versement_params
-      params.require(:versement).permit(:compte_id, :mandataire_id, :montant,
+      params.require(:versement).permit(:compte_id, :mandataire_id, :montant, :montant_confirmation,
                                         mandataire_attributes: [:prenom, :nom, :adresse, :type_piece, :numero_piece])
     end
 end
