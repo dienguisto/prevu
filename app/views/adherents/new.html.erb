@@ -57,10 +57,10 @@
                 <div class="step-content">
                   <%= f.fields_for :souscriptions do |s| %>
                       <%= s.collection_radio_buttons :formule_id, current_structure_assurance.formules, :id, :nom %>
-                      <%= s.form_group :paye do %>
-                          <%= s.check_box :paye %>
-                      <% end %>
-                      <%= s.date_field :date_expiration %>
+                      <%#= s.form_group :paye do %>
+                      <%#= s.check_box :paye %>
+                      <%# end %>
+                      <%#= s.date_field :date_expiration %>
                   <% end %>
                 </div>
               </div>

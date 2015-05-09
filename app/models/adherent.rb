@@ -7,7 +7,7 @@ class Adherent < ActiveRecord::Base
 
   TYPE_PIECE = {
       carte_nationale_identite: 0,
-      passeport: 1
+      passport: 1
   }
 
   SEXE = { 'Masculin' => 1, 'Feminin' => 2 }

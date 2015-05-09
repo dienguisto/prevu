@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
   paginates_per 50
   include Roles
-  ROLES = {
+  ROLES_PREVU = {
+      collecteur: 2
+  }
+  AUTRE_ROLES = {
       administrateur: 0,
       agent_saisie: 1
   }
+  ROLES = ROLES_PREVU.merge AUTRE_ROLES
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
