@@ -5,24 +5,24 @@
   <div>
     <div>
 
-      <h1 class="logo-name">Pre</h1>
+      <h1 class="logo-name">PR+</h1>
 
     </div>
-    <h3>Welcome to Prévu</h3>
-    <p>Login in. To see it in action.</p>
+    <h3>Bienvenue dans PREVU SUITE</h3>
+    <p>Veuillez-vous connecter par ici.</p>
     <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
           <div class="form-group">
             <input autofocus="autofocus" class="form-control" type="email" value="" name="user[email]" placeholder="Email" id="user_email"/>
           </div>
           <div class="form-group">
-            <input class="form-control" type="password" name="user[password]" id="user_password" placeholder="Password"/>
+            <input class="form-control" type="password" name="user[password]" id="user_password" placeholder="Mot de passe"/>
           </div>
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-          <label> <input type="checkbox" class="i-checks"> Remember me </label>
+          <button type="submit" class="btn btn-primary block full-width m-b">Connexion</button>
+          <label> <input type="checkbox" class="i-checks"> Se souvenir de moi </label>
         </div>
     <% end %>
     <%= render "users/shared/links" %>
@@ -34,4 +34,3 @@
 <script src="js/bootstrap.min.js"></script>
 
 </body>
-
