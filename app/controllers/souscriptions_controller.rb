@@ -89,6 +89,6 @@ class SouscriptionsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def souscription_params
     params.require(:souscription).permit(:adherent_id, :formule_id, :paye, :date_paiement,
-                                         :actif, :date_expiration, :numero_police)
+                                         :actif, :date_expiration)
   end
 end

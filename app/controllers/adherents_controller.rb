@@ -146,7 +146,7 @@ class AdherentsController < ApplicationController
       params.require(:adherent).permit(:nom, :prenom, :email, :status_matrimonial, :date_de_naissance, :lieu_de_naissance,
                                        :type_piece_identite, :numero_piece_identite,:avatar, :groupe_id, :profession,
                                        :sexe, :parrain_id, :affiliation, :structure_assurance_id, :numero_assurance,
-                                       contacts_attributes: [:telephone, :adresse, :email],
+                                       :numero_police, contacts_attributes: [:telephone, :adresse, :email],
                                        souscriptions_attributes: [:formule_id, :paye, :date_expiration, :numero_police])
     end
 end

@@ -10,7 +10,7 @@ class Adherent < ActiveRecord::Base
       passeport: 1
   }
 
-  SEXE = { 'Masculin' => 1, 'Feminin' => 2 }
+  SEXE = { 'Masculin' => 0, 'Feminin' => 1 }
 
   MATRIMONIAL = {
       "Célibataire" => 1,

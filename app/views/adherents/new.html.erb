@@ -60,10 +60,10 @@
                       <%= s.form_group :paye do %>
                           <%= s.check_box :paye %>
                       <% end %>
-										  <%= s.text_field :numero_police %>
-										  <%= f.text_field :numero_assurance %>
                       <%= s.date_field :date_expiration %>
                   <% end %>
+									<%= f.text_field :numero_assurance %>
+									<%= f.text_field :numero_police %>
                 </div>
               </div>
           <% end %>
