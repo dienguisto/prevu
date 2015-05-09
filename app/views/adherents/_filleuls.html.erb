@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="text-right">
-					<% if current_adherent.parrain.nil? %>
+					<% if @adherent.parrain_id %>
             <%= link_to '<strong>Ajouter</strong>'.html_safe, adherent_new_parrainage_path(@adherent.id, url_back: adherent_path(@adherent)), class: 'btn btn-sm btn-primary m-t-n-xs' %>
 					<% end %>
         </div>

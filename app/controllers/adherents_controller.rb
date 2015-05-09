@@ -1,6 +1,5 @@
 class AdherentsController < ApplicationController
   before_action :not_for_structure_sanitaire!, except: [:show, :index]
-  before_action :can_parrain_user, only: [:new_parrainage]
   before_action :only_for_structure_asssurance!, only: [:new, :create, :destroy, :edit, :activate, :desactivate]
   before_action :set_adherent, only: [:show, :edit, :update, :destroy, :activate, :desactivate, :new_parrainage]
 
