@@ -38,8 +38,13 @@ class AdherentsController < ApplicationController
       @adherents =  @search.result.order(:structure_assurance_id).page params[:page]
     end
     if params[:qq]
-      @q = Adherent.find_by(params[:qq])
-      @adherent = @q#.result
+      if current_user.user_structure_assurance?
+        @q = current_structure_assurance.adherents.find_by(params[:qq])
+      else
+        @q = Adherent.find_by(params[:qq])
+      end
+
+      @adherent = @q
       if @adherent
         redirect_to @adherent
       end
@@ -49,6 +54,9 @@ class AdherentsController < ApplicationController
   # GET /adherents/1
   # GET /adherents/1.json
   def show
+    if current_user.user_structure_assurance? and @adherent.structure_assurance != current_structure_assurance
+      redirect_to_error
+    end
   end
 
   def carte_assurances
