@@ -1,7 +1,7 @@
-<% if current_user.user_structure_assurance? %>
+<% if current_user.user_structure_assurance? or current_user.admin_system? %>
     <div class="ibox float-e-margins">
       <div class="ibox-title">
-        <h5>Ayant-droit</h5>
+        <h5>Ayants-droits</h5>
       </div>
 
       <div class="ibox-content">

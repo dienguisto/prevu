@@ -6,9 +6,9 @@ class Versement < ActiveRecord::Base
   after_create :update_compte!
 
   validates :montant, presence: true, numericality: {greater_than: 0}, confirmation: true
-  validates :mandataire, presence: true
+  # validates :mandataire, presence: true
 
-  accepts_nested_attributes_for :mandataire
+  accepts_nested_attributes_for :mandataire, reject_if: :all_blank
 
   private
 
