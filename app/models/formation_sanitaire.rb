@@ -14,6 +14,16 @@ class FormationSanitaire < ActiveRecord::Base
     "Formation sanitaire - #{nom}"
   end
 
+  def adresse_struct
+    adresse
+  end
+
+  def nom_struct
+    nom
+  end
+
+
+
   def montant_engage(date=nil)
     if date.nil?
       consultations.reduce(0) {|s, o| s + o.montant_pris_en_charge}

@@ -50,6 +50,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   def only_for_admins!
     unless current_user.administrateur?
       redirect_to_error

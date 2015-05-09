@@ -9,9 +9,9 @@
 						<div class="col-sm-12">
 							<%= search_form_for @search, {:class => 'inline-form'} do |f| %>
 								<div class="form-group" >
-									<%= f.search_field :structure_sanitaire_nom_start,
+									<%= f.search_field :structure_sanitaire_nom_cont,
 																		 {:class => 'form-control', :placeholder => 'Nom...'} %>
-									<%= f.search_field :structure_sanitaire_adresse_start,
+									<%= f.search_field :structure_sanitaire_adresse_cont,
 																		 {:class => 'form-control', :placeholder => 'Adresse...'} %>
 								</div>
 								<%= f.submit 'Rechercher', class: 'btn btn-primary' %>

@@ -6,6 +6,16 @@
 </p>
 
 <p>
+	<strong>Origine:</strong>
+	<%= @consultation.origine %>
+</p>
+
+<p>
+	<strong>Date référencement:</strong>
+	<%= @consultation.date_referencement.strftime("%Y-%m-%d") %>
+</p>
+
+<p>
   <strong>Montant:</strong>
   <%= @consultation.montant_total %>
 </p>

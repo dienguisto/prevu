@@ -10,7 +10,7 @@ class Adherent < ActiveRecord::Base
       passport: 1
   }
 
-  SEXE = { 'Masculin' => 1, 'Feminin' => 2 }
+  SEXE = { 'Masculin' => 0, 'Feminin' => 1 }
 
   MATRIMONIAL = {
       "Célibataire" => 1,
@@ -20,7 +20,7 @@ class Adherent < ActiveRecord::Base
   }
 
   STATUS = {'En attente' => 1, 'Actif' => 2, 'Suspendu' => 3, 'Supprimé' => 4}
-  AFFILIATION = {"Aucune relation" => 0, "Fils" => 1, "Fille" => 2, "Epoux" => 3, "Epouse" => 4}
+  AFFILIATION = {"Parrainage" => 0, "Fils" => 1, "Fille" => 2, "Epoux" => 3, "Epouse" => 4}
 
   enum affiliations: AFFILIATION
   enum type_piece_identite: TYPE_PIECE

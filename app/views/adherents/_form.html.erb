@@ -5,6 +5,7 @@
     <%= f.select :status_matrimonial, Adherent::MATRIMONIAL.keys %>
     <%= f.date_field :date_de_naissance, :as => :date_picker %>
     <%= f.text_field :lieu_de_naissance %>
+		<%= f.text_field :profession %>
     <%= render 'contacts/form', f: f %>
     <%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
     <%= f.text_field :numero_piece_identite %>

@@ -17,6 +17,14 @@
         <%= @adherent.matricule %>
         <br/>
 
+				<strong>Numéro police:</strong>
+				<%= @adherent.numero_police %>
+				<br/>
+
+				<strong>Numéro assurance:</strong>
+				<%= @adherent.numero_assurance %>
+				<br/>
+
         <strong>Nom:</strong>
         <%= @adherent.nom %>
         <br/>
@@ -48,6 +56,10 @@
         <strong>Sexe:</strong>
         <%= Adherent::SEXE.index(@adherent.sexe) %>
         <br/>
+
+				<strong>Profession:</strong>
+				<%= @adherent.profession %>
+				<br/>
 
         <strong>Statut:</strong>
         <%= Adherent::STATUS.index(@adherent.status) %>
