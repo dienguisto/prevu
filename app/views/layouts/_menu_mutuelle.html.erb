@@ -1,12 +1,16 @@
 <li>
-  <%= link_to formules_path do %>
-      <i class="fa fa-building-o"></i> <span class="nav-label">Formules</span>
+  <%= link_to '' do %>
+      <i class="fa fa-user"></i> <span class="nav-label">Adherents</span> <span class="fa arrow"></span>
   <% end %>
+  <ul class="nav nav-second-level">
+    <li><%= link_to 'Liste des adhérents', adherents_path %></li>
+    <li><%= link_to 'Prévu Enrol', new_adherent_path %></li>
+  </ul>
 </li>
 
 <li>
-  <%= link_to adherents_path do %>
-      <i class="fa fa-user"></i> <span class="nav-label">Adherents</span>
+  <%= link_to formules_path do %>
+      <i class="fa fa-building-o"></i> <span class="nav-label">Formules</span>
   <% end %>
 </li>
 
