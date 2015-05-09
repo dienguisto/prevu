@@ -9,5 +9,6 @@ module ActsAsStructureSanitaire
     validates :structure_sanitaire, presence: true
 
     delegate :nom, to: :structure_sanitaire
+    delegate :adresse, to: :structure_sanitaire
   end
 end

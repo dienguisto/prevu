@@ -144,7 +144,7 @@ class AdherentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def adherent_params
       params.require(:adherent).permit(:nom, :prenom, :email, :status_matrimonial, :date_de_naissance, :lieu_de_naissance,
-                                       :type_piece_identite, :numero_piece_identite,:avatar, :groupe_id,
+                                       :type_piece_identite, :numero_piece_identite,:avatar, :groupe_id, :profession,
                                        :sexe, :parrain_id, :affiliation, :structure_assurance_id,
                                        contacts_attributes: [:telephone, :adresse, :email],
                                        souscriptions_attributes: [:formule_id, :paye, :date_expiration])
