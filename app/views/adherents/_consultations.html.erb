@@ -1,7 +1,7 @@
-<% if current_user.user_formation_sanitaire? %>
+<% if current_user.user_formation_sanitaire? or current_user.user_system? or current_user.administrateur? %>
     <div class="ibox float-e-margins">
       <div class="ibox-title">
-        <h5>Consultation</h5>
+        <h5>5 dernièrs consultations</h5>
       </div>
 
       <div class="ibox-content">
@@ -20,15 +20,15 @@
               </thead>
 
               <tbody>
-              <% @adherent.consultations.each do |consultation| %>
-                  <tr>
-                    <td><%= link_to "##{consultation.id}", [@adherent, consultation], class: 'ordLink' %></td>
-                    <td><%= consultation.created_at %></td>
-                    <td><%= consultation.formation_sanitaire.title %></td>
-                    <td><%= consultation.type_acte_medical.nom %></td>
-                    <td><%= consultation.montant_total %></td>
-                    <td><%= link_to '<i class="fa fa-print"></i>'.html_safe, consultation_facture_path(consultation), {target: '_blank'} %></td>
-                  </tr>
+							<% for consultation in @adherent.consultations.limit(5) %>
+								<tr>
+									<td><%= link_to "##{consultation.id}", [@adherent, consultation], class: 'ordLink' %></td>
+									<td><%= consultation.created_at %></td>
+									<td><%= consultation.formation_sanitaire.title %></td>
+									<td><%= consultation.type_acte_medical.nom %></td>
+									<td><%= consultation.montant_total %></td>
+									<td><%= link_to '<i class="fa fa-print"></i>'.html_safe, consultation_facture_path(consultation), {target: '_blank'} %></td>
+								</tr>
               <% end %>
               </tbody>
             </table>
@@ -36,6 +36,7 @@
         </div>
         <div class="text-right">
           <%= link_to '<strong>Ajouter une consultation</strong>'.html_safe, new_adherent_consultation_path(@adherent), class: 'btn btn-sm btn-primary m-t-n-xs' %>
+					<%= link_to '<strong>Voir plus</strong>'.html_safe, adherent_consultations_path(@adherent), class: 'btn btn-sm btn-primary m-t-n-xs' %>
         </div>
       </div>
     </div>

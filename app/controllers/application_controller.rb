@@ -50,6 +50,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def can_parrain_user
+    unless current_adherent.parrain.nil?
+      redirect_to_error
+    end
+  end
+
   def only_for_admins!
     unless current_user.administrateur?
       redirect_to_error

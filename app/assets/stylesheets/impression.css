@@ -2,7 +2,7 @@
     body {
 
         font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-        font-size: 1em;
+        font-size: 0.75em;
         color: #333333;
         /*    margin-top: 2cm;
             margin-right: 2cm;
@@ -13,10 +13,30 @@
             column-rule: thin solid black;*/
     }
 
+    .carte{
+        font-size: 12pt;
+        text-align: center;
+    }
+
+    .mini_titre{
+        font-size: 4pt;
+        text-align: center;
+    }
+
+    .sous_carte{
+        font-size: 8pt;
+    }
+
     .avatar {
+        width: 45px;
+        height: 45px;
+        margin-right: 0;
+    }
+
+    .avatar2 {
         width: 90px;
         height: 90px;
-        margin-right: 1px;
+        margin-right: 0;
     }
 
     .logo{

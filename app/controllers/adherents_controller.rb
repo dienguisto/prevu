@@ -1,5 +1,6 @@
 class AdherentsController < ApplicationController
   before_action :not_for_structure_sanitaire!, except: [:show, :index]
+  before_action :can_parrain_user, only: [:new_parrainage]
   before_action :only_for_structure_asssurance!, only: [:new, :create, :destroy, :edit, :activate, :desactivate]
   before_action :set_adherent, only: [:show, :edit, :update, :destroy, :activate, :desactivate, :new_parrainage]
 
@@ -34,7 +35,7 @@ class AdherentsController < ApplicationController
       @adherents = @search.result.order(:id).page params[:page]
     elsif current_user.user_system?
       @search = Adherent.ransack(params[:q])
-      @adherents =  @search.result.order(:id).page params[:page]
+      @adherents =  @search.result.order(:structure_assurance_id).page params[:page]
     end
     if params[:qq]
       @q = Adherent.find_by(params[:qq])

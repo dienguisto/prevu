@@ -5,8 +5,66 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-content">
-          <%= render 'form' %>
-        </div>
+					<%= bootstrap_form_for(@adherent, layout: :horizontal) do |f| %>
+						<%= f.text_field :nom %>
+						<%= f.text_field :prenom %>
+						<%= f.select :sexe, Adherent::SEXE.keys %>
+						<%= f.select :status_matrimonial, Adherent::MATRIMONIAL.keys %>
+						<%= f.date_field :date_de_naissance, :as => :date_picker %>
+						<%= f.text_field :lieu_de_naissance %>
+						<%= render 'contacts/form', f: f %>
+						<%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
+						<%= f.text_field :numero_piece_identite %>
+						<%= f.file_field :avatar %>
+
+						<%= f.select :groupe,
+												 Groupe.all.map{ |c| [c.nom, c.id]},
+												 input_html: {multiple: true,
+																			class: 'chosen-select chosen-container chosen-container-multi chosen-with-drop chosen-container-active' }
+						%>
+
+						<div class="form-group">
+							<div class="col-sm-4 col-sm-offset-2">
+								<%= link_to 'Annuler', adherents_path, class: 'btn btn-white' %>
+								<%= f.button 'Mettre à jour', class: 'btn btn-primary' %>
+							</div>
+						</div>
+					<% end %>
+
+					<script type="text/javascript">
+						$('.datetimepicker').datetimepicker();
+
+						$('#groupe').autocomplete({
+							minLength: 3,
+							source: function(request, response) {
+								$.ajax({
+									url: "<%= groupes_path %>",
+									method: 'post',
+									dataType: "json",
+									data: {nom: request.term},
+									success: function( data ) {
+										console.log(data);
+										response( $.map( data, function( item ) {
+											//alert(item.label);
+											return {
+												label: item.nom,
+												value: item.nom,
+												id: item.id
+											}
+										}));
+									}
+								});
+							},
+							select: function (event, ui) {
+								$("#adherent_groupe_id").val(ui.item.id);  // ui.item.value contains the id of the selected label
+								$("#groupe").val(ui.item.label);
+								return false;
+							}
+						});
+					</script>
+
+
+				</div>
       </div>
     </div>
   </div>
