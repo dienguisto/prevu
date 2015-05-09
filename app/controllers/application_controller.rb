@@ -63,6 +63,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def only_for_structure_asssurance_or_system!
+    unless current_user.user_structure_assurance? or current_user.user_system?
+      redirect_to_error
+    end
+  end
+
   def only_for_pharmacie!
     unless current_user.user_pharmacie?
       redirect_to_error

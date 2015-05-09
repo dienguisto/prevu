@@ -27,7 +27,7 @@
               <% @versements.each do |versement| %>
                   <tr>
                     <td><%= "#{versement.compte.proprietaire.full_name} (#{link_to(versement.compte.proprietaire.matricule, versement.compte.proprietaire)})".html_safe %></td>
-                    <td><%= versement.mandataire.full_name %></td>
+                    <td><%= versement.mandataire.try(:full_name) %></td>
                     <td><%= versement.montant.to_s(:delimited, delimiter: ' ') %> F CFA</td>
                     <td><%=l versement.created_at %></td>
                   </tr>

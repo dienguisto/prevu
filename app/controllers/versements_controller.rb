@@ -1,12 +1,16 @@
 class VersementsController < ApplicationController
-  before_action :only_for_structure_asssurance!
+  before_action :only_for_structure_asssurance_or_system!
   before_action :set_adherent
   before_action :set_versement, only: [:show, :edit, :update, :destroy]
 
   # GET /versements
   # GET /versements.json
   def index
-    @versements = current_structure_assurance.versements.order('created_at DESC').page params[:page]
+    if current_user.user_structure_assurance?
+      @versements = current_structure_assurance.versements.order('created_at DESC').page params[:page]
+    elsif current_user.user_system?
+      @versements = Versement.all.order('created_at DESC').page params[:page]
+    end
   end
 
   # GET /versements/1
@@ -26,7 +30,11 @@ class VersementsController < ApplicationController
 
   def redirect_versement
     matricule = params[:adherent][:matricule]
-    @adherent = current_structure_assurance.adherents.find_by(matricule: matricule)
+    if current_user.user_structure_assurance?
+      @adherent = current_structure_assurance.adherents.find_by(matricule: matricule)
+    elsif current_user.user_system?
+      @adherent = Adherent.find_by(matricule: matricule)
+    end
     if @adherent
       redirect_to new_adherent_versement_path(@adherent)
     else
@@ -48,7 +56,7 @@ class VersementsController < ApplicationController
 
     respond_to do |format|
       if @versement.save
-        format.html { redirect_to @adherent, notice: 'Le versement est bien pris en compte.' }
+        format.html { redirect_to versements_path, notice: 'Le versement est bien pris en compte.' }
         format.json { render :show, status: :created, location: @versement }
       else
         format.html { render :new }
