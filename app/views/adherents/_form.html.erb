@@ -13,7 +13,7 @@
     <%= f.file_field :avatar %>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="groupe">Groupe</label>
+      <label class="control-label col-sm-2" for="groupe">Groupement</label>
       <div class="col-sm-10">
         <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
       </div>
@@ -64,4 +64,3 @@
         }
     });
 </script>
-

@@ -71,7 +71,7 @@
             <hr/>
             <% if current_user.user_structure_assurance? %>
                 <% if @adherent.status == 2 %>
-                    <%= link_to 'Desactiver',
+                    <%= link_to 'Désactiver',
                                 desactiver_adherent_path(@adherent),
                                 :class => 'btn btn-sm btn-danger',
                                 method: :post %>

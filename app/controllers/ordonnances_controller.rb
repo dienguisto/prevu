@@ -1,5 +1,5 @@
 class OrdonnancesController < ApplicationController
-  before_action :only_for_pharmacie!
+  before_action :only_for_pharmacie!, except: [:index, :show]
   before_action :set_adherent
   before_action :set_ordonnance, only: [:show, :edit, :update, :destroy, :facture]
   before_action :set_confirm_details, only: [:confirm]
@@ -10,7 +10,7 @@ class OrdonnancesController < ApplicationController
     if current_user.user_system?
       @ordonnances = Ordonnance.all
     else
-      @ordonnances = current_pharmacy.ordonnances
+      @ordonnances = current_adherent.ordonnances
     end
   end
 

@@ -1,4 +1,4 @@
-<%= titre_page "Micro assurance : #{@micro_assurance.structure_assurance.nom}" %>
+<%= titre_page "Micro-assurance : #{@micro_assurance.structure_assurance.nom}" %>
 <% structure_assurance = @micro_assurance.structure_assurance %>
 
 <div class="wrapper wrapper-content">
@@ -16,7 +16,7 @@
             <h4><strong><%= @micro_assurance.structure_assurance.nom %></strong></h4>
             <p><i class="fa fa-map-marker"></i> <%= structure_assurance.adresse %></p>
             <h5>
-              About me
+              A propos
             </h5>
             <p>
               <strong>numéro agrément : </strong><%= structure_assurance.numero_agrement %> <br/>

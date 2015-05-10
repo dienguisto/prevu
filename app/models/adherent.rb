@@ -7,7 +7,7 @@ class Adherent < ActiveRecord::Base
 
   TYPE_PIECE = {
       carte_nationale_identite: 0,
-      passeport: 1
+      passport: 1
   }
 
   SEXE = { 'Masculin' => 0, 'Feminin' => 1 }
@@ -46,6 +46,7 @@ class Adherent < ActiveRecord::Base
             presence: true
 
   validates :numero_piece_identite, uniqueness: true
+  validates_uniqueness_of :numero_police, :scope => :structure_assurance_id
   #validates_presence_of :password_txt, :on => :create
 
   #  has_secure_password

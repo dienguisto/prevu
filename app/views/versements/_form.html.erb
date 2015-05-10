@@ -9,19 +9,28 @@
         </div>
     <% end %>
     <%= f.number_field :montant %>
+    <%= f.number_field :montant_confirmation %>
     <div class="hr-line-dashed"></div>
     <div class="form-group">
       <div class="col-sm-4 col-sm-offset-2">
-        <h3>informations sur le mandataire</h3>
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+    
+>>>>>>> origin/master
+=======
+        <h3>informations sur le mandataire (au besoin)</h3>
+>>>>>>> origin/master
       </div>
     </div>
     <%= f.fields_for :mandataire do |m| %>
-        <%= m.text_field :prenom %>
+        <%= m.text_field :prenom, label: 'Prénom' %>
         <%= m.text_field :nom %>
         <%= m.text_field :adresse %>
         <%= m.telephone_field :telephone %>
-        <%= m.select :type_piece, Adherent.type_piece_identites.keys, :include_blank => true %>
-        <%= m.text_field :numero_piece %>
+        <%= m.select :type_piece, Adherent.type_piece_identites.keys, :include_blank => true, label: 'Type pièce' %>
+        <%= m.text_field :numero_piece, label: 'Numéro pièce' %>
     <% end %>
 
     <div class="form-group">
