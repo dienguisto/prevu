@@ -128,3 +128,5 @@ build/
 *.tmproj
 *.tmproject
 tmtags
+
+app/views/versements/_form.html.erb
