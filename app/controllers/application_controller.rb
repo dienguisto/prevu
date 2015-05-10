@@ -50,6 +50,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def not_for_system!
+    if current_user.user_system?
+      redirect_to_error
+    end
+  end
 
   def only_for_admins!
     unless current_user.administrateur?

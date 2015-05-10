@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/reporting' => 'reporting#index', as: :reporting
+
   scope '/parametres' do
     get '/categories' => 'parametres#categories'
     post '/groupes/add' => 'parametres#add_groupe'
