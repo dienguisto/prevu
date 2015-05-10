@@ -1,19 +1,38 @@
-<h2>Change your password</h2>
+<body class="gray-bg">
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+  <div>
+    <div>
 
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
+      <h1 class="logo-name">PR+</h1>
 
-  <div class="form-inputs">
-    <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+    </div>
+    <h3>Bienvenue dans PREVU SUITE</h3>
+    <p>Modification du mot de passe?</p>
+    <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.hidden_field :reset_password_token, as: :hidden %>
+        <%#= f.full_error :reset_password_token %>
+
+        <div class="form-inputs">
+          <div class="form-group">
+            <input class="form-control" type="password" name="user[password]" id="user_password" placeholder="Mot de passe"/>
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" type="password" name="user[password]" id="user_password" placeholder="Confirmation du mot de passe"/>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary block full-width m-b">Changer mon mot de passe</button>
+        </div>
+    <% end %>
+    <%= render "users/shared/links" %>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
-<%= render "users/shared/links" %>
+</body>

@@ -3,11 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :authenticate_user!
+
   helper_method :current_adherent, :current_structure_assurance, :current_pharmacy, :current_formation_sanitaire,
                 :current_structure_aperitrice
-
-  before_action :authenticate_user!
-  # layout :layout_by_resource
 
   # @return [StructureAperitrice]
   def current_structure_aperitrice
@@ -90,12 +89,4 @@ class ApplicationController < ActionController::Base
     flash[:error] = 'Vous ne pouvez pas executer cette action'
     redirect_to (request.referrer || root_path)
   end
-
-  # def layout_by_resource
-  #   if  devise_controller? && action_name == 'new'
-  #     'empty'
-  #   else
-  #     'application'
-  #   end
-  # end
 end

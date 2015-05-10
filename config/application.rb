@@ -27,6 +27,7 @@ module Prevu
 
     config.to_prepare do
       Devise::SessionsController.layout 'empty'
+      Devise::PasswordsController.layout 'empty' #proc { |controller| user_signed_in? ? 'application' : 'empty' }
     end
 
     config.action_mailer.default_url_options = { host: 'http://prevu.scicasoft.com' }
