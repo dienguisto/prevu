@@ -1,12 +1,16 @@
 class ConsultationsController < ApplicationController
   before_action :set_adherent
-  before_action :only_for_formation_sanitaire!
+  before_action :only_for_formation_sanitaire!, except: [:index, :show]
   before_action :set_consultation, only: [:show, :edit, :update, :destroy, :facture]
 
   # GET /consultations
   # GET /consultations.json
   def index
-    @consultations = Consultation.all
+    if current_user.user_system?
+      @consultations = Consultation.all
+    else
+      @consultations = current_adherent.consultations
+    end
   end
 
   # GET /consultations/1

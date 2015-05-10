@@ -35,17 +35,19 @@ class AdherentsController < ApplicationController
     elsif current_user.user_system?
       @search = Adherent.ransack(params[:q])
       @adherents =  @search.result.order(:structure_assurance_id).page params[:page]
+    else
+      @search = Adherent.ransack(params[:q])
+      @adherents =  @search.result.page params[:page]
     end
     if params[:qq]
       if current_user.user_structure_assurance?
-        @q = current_structure_assurance.adherents.find_by(params[:qq])
+        @q = current_structure_assurance.adherents.where('matricule=? or numero_police=?', params[:qq], params[:qq]).first
       else
         @q = Adherent.find_by(params[:qq])
       end
 
-      @adherent = @q
-      if @adherent
-        redirect_to @adherent
+      if @q
+        redirect_to @q
       end
     end
   end
@@ -61,9 +63,18 @@ class AdherentsController < ApplicationController
   def carte_assurances
     @adherents = []
     if params[:id] or params[:adherent_id]
-      @adherents << Adherent.find(params[:id] || params[:adherent_id])
+      @adherents << Adherent.where('id=? and numero_police!=?', params[:id] || params[:adherent_id], '').first
     elsif params[:ids]
-      @adherents += params[:ids].map { |i| Adherent.find(i) }
+      #@adherents += params[:ids].map { |i| Adherent.where('id=? and numero_police!=?', i, '').
+      #    where.not(structure_assurance_id: nil).first }
+      params[:ids].each do |i|
+        a = Adherent.where('id=? and numero_police!=?', i, '').first
+        if a and a.structure_assurance_id
+          @adherents << a
+        end
+      end
+    else
+      render adherents_path
     end
     render :layout => false
   end

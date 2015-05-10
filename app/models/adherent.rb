@@ -46,6 +46,7 @@ class Adherent < ActiveRecord::Base
             presence: true
 
   validates :numero_piece_identite, uniqueness: true
+  validates_uniqueness_of :numero_police, :scope => :structure_assurance_id
   #validates_presence_of :password_txt, :on => :create
 
   #  has_secure_password
