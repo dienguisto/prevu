@@ -13,7 +13,7 @@
             <h4><strong><%= structure_aperitrice.nom %></strong></h4>
             <p><i class="fa fa-map-marker"></i> <%= structure_aperitrice.adresse %></p>
             <h5>
-              About me
+              A propos
             </h5>
             <p>
               <strong>date d'adhésion : </strong><%= structure_aperitrice.date_adhesion %> <br/>
@@ -25,7 +25,7 @@
                   <%= link_to '<i class="fa fa-edit"></i> modifier'.html_safe, edit_structure_aperitrice_path(@structure_aperitrice), class: 'btn btn-default btn-sm btn-block' %>
                 </div>
                 <div class="col-md-6">
-                  <%= link_to 'Back', structure_aperitrices_path, class: 'btn btn-default btn-sm btn-block'  %>
+                  <%= link_to 'Retour', structure_aperitrices_path, class: 'btn btn-default btn-sm btn-block'  %>
                 </div>
               </div>
             </div>

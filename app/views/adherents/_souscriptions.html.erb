@@ -30,7 +30,7 @@
                   <td><%= souscription.date_expiration %></td>
                   <td>
                     <% if souscription.actif? %>
-                        <%= link_to 'desactiver', adherent_souscription_desactiver_path(@adherent, souscription) %>
+                        <%= link_to 'désactiver', adherent_souscription_desactiver_path(@adherent, souscription) %>
                     <% else %>
                         <%= link_to 'activer', adherent_souscription_activer_path(@adherent, souscription) %>
                     <% end %>

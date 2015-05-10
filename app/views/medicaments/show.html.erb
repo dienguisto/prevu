@@ -1,4 +1,4 @@
-<%= titre_page "Medicament" %>
+<%= titre_page "Médicament" %>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -11,7 +11,7 @@
         <div class="ibox-content">
           <div class="row">
               <strong>Nom: </strong><%= @medicament.nom %> <br/>
-              <strong>Reference: </strong><%= @medicament.reference %> <br/>
+              <strong>Référence: </strong><%= @medicament.reference %> <br/>
               <strong>Actif?: </strong><%= afficher_etat @medicament.actif %> <br/>
               <strong>Créé le : </strong><%=l @medicament.created_at %> <br/>
           </div>
@@ -19,7 +19,7 @@
             <div class="row">
               <% if @medicament.actif? %>
                   <div class="col-md-2">
-                    <%= link_to '<i class="fa fa-edit"></i> Desactiver'.html_safe, medicament_desactiver_path(@medicament), class: 'btn btn-danger btn-sm btn-block' %>
+                    <%= link_to '<i class="fa fa-edit"></i> Désactiver'.html_safe, medicament_desactiver_path(@medicament), class: 'btn btn-danger btn-sm btn-block' %>
                   </div>
               <% else %>
                   <div class="col-md-2">
