@@ -1,10 +1,22 @@
 class FormulesController < ApplicationController
   before_action :only_for_structure_asssurance!
-  before_action :set_formule, only: [:show, :edit, :update, :destroy, :ajouter_structure_sanitaire]
+  before_action :set_formule, only: [:show, :edit, :update, :destroy, :ajouter_structure_sanitaire, :activer_structure_sanitaire, :desactiver_structure_sanitaire]
+  before_action :set_structure_sanitaire, only: [:ajouter_structure_sanitaire, :activer_structure_sanitaire, :desactiver_structure_sanitaire]
 
   def ajouter_structure_sanitaire
-    structure_sanitaire = StructureSanitaire.find(params[:id_structure])
-    @formule.ajouter_structure_sanitaire!(structure_sanitaire)
+    @formule.ajouter_structure_sanitaire!(@structure_sanitaire)
+    redirect_to @formule
+  end
+
+  def activer_structure_sanitaire
+    formule_structure_sanitaire = @formule.formule_structure_sanitaires.find_by(structure_sanitaire: @structure_sanitaire)
+    formule_structure_sanitaire.activate!
+    redirect_to @formule
+  end
+
+  def desactiver_structure_sanitaire
+    formule_structure_sanitaire = @formule.formule_structure_sanitaires.find_by(structure_sanitaire: @structure_sanitaire)
+    formule_structure_sanitaire.desactivate!
     redirect_to @formule
   end
 
@@ -70,6 +82,9 @@ class FormulesController < ApplicationController
   end
 
   private
+    def set_structure_sanitaire
+      @structure_sanitaire = StructureSanitaire.find(params[:id_structure])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_formule
       @formule = Formule.find(params[:id] || params[:formule_id])

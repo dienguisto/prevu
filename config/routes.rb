@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   resources :groupes
   resources :formules do
     get 'ajouter_structure_sanitaire/:id_structure' => 'formules#ajouter_structure_sanitaire', as: :ajouter_structure_sanitaire
+    get 'activer_structure_sanitaire/:id_structure' => 'formules#activer_structure_sanitaire', as: :activer_structure_sanitaire
+    get 'desactiver_structure_sanitaire/:id_structure' => 'formules#desactiver_structure_sanitaire', as: :desactiver_structure_sanitaire
   end
   resources :medicaments do
     get 'activer'

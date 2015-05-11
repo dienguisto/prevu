@@ -9,7 +9,8 @@
           <thead>
           <tr>
             <th>Noms</th>
-            <th>Actifs ?</th>
+            <th width="75px">Actifs ?</th>
+            <th width="75px"></th>
           </tr>
           </thead>
 
@@ -18,7 +19,20 @@
               <% if fss.structure_sanitaire.structure_type == 'Pharmacy' %>
                   <tr>
                     <td><%= fss.structure_sanitaire.nom %></td>
-                    <td width="75px"><%= afficher_etat(fss.actif) %></td>
+                    <td><%= afficher_etat(fss.actif) %></td>
+                    <td>
+                      <% if fss.actif %>
+                          <%= link_to 'Désactiver',
+                                      formule_desactiver_structure_sanitaire_path(@formule, fss.structure_sanitaire),
+                                      :class => 'btn btn-xs btn-danger',
+                                      method: :post %>
+                      <% else %>
+                          <%= link_to 'Activer',
+                                      formule_activer_structure_sanitaire_path(@formule, fss.structure_sanitaire), :class => 'btn btn-xs btn-success',
+                                      method: :post
+                          %>
+                      <% end %>
+                    </td>
                   </tr>
               <% end %>
           <% end %>
