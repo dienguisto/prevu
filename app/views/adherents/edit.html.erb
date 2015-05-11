@@ -11,12 +11,11 @@
 						<%= f.text_field :nom %>
 						<%= f.text_field :prenom %>
 						<%= f.text_field :profession %>
-						<%= f.select :sexe, Adherent::SEXE.keys %>
-						<%= f.select :status_matrimonial, Adherent::MATRIMONIAL.keys %>
+						<%= f.select :sexe, Adherent.sexes %>
+						<%= f.select :status_matrimonial, Adherent.situations %>
 						<%= f.date_field :date_de_naissance, :as => :date_picker %>
 						<%= f.text_field :lieu_de_naissance %>
-						<%= render 'contacts/form', f: f %>
-						<%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
+						<%= f.select :type_piece_identite, Adherent.type_piece_identites %>
 						<%= f.text_field :numero_piece_identite %>
 						<%= f.file_field :avatar %>
 

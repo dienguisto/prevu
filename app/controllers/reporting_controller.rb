@@ -4,4 +4,9 @@ class ReportingController < ApplicationController
 
   def index
   end
+
+  def stat_by_sex
+    @stats = current_user.current_structure_assurance.adherents.group(:sexe).count
+    render @stats.to_json
+  end
 end

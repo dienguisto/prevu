@@ -10,7 +10,7 @@ class Adherent < ActiveRecord::Base
       passport: 1
   }
 
-  SEXE = { 'Masculin' => 0, 'Feminin' => 1 }
+  SEXE = { Masculin:  0, Féminin: 1 }
 
   MATRIMONIAL = {
       "Célibataire" => 1,
@@ -23,6 +23,8 @@ class Adherent < ActiveRecord::Base
   AFFILIATION = {"Parrainage" => 0, "Fils" => 1, "Fille" => 2, "Epoux" => 3, "Epouse" => 4}
 
   enum affiliations: AFFILIATION
+  enum sexes: SEXE
+  enum situations: MATRIMONIAL
   enum type_piece_identite: TYPE_PIECE
 
   has_and_belongs_to_many :tags

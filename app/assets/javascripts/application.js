@@ -16,6 +16,10 @@
 //= require pace/pace.min.js
 //= require toastr/toastr.min.js
 //= require detail_lignes
+//= require flot/jquery.flot
+//= require flot/jquery.flot.pie
+//= require flot/jquery.flot.resize
+//= require flot/jquery.flot.time
 //= require slimscroll/jquery.slimscroll.min.js
 //= require chosen.jquery.min
 //= require colorpicker/bootstrap-colorpicker.min.js

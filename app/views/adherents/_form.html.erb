@@ -1,8 +1,8 @@
 <%= bootstrap_form_for(@adherent, layout: :horizontal) do |f| %>
     <%= f.text_field :nom %>
     <%= f.text_field :prenom %>
-    <%= f.select :sexe, Adherent::SEXE.keys %>
-    <%= f.select :status_matrimonial, Adherent::MATRIMONIAL.keys %>
+    <%= f.select :sexe, Adherent.sexes %>
+    <%= f.select :status_matrimonial, Adherent.situations %>
     <%= f.date_field :date_de_naissance, :as => :date_picker %>
     <%= f.text_field :lieu_de_naissance %>
 		<%= f.text_field :profession %>
