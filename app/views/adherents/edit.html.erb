@@ -15,7 +15,7 @@
 						<%= f.select :status_matrimonial, Adherent.situations %>
 						<%= f.date_field :date_de_naissance, :as => :date_picker %>
 						<%= f.text_field :lieu_de_naissance %>
-						<%= f.select :type_piece_identite, Adherent.type_piece_identites %>
+						<%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
 						<%= f.text_field :numero_piece_identite %>
 						<%= f.file_field :avatar %>
 

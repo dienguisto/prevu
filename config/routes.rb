@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   get '/reporting' => 'reporting#index', as: :reporting
+  get '/reporting/by_sexe' => 'reporting#stat_by_sex', as: :reporting_sex
+  get '/reporting/by_status_mat' => 'reporting#stat_by_situation_matrimoniale',
+    as: :reporting_status_mat
 
   scope '/parametres' do
     get '/categories' => 'parametres#categories'

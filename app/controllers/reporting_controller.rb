@@ -6,7 +6,12 @@ class ReportingController < ApplicationController
   end
 
   def stat_by_sex
-    @stats = current_user.current_structure_assurance.adherents.group(:sexe).count
-    render @stats.to_json
+    @stats = current_structure_assurance.adherents.group(:sexe).count
+    render :json => @stats, :layout => nil
+  end
+
+  def stat_by_situation_matrimoniale
+    @stats = current_structure_assurance.adherents.group(:status_matrimonial).count
+    render :json => @stats, :layout => nil
   end
 end
