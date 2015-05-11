@@ -36,8 +36,8 @@
                 <div class="step-content">
                   <%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
                   <%= f.text_field :numero_piece_identite %>
+                  <%= f.text_field :profession %>
                   <%= f.hidden_field :groupe_id %>
-                  <%= f.file_field :avatar %>
 
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="groupe">Groupe</label>
@@ -45,6 +45,10 @@
                       <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
                     </div>
                   </div>
+
+                  <%= f.text_field :numero_assurance %>
+                  <%= f.text_field :numero_police %>
+                  <%= f.file_field :avatar %>
 
                   <%#= f.select :tags,
                                Tag.all.map{ |c| [c.nom, c.id] },
@@ -62,8 +66,6 @@
                       <%# end %>
                       <%#= s.date_field :date_expiration %>
                   <% end %>
-									<%= f.text_field :numero_assurance %>
-									<%= f.text_field :numero_police %>
                 </div>
               </div>
           <% end %>

@@ -1,0 +1,32 @@
+<% if current_user.user_structure_assurance? %>
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>les 5 derniers Versements</h5>
+      </div>
+
+      <div class="ibox-content">
+        <div class="table-responsive">
+          <h3>SOLDE : <%= @adherent.compte.solde %> F CFA</h3>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Montant</th>
+              <th>Mandataire</th>
+              <th>Dates</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @adherent.versements.order('created_at desc').limit(5).each do |versement| %>
+                <tr>
+                  <td align="right"><%= versement.montant.to_s(:delimited, delimiter: ' ') %> F CFA</td>
+                  <td><%= versement.mandataire.try(:full_name) %></td>
+                  <td><%=l versement.created_at %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<% end %>
