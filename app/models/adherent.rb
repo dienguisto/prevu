@@ -36,6 +36,7 @@ class Adherent < ActiveRecord::Base
   has_many :souscriptions
   has_many :formules, through: :souscriptions
   has_many :cotisations
+  has_many :versements, through: :compte
 
   before_create :encrypt_password
   before_create :generate_matricule
