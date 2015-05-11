@@ -9,7 +9,7 @@ class Souscription < ActiveRecord::Base
   validates :formule, presence: true
   validates :date_expiration, presence: true, if: 'paye?'
 
-  scope  :en_cours, -> { where('date_expiration >= ?', Time.now) }
+  scope  :en_cours, -> { actifs.where('date_expiration >= ?', Time.now) }
 
   before_create :set_date_paiement
 
