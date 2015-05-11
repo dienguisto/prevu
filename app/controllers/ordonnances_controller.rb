@@ -9,8 +9,10 @@ class OrdonnancesController < ApplicationController
   def index
     if current_user.user_system?
       @ordonnances = Ordonnance.all
-    else
+    elsif params[:adherent_id]
       @ordonnances = current_adherent.ordonnances
+    else
+      @ordonnances = Ordonnance.all
     end
   end
 

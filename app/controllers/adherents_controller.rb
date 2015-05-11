@@ -39,6 +39,7 @@ class AdherentsController < ApplicationController
       @search = Adherent.ransack(params[:q])
       @adherents =  @search.result.page params[:page]
     end
+
     if params[:qq]
       if current_user.user_structure_assurance?
         @q = current_structure_assurance.adherents.where('matricule=? or numero_police=?', params[:qq], params[:qq]).first
@@ -63,13 +64,16 @@ class AdherentsController < ApplicationController
   def carte_assurances
     @adherents = []
     if params[:id] or params[:adherent_id]
-      @adherents << Adherent.where('id=? and numero_police!=?', params[:id] || params[:adherent_id], '').first
+      a = Adherent.find(params[:id] || params[:adherent_id])
+      if a.souscription_en_cours
+        @adherents << a
+      end
     elsif params[:ids]
       #@adherents += params[:ids].map { |i| Adherent.where('id=? and numero_police!=?', i, '').
       #    where.not(structure_assurance_id: nil).first }
       params[:ids].each do |i|
-        a = Adherent.where('id=? and numero_police!=?', i, '').first
-        if a and a.structure_assurance_id
+        a = Adherent.find(i)
+        if a and a.souscription_en_cours
           @adherents << a
         end
       end
