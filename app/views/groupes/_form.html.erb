@@ -1,7 +1,9 @@
 <%= bootstrap_form_for(@groupe, layout: :horizontal) do |f| %>
 
     <%= f.text_field :nom %>
-    <%= f.select :structure_aperitrice_id, StructureAperitrice.all.map{ |a| [a.nom, a.id]}, include_blank: true %>
+    <% if current_user.user_system? %>
+        <%= f.select :structure_aperitrice_id, StructureAperitrice.all.map{ |a| [a.nom, a.id]}, include_blank: true %>
+    <% end %>
 
     <div class="form-group">
       <div class="col-sm-4 col-sm-offset-2">

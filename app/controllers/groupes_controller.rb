@@ -5,7 +5,7 @@ class GroupesController < ApplicationController
   # GET /groupes.json
   def index
     @groupes = Groupe.none
-    if current_user.user_system?
+    if current_user.user_system? or current_user.user_structure_assurance?
       @groupes = Groupe.all
     elsif current_user.user_structure_aperitrice?
       @groupes = current_structure_aperitrice.groupes
@@ -15,7 +15,11 @@ class GroupesController < ApplicationController
   # GET /groupes/1
   # GET /groupes/1.json
   def show
-    @adherents = @groupe.adherents.page params[:page]
+    if current_user.user_structure_assurance?
+      @adherents = @groupe.adherents.where(structure_assurance: current_structure_assurance).page params[:page]
+    else
+      @adherents = @groupe.adherents.page params[:page]
+    end
   end
 
   # GET /groupes/new
@@ -32,6 +36,8 @@ class GroupesController < ApplicationController
   # POST /groupes.json
   def create
     @groupe = Groupe.new(groupe_params)
+
+    @groupe.structure_assurance = current_structure_assurance if current_user.admin_structure_assurance?
 
     respond_to do |format|
       if @groupe.save

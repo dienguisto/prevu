@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150509204202) do
+ActiveRecord::Schema.define(version: 20150512120604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,9 +183,11 @@ ActiveRecord::Schema.define(version: 20150509204202) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "structure_aperitrice_id"
+    t.integer  "structure_assurance_id"
   end
 
   add_index "groupes", ["structure_aperitrice_id"], name: "index_groupes_on_structure_aperitrice_id", using: :btree
+  add_index "groupes", ["structure_assurance_id"], name: "index_groupes_on_structure_assurance_id", using: :btree
 
   create_table "mandataires", force: :cascade do |t|
     t.string   "prenom",       null: false
@@ -353,6 +355,7 @@ ActiveRecord::Schema.define(version: 20150509204202) do
   add_foreign_key "formule_structure_sanitaires", "formules"
   add_foreign_key "formules", "structure_assurances"
   add_foreign_key "groupes", "structure_aperitrices"
+  add_foreign_key "groupes", "structure_assurances"
   add_foreign_key "ordonnances", "adherents"
   add_foreign_key "ordonnances", "pharmacies"
   add_foreign_key "souscriptions", "adherents"
