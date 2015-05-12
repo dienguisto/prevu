@@ -1,4 +1,4 @@
-<% if current_user.user_structure_assurance? %>
+<% if current_user.user_structure_assurance? or current_user.admin_system? %>
     <div class="ibox float-e-margins">
       <div class="ibox-title">
         <h5>Souscriptions</h5>
@@ -15,6 +15,7 @@
               <th>Payé?</th>
               <th>Date paiement</th>
               <th>Date d'expiration</th>
+              <th></th>
               <th></th>
             </tr>
             </thead>
@@ -34,6 +35,9 @@
                     <% else %>
                         <%= link_to 'activer', adherent_souscription_activer_path(@adherent, souscription) %>
                     <% end %>
+                  </td>
+                  <td>
+                    <%= link_to 'modifier', edit_adherent_souscription_path(@adherent, souscription) %>
                   </td>
                 </tr>
             <% end %>
