@@ -52,11 +52,11 @@
         <br/>
 
         <strong>T&eacute;l&eacute;phone:</strong>
-        <%= @adherent.default_contact.telephone %>
+        <%= @adherent.default_contact.try :telephone %>
         <br/>
 
         <strong>Email:</strong>
-        <%= @adherent.default_contact.email %>
+        <%= @adherent.default_contact.try :email %>
         <br/>
 
         <strong>Sexe:</strong>
