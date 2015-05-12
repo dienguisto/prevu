@@ -31,13 +31,13 @@ class AdherentsController < ApplicationController
     @ids = []
     if current_user.user_structure_assurance?
       @search = current_structure_assurance.adherents.ransack(params[:q])
-      @adherents = @search.result.order(:id).page params[:page]
+      @adherents = @search.result.order('id desc').page params[:page]
     elsif current_user.user_system?
       @search = Adherent.ransack(params[:q])
-      @adherents =  @search.result.order(:structure_assurance_id).page params[:page]
+      @adherents =  @search.result.order('id desc').order(:structure_assurance_id).page params[:page]
     else
       @search = Adherent.ransack(params[:q])
-      @adherents =  @search.result.page params[:page]
+      @adherents =  @search.result.order('id desc').page params[:page]
     end
 
     if params[:qq]
