@@ -17,7 +17,7 @@
             </p>
             <div class="user-button">
               <div class="row">
-                <% if current_user.user_system? %>
+                <% if current_user.user_system? or current_user.admin_structure_assurance? and current_structure_assurance == @groupe.structure_assurance %>
                     <div class="col-md-6">
                       <%= link_to '<i class="fa fa-edit"></i> Modifier'.html_safe, edit_groupe_path(@groupe), class: 'btn btn-default btn-sm btn-block' %>
                     </div>

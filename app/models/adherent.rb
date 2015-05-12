@@ -41,7 +41,7 @@ class Adherent < ActiveRecord::Base
   has_many :versements, through: :compte
 
   before_create :encrypt_password
-  before_create :generate_matricule
+  after_create :generate_matricule
   before_create :set_status
   after_create :set_default_contact
 
@@ -79,9 +79,7 @@ class Adherent < ActiveRecord::Base
   end
 
   def generate_matricule
-    last_adherent = Adherent.count
-    current_date = Date.today.strftime('%Y%m%d')
-    self.matricule = current_date+''+(last_adherent+1).to_s.rjust(6,'0')
+    self.update(matricule: id.to_s.rjust(7, '0')) if matricule.blank?
   end
 
   def set_status

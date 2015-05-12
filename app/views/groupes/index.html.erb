@@ -5,7 +5,7 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-content">
-          <% if current_user.user_system? %>
+          <% if current_user.user_system? or current_user.admin_structure_assurance? %>
               <div class="row">
                 <div class="col-sm-12">
                   <div class="actions_bouton">
@@ -20,8 +20,10 @@
               <tr>
                 <th>Nom</th>
                 <th width="150px">Nombre adhérents</th>
-                <th width="150px">pharmacies</th>
-                <th width="150px">structures sanitaires</th>
+                <% unless current_user.user_structure_assurance? %>
+                    <th width="150px">pharmacies</th>
+                    <th width="150px">structures sanitaires</th>
+                <% end %>
               </tr>
               </thead>
 
@@ -30,8 +32,10 @@
                   <tr>
                     <td><%= link_to groupe.nom, groupe %></td>
                     <td align="right"><%= groupe.adherents.count %></td>
-                    <td align="right"><%= groupe.total_a_verser_pharmacies.to_s(:delimited, delimiter: ' ') %> F CFA</td>
-                    <td align="right"><%= groupe.total_a_verser_structure_sanitaires.to_s(:delimited, delimiter: ' ') %> F CFA</td>
+                    <% unless current_user.user_structure_assurance? %>
+                        <td align="right"><%= groupe.total_a_verser_pharmacies.to_s(:delimited, delimiter: ' ') %> F CFA</td>
+                        <td align="right"><%= groupe.total_a_verser_structure_sanitaires.to_s(:delimited, delimiter: ' ') %> F CFA</td>
+                    <% end %>
                   </tr>
               <% end %>
               </tbody>

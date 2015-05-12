@@ -11,6 +11,7 @@ class StructureAssurance < ActiveRecord::Base
   has_many :ordonnances
   has_many :consultations
   has_many :versements
+  has_many :groupes
 
   validates :nom, presence: true
 

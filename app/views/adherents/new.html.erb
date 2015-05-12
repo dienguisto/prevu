@@ -37,6 +37,7 @@
                   <%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
                   <%= f.text_field :numero_piece_identite %>
                   <%= f.text_field :profession %>
+<<<<<<< HEAD
                   <%= f.hidden_field :groupe_id %>
 
                   <div class="form-group">
@@ -47,6 +48,11 @@
                   </div>
 
                 
+=======
+                  <%= f.select :groupe_id, Groupe.all.map{ |c| [c.nom, c.id]}, include_blank: true %>
+                  <%= f.text_field :numero_assurance %>
+                  <%= f.text_field :numero_police %>
+>>>>>>> origin/master
                   <%= f.file_field :avatar %>
 
                   <%#= f.select :tags,

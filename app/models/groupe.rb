@@ -5,6 +5,7 @@ class Groupe < ActiveRecord::Base
   # has_many :structure_aperitrices, through: :affectation_aperitrices
 
   belongs_to :structure_aperitrice
+  belongs_to :structure_assurance
   has_many :adherents
 
   validates :nom, presence: true, uniqueness: true

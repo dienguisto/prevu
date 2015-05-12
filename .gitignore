@@ -130,3 +130,5 @@ build/
 tmtags
 
 app/views/versements/_form.html.erb
+
+*.rb
