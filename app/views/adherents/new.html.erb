@@ -37,15 +37,7 @@
                   <%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
                   <%= f.text_field :numero_piece_identite %>
                   <%= f.text_field :profession %>
-                  <%= f.hidden_field :groupe_id %>
-
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="groupe">Groupe</label>
-                    <div class="col-sm-10">
-                      <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
-                    </div>
-                  </div>
-
+                  <%= f.select :groupe_id, Groupe.all.map{ |c| [c.nom, c.id]}, include_blank: true %>
                   <%= f.text_field :numero_assurance %>
                   <%= f.text_field :numero_police %>
                   <%= f.file_field :avatar %>

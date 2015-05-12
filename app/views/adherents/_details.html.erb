@@ -13,17 +13,23 @@
         A propos #<%= @adherent.matricule %>
       </h5>
       <p>
+        <% if @adherent.groupe %>
+            <strong>Groupement:</strong>
+            <%= @adherent.groupe.nom %>
+            <br/>
+        <% end %>
+
         <strong>Matricule:</strong>
         <%= @adherent.matricule %>
         <br/>
 
-				<strong>Numéro police:</strong>
-				<%= @adherent.numero_police %>
-				<br/>
+        <strong>Numéro police:</strong>
+        <%= @adherent.numero_police %>
+        <br/>
 
-				<strong>Numéro assurance:</strong>
-				<%= @adherent.numero_assurance %>
-				<br/>
+        <strong>Numéro assurance:</strong>
+        <%= @adherent.numero_assurance %>
+        <br/>
 
         <strong>Nom:</strong>
         <%= @adherent.nom %>
@@ -57,9 +63,9 @@
         <%= Adherent::SEXE.index(@adherent.sexe) %>
         <br/>
 
-				<strong>Profession:</strong>
-				<%= @adherent.profession %>
-				<br/>
+        <strong>Profession:</strong>
+        <%= @adherent.profession %>
+        <br/>
 
         <strong>Statut:</strong>
         <%= Adherent::STATUS.index(@adherent.status) %>
