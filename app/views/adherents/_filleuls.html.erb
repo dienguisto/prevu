@@ -1,4 +1,4 @@
-<% unless @adherent.parrain.nil? %>
+<% if @adherent.parrain.nil? %>
     <% if current_user.user_structure_assurance? or current_user.admin_system? %>
         <div class="ibox float-e-margins">
           <div class="ibox-title">
