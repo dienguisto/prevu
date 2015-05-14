@@ -6,41 +6,43 @@
     }
 </style>
 
-<div class="">
+<div>
 
   <% @adherents.each do |adherent| %>
       <% structure_assurance = adherent.structure_assurance %>
       <div class="bloc">
         <div>
-          <div class="row" style="margin-top: 5%">
-            <div class="col-md-12">
-              <div class="col-xs-3 col-md-2" style="float: left;">
+          <div class="row" style="margin-top: 2%">
+            <div class="col-md-12" style="width: 100%">
+              <div class="col-xs-3 col-md-2" style="float: left;width: 20%">
 								<img alt="image" class="avatar" src="<%= image_path(structure_assurance.logo.url) %>">
               </div>
-              <div class="col-xs-6 col-md-2">
+              <div class="col-xs-6" style="width: 55%">
 								<h2 class="carte">CARTE DE SANTE</h2>
-								<h3 class="sous_carte" style="margin-left: -0.1em"><span class="mini_titre">N&deg; Adhérent</span>: <%= adherent.matricule %></h3>
+								<h3 class="sous_carte" style="margin-left: -0.1em"><span class="mini_titre">N&deg; Adhérent</span>: <%= adherent.numero_assurance %></h3>
 								<% if adherent.numero_police %>
 									<h3 class="sous_carte" style="margin-left: -0.1em"><span class="mini_titre">N&deg; Police</span>: <%= adherent.numero_police %></h3>
 								<% end %>
               </div>
-              <div class="col-xs-3 col-md-2" style="float: right;">
+              <div class="col-xs-3 col-md-2" style="float: right;width: 25%">
 								<img alt="image" class="avatar2" src="<%= image_path(adherent.avatar.url) %>">
+								<h3 class="sous_carte" style="margin-left: -0.1em"><span class="mini_titre">N&deg; Matricule</span>: <%= adherent.matricule %></h3>
               </div>
             </div>
           </div>
-          <br/>
-          <div class="col-sm-6"  style="float: left">
+          <div class="col-sm-6"  style="float: left; margin-top: -10%">
 						<p class="line">Souscripteur.... <span class="titre"></span></p><br/>
 						<p class="line">Nom: <span class="titre"><%= adherent.full_name %></span></p><br/>
 						<p class="line">Date et lieu de naissance:
 							<span class="titre"><%= adherent.date_de_naissance.strftime('%d-%m-%Y') %></span>
-						</p><br/>
+						</p>
+            <br/>
 						<p class="line">Valable du
 							<span class="titre"><%= adherent.souscription_en_cours.date_activation.strftime('%d-%m-%Y') %></span>
 							au
 							<span class="titre"><%= adherent.souscription_en_cours.date_expiration.strftime('%d-%m-%Y') %></span>
-						</p><br/>
+						</p>
+            <br/>
           </div>
           <div class="col-sm-6"  style="margin-left: 3cm">
             <p class="line">Produit souscrit:
@@ -54,6 +56,11 @@
             <p class="line">Taux de prise en charge: <span class="titre"><%= 100 - adherent.formule_en_cours.ticket_moderateur %>%</span></p>
             <p class="line">Ticket modérateur: <span class="titre"><%= adherent.formule_en_cours.ticket_moderateur %>%</span></p>
           </div>
+					<div class="col-sm-6 np" style="float: left; margin-top: 5%">
+						NB: Cette carte est strictement personnelle
+							Toute utilisation frauduleuse expose à la non
+							garantie et à des poursuites judiciaires.
+					</div>
           <div class="clearfix"></div>
         </div>
       </div>

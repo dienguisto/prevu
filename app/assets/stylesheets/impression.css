@@ -16,10 +16,11 @@
     .carte{
         font-size: 12pt;
         text-align: center;
+        margin-top: 3%;
     }
 
     .mini_titre{
-        font-size: 4pt;
+        font-size: 6pt;
         text-align: center;
     }
 
@@ -33,9 +34,15 @@
         margin-right: 0;
     }
 
+    .np{
+        font-size: 4pt;
+        width: 4cm;
+        float: right;
+    }
+
     .avatar2 {
-        width: 90px;
-        height: 90px;
+        width: 70px;
+        height: 70px;
         margin-right: 0;
     }
 
@@ -46,6 +53,7 @@
 
     .line{
         display: inline-block;
+        margin-bottom: 0.45em;
     }
 
     .bloc{
