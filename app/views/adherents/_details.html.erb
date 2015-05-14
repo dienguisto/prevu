@@ -8,7 +8,7 @@
     </div>
     <div class="ibox-content profile-content">
       <h4><strong><%= @adherent.full_name %></strong></h4>
-      <p><i class="fa fa-map-marker"></i> <%= @adherent.default_contact.adresse %></p>
+      <p><i class="fa fa-map-marker"></i> <%= @adherent.default_contact.try :adresse %></p>
       <h5>
         A propos #<%= @adherent.matricule %>
       </h5>
@@ -52,11 +52,11 @@
         <br/>
 
         <strong>T&eacute;l&eacute;phone:</strong>
-        <%= @adherent.default_contact.telephone %>
+        <%= @adherent.default_contact.try :telephone %>
         <br/>
 
         <strong>Email:</strong>
-        <%= @adherent.default_contact.email %>
+        <%= @adherent.default_contact.try :email %>
         <br/>
 
         <strong>Sexe:</strong>
