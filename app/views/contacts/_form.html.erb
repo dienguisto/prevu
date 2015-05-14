@@ -1,5 +1,5 @@
 <%= f.fields_for :contacts do |contact| %>
     <%= contact.text_field :email %>
-    <%= contact.telephone_field :telephone %>
+    <%= contact.telephone_field :telephone, label: 'Téléphone' %>
     <%= contact.text_field :adresse %>
 <% end %>

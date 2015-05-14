@@ -23,7 +23,7 @@
                       <tr>
                         <td><%= link_to adherent.matricule, adherent %></td>
                         <td><%= adherent.full_name %></td>
-                        <td><%= adherent.affiliation %></td>
+                        <td><%= Adherent::AFFILIATION.index(adherent.affiliation) %></td>
                         <td><%= afficher_status adherent.status %></td>
                       </tr>
                   <% end %>

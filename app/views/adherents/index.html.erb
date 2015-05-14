@@ -13,13 +13,16 @@
 																		 {:class => 'form-control',:placeholder => 'Nom...'} %>
 									<%= f.search_field :prenom_cont,
 																		 {:class => 'form-control',:placeholder => 'Prénom...'} %>
-									<%= f.search_field :numero_piece_identite_cont,
+									<%#= f.search_field :numero_piece_identite_cont,
 																		 {:class => 'form-control',:placeholder => 'Numéro de piéce d''identité...'} %>
-									<%= f.search_field :lieu_de_naissance_cont,
+									<%#= f.search_field :lieu_de_naissance_cont,
 																		 {:class => 'form-control',:placeholder => 'Lieu de naissance...'} %>
 									<%= f.select :status_eq,
 															 {''=> '', 'En attente' => "1", 'Actif' => "2", 'Suspendu' => "3", 'Supprimé' => "4"},
-															 {:class => 'form-control' }%>
+                                                             include_blank: true, prompt: '-- Statut --' %>
+                                    <%= f.select :groupe_id_eq,
+                                                 Groupe.all.map{ |c| [c.nom, c.id]},
+                                                 include_blank: true, prompt: '-- Groupement --' %>
 								</div>
 								<%= f.submit 'Rechercher', class: 'btn btn-primary' %>
 							<% end %>
@@ -44,9 +47,9 @@
                     <th>Matricule</th>
                     <th>Nom</th>
                     <th>Date de naissance</th>
-                    <th>Status</th>
+                    <th>Statut</th>
                     <% if current_user.user_structure_assurance? %>
-                        <th>Print cards</th>
+                        <th width="10px">Sélection</th>
                     <% end %>
                   </tr>
                   </thead>

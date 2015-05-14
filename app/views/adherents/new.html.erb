@@ -24,8 +24,8 @@
                 <h1>Information de base</h1>
                 <div class="step-content">
                   <%= f.text_field :nom %>
-                  <%= f.text_field :prenom %>
-                  <%= f.select :sexe, Adherent::SEXE.keys %>
+                  <%= f.text_field :prenom, label: 'Prénom' %>
+                  <%= f.select :sexe, Adherent.sexes %>
                   <%= f.select :status_matrimonial, Adherent::MATRIMONIAL.keys %>
                   <%= f.date_field :date_de_naissance, :as => :date_picker %>
                   <%= f.text_field :lieu_de_naissance %>
@@ -34,25 +34,14 @@
 
                 <h1>Identification</h1>
                 <div class="step-content">
-                  <%= f.select :type_piece_identite, Adherent.type_piece_identites.keys %>
-                  <%= f.text_field :numero_piece_identite %>
+                  <%= f.select :type_piece_identite, Adherent.type_piece_identites.keys, label: "Type pièce d'identité" %>
+                  <%= f.text_field :numero_piece_identite, label: 'Numéro pièce identité' %>
                   <%= f.text_field :profession %>
-
-                  <%= f.hidden_field :groupe_id %>
-
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="groupe">Groupe</label>
-                    <div class="col-sm-10">
-                      <input class="string form-control" id="groupe" name="groupe" value="<%= @adherent.groupe.nom if @adherent.groupe %>" type="text">
-                    </div>
-                  </div>
-
-
 
                   <%= f.select :groupe_id, Groupe.all.map{ |c| [c.nom, c.id]}, include_blank: true %>
 
 
-                  <%= f.file_field :avatar %>
+                  <%= f.file_field :avatar, label: 'Photo' %>
 
                   <%#= f.select :tags,
                                Tag.all.map{ |c| [c.nom, c.id] },
