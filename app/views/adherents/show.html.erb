@@ -1,4 +1,4 @@
-<%= titre_page "Adhérent : #{@adherent.matricule} #{"(ticket modérateur : #{@adherent.souscriptions.en_cours.last.formule.ticket_moderateur} %)" unless @adherent.souscriptions.en_cours.empty?} #{"(#{Adherent::AFFILIATION.index(@adherent.affiliation)} de #{link_to @adherent.parrain.full_name, @adherent})" unless @adherent.parrain.nil?}" %>
+<%= titre_page "Adhérent : #{@adherent.matricule} #{"(ticket modérateur : #{@adherent.souscriptions.en_cours.last.formule.ticket_moderateur} %)" unless @adherent.souscriptions.en_cours.empty?} #{"(#{Adherent::AFFILIATION.index(@adherent.affiliation)} de #{link_to @adherent.parrain.full_name, @adherent.parrain})" unless @adherent.parrain.nil?}" %>
 
 <div class="wrapper wrapper-content">
   <div class="row">
